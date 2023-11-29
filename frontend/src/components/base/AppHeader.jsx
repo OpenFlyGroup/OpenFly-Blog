@@ -159,7 +159,8 @@ export default function AppHeader() {
     <>
       <AppBar
       position="static">
-        <Container maxWidth="xl">
+        <Container
+        maxWidth="xl">
           <Toolbar>
             <IconButton
               size="large"
@@ -170,7 +171,9 @@ export default function AppHeader() {
             >
               <MenuIcon />
             </IconButton>
+
             <AppLogo />
+
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
