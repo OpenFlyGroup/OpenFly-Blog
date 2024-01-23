@@ -5,5 +5,23 @@
 }
 
 body {
-    background: url('bg.svg');
+    background: url('bg2.svg');
+    background-size: cover;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    border-radius: 0  0 1rem 1rem;
+    background-color: rgb(255, 255, 255);
+    backdrop-filter: blur(2rem);
+}
+
+.footer {
+    border-radius: 1rem 1rem 0 0;
+}
+
+a.active {
+    text-decoration: underline;
+    color: #0000ff;
 }
