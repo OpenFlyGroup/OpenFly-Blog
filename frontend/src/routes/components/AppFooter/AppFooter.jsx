@@ -115,7 +115,7 @@ function AppFooter() {
                             <a
                                 href="#"
                                 title=""
-                                className="flex items-center justify-center text-black transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-orange-600 hover:text-white focus:text-white hover:bg-orange-600 hover:border-orange-600 focus:border-orange-600"
+                                className="flex items-center justify-center text-black transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-[#0000ff] hover:text-white focus:text-white hover:bg-[#0000ff] hover:border-[#0000ff] focus:border-[#0000ff]"
                             >
                                 <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path
@@ -129,7 +129,7 @@ function AppFooter() {
                             <a
                                 href="#"
                                 title=""
-                                className="flex items-center justify-center text-black transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-orange-600 hover:text-white focus:text-white hover:bg-orange-600 hover:border-orange-600 focus:border-orange-600"
+                                className="flex items-center justify-center text-black transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-[#0000ff] hover:text-white focus:text-white hover:bg-[#0000ff] hover:border-[#0000ff] focus:border-[#0000ff]"
                             >
                                 <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"></path>
@@ -141,7 +141,7 @@ function AppFooter() {
                             <a
                                 href="#"
                                 title=""
-                                className="flex items-center justify-center text-black transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-orange-600 hover:text-white focus:text-white hover:bg-orange-600 hover:border-orange-600 focus:border-orange-600"
+                                className="flex items-center justify-center text-black transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-[#0000ff] hover:text-white focus:text-white hover:bg-[#0000ff] hover:border-[#0000ff] focus:border-[#0000ff]"
                             >
                                 <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M11.999 7.377a4.623 4.623 0 1 0 0 9.248 4.623 4.623 0 0 0 0-9.248zm0 7.627a3.004 3.004 0 1 1 0-6.008 3.004 3.004 0 0 1 0 6.008z"></path>
@@ -157,7 +157,7 @@ function AppFooter() {
                             <a
                                 href="#"
                                 title=""
-                                className="flex items-center justify-center text-black transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-orange-600 hover:text-white focus:text-white hover:bg-orange-600 hover:border-orange-600 focus:border-orange-600"
+                                className="flex items-center justify-center text-black transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-[#0000ff] hover:text-white focus:text-white hover:bg-[#0000ff] hover:border-[#0000ff] focus:border-[#0000ff]"
                             >
                                 <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path
