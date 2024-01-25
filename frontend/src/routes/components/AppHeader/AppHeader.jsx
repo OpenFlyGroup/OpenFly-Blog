@@ -11,7 +11,11 @@ const AppHeader = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   
   return (
-    <header className='header drop-shadow-2xl'>
+    <motion.header
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity:1 }}
+    transition={{ type: "spring" }}
+    className='header drop-shadow-2xl'>
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <NavLink to="/" className="-m-1.5 p-1.5">
@@ -106,7 +110,7 @@ const AppHeader = () => {
         </Dialog.Panel>
         </motion.div>
       </Dialog>
-    </header>
+    </motion.header>
   )
 }
 export default AppHeader;
