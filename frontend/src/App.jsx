@@ -1,6 +1,7 @@
+import React, { useEffect } from 'react';
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+
 // import { useSelector, useDispatch } from 'react-redux'
-import { createBrowserRouter } from "react-router-dom";
-import { RouterProvider } from "react-router-dom";
 
 import AppHeader from "./routes/components/AppHeader/AppHeader";
 import ErrorPage from './routes/Error/ErrorPage';
@@ -8,45 +9,29 @@ import RootPage from "./routes/Root/RootPage";
 import ForumPage from "./routes/Forum/ForumPage";
 import NewsPage from "./routes/News/NewsPage";
 import AboutPage from "./routes/About/AboutPage";
-import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import AppFooter from "./routes/components/AppFooter/AppFooter";
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <RootPage />,
-        errorElement: <ErrorPage />,
-        children: [
-          {
-            path: "forum",
-            element: <ForumPage />,
-          },
-          {
-              path: "news",
-              element: <NewsPage />,
-          },
-          {
-              path: "about",
-              element: <AboutPage />,
-          },
-        ],
-    },
-]);
-
 const App = () => {
+  useEffect(() => {
+  }, []);
 
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <AppHeader />
-      </BrowserRouter>
-      <HelmetProvider>
-        <RouterProvider router={router} />
-      </HelmetProvider>
-      <AppFooter />
+        <HelmetProvider>
+          <Routes>
+            <Route path="/" element={<RootPage />} />
+            <Route path="forum" element={<ForumPage />} />
+            <Route path="news" element={<NewsPage />} />
+            <Route path="about" element={<AboutPage />} />
+          </Routes>
+        </HelmetProvider>
+        <AppFooter />
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
