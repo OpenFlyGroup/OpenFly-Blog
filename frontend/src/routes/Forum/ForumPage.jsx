@@ -12,7 +12,7 @@ function ForumPage() {
             <meta name="msapplication-TileColor" content="#da532c" />
             <meta name="theme-color" content="#ffffff" />
         </Helmet>
-        <p className="text-4xl text-white">Почему Россия такая сильная?</p>
+        <p className="text-4xl text-white"></p>
         </>
     );
 }

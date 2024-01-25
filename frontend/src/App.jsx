@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 
 // import { useSelector, useDispatch } from 'react-redux'
@@ -13,8 +12,6 @@ import { HelmetProvider } from 'react-helmet-async';
 import AppFooter from "./routes/components/AppFooter/AppFooter";
 
 const App = () => {
-  useEffect(() => {
-  }, []);
 
   return (
     <>
@@ -22,6 +19,7 @@ const App = () => {
         <AppHeader />
         <HelmetProvider>
           <Routes>
+            <Route path="*" element={<ErrorPage />} />
             <Route path="/" element={<RootPage />} />
             <Route path="forum" element={<ForumPage />} />
             <Route path="news" element={<NewsPage />} />
