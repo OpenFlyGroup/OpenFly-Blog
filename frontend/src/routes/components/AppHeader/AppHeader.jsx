@@ -74,24 +74,24 @@ const AppHeader = () => {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-[#0000ff]">
               <div className="space-y-2 py-6">
-                <a
-                  href="#"
+                <NavLink
+                  to='/forum'
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-bold leading-7 text-[#0000ff] hover:bg-gray-50"
                 >
                   Forum
-                </a>
-                <a
-                  href="#"
+                </NavLink>
+                <NavLink
+                  to='/news'
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-bold leading-7 text-[#0000ff] hover:bg-gray-50"
                 >
                   News
-                </a>
-                <a
-                  href="#"
+                </NavLink>
+                <NavLink
+                  to='/about'
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-bold leading-7 text-[#0000ff] hover:bg-gray-50"
                 >
                   Company
-                </a>
+                </NavLink>
               </div>
               <div className="py-6">
                 <a

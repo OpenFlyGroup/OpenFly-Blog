@@ -5,6 +5,9 @@ import { RouterProvider } from "react-router-dom";
 import AppHeader from "./routes/components/AppHeader/AppHeader";
 import ErrorPage from './routes/Error/ErrorPage';
 import RootPage from "./routes/Root/RootPage";
+import ForumPage from "./routes/Forum/ForumPage";
+import NewsPage from "./routes/News/NewsPage";
+import AboutPage from "./routes/About/AboutPage";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import AppFooter from "./routes/components/AppFooter/AppFooter";
@@ -14,6 +17,20 @@ const router = createBrowserRouter([
         path: "/",
         element: <RootPage />,
         errorElement: <ErrorPage />,
+        children: [
+          {
+            path: "forum",
+            element: <ForumPage />,
+          },
+          {
+              path: "news",
+              element: <NewsPage />,
+          },
+          {
+              path: "about",
+              element: <AboutPage />,
+          },
+        ],
     },
 ]);
 
