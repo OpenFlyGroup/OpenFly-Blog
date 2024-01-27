@@ -21,9 +21,9 @@ const App = () => {
           <Routes>
             <Route path="*" element={<ErrorPage />} />
             <Route path="/" element={<RootPage />} />
-            <Route path="forum" element={<ForumPage />} />
-            <Route path="news" element={<NewsPage />} />
-            <Route path="about" element={<AboutPage />} />
+            <Route path="/forum" element={<ForumPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
         </HelmetProvider>
         <AppFooter />
