@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import AppPost from "../components/AppPost/AppPost";
 
 function NewsPage() {
     return (
@@ -12,7 +13,7 @@ function NewsPage() {
             <meta name="msapplication-TileColor" content="#da532c" />
             <meta name="theme-color" content="#ffffff" />
         </Helmet>
-        <p className="text-4xl text-white"></p>
+        <AppPost />
         </>
     );
 }
