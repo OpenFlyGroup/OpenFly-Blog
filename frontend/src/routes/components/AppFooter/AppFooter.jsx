@@ -111,7 +111,7 @@ function AppFooter() {
                     <p className="text-sm text-gray-600">© Copyright 2024, All Rights Reserved by 2Duo Minds</p>
 
                     <ul className="flex items-center mt-5 space-x-3 md:order-3 sm:mt-0">
-                        <li>
+                        {/* <li>
                             <a
                                 href="#"
                                 title=""
@@ -151,11 +151,11 @@ function AppFooter() {
                                     ></path>
                                 </svg>
                             </a>
-                        </li>
+                        </li> */}
 
                         <li>
                             <a
-                                href="#"
+                                href="https://github.com/freeeakn/Project_Zero.git"
                                 title=""
                                 className="flex items-center justify-center text-black transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-[#0000ff] hover:text-white focus:text-white hover:bg-[#0000ff] hover:border-[#0000ff] focus:border-[#0000ff]"
                             >
