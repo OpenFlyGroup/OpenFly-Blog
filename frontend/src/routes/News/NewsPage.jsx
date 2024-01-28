@@ -14,6 +14,8 @@ function NewsPage() {
             <meta name="theme-color" content="#ffffff" />
         </Helmet>
         <AppPost />
+        <AppPost />
+        <AppPost />
         </>
     );
 }

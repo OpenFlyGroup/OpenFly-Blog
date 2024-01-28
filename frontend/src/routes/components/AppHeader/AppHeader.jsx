@@ -15,12 +15,12 @@ const AppHeader = () => {
     initial={{ opacity: 0 }}
     whileInView={{ opacity:1 }}
     transition={{ type: "spring" }}
-    className='header drop-shadow-2xl'>
+    className='header drop-shadow-2xl z-10'>
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <NavLink to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">/PROJECTZERO</span>
-            <img className="h-5 w-auto" src="logo2.svg" alt="" />
+            <img className="h-5 w-auto drop-shadow-2xl" src="logo2.svg" alt="" />
           </NavLink>
         </div>
         <div className="flex lg:hidden">

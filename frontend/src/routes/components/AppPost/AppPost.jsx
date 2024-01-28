@@ -8,13 +8,13 @@ function AppPost() {
         whileInView={{ opacity:1 }}
         transition={{ type: "spring" }}
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-            <article className="shadow-xl p-5 flex flex-col lg:flex-row border-y-2 gap-5 bg-white rounded-xl cursor-pointer">
+            <article className="drop-shadow-2xl p-5 flex flex-col lg:flex-row border-y-2 gap-5 bg-white rounded-xl cursor-pointer">
                 <div className="flex flex-col gap-5">
                     <a className=" flex justify-start items-center gap-5" href="">
-                        <img className=" w-12 " src="logo.svg" alt="avatar" />
+                        <img className="w-12 " src="logo.svg" alt="avatar" />
                         <h3>PROJECTZERO</h3>
                     </a>
-                    <img className="rounded-xl w-full" src="https://plus.unsplash.com/premium_photo-1664439520373-c832fe4c3186?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80" alt="" />
+                    <img className="rounded-xl w-full shadow-lg" src="https://plus.unsplash.com/premium_photo-1664439520373-c832fe4c3186?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80" alt="" />
                     <p>
                         26 june 19:48
                     </p>
@@ -49,6 +49,27 @@ function AppPost() {
                             </button>
                             <p>15</p>
                         </div> */}
+                    </div>
+                    <div >
+                        <div className=" flex flex-col gap-2 p-3 border-b-2 hover:bg-slate-100">
+                            <div className="flex gap-4 items-start">
+                                <img className="rounded-full w-10 " src="https://images.generated.photos/qI5uM1dlPhWuZfuUOvcIt7cWP0BrcyA_3RAXpw2EJ5k/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/Nzc4Mjk0LmpwZw.jpg" alt="avatar" />
+                                <div>
+                                    <h3 className='text-sm text-[#0000ff]'>@Wonder</h3>
+                                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus dolorem molestias accusantium rerum debitis consequatur voluptates temporibus tempora minima odit tempore, similique a aliquam fugit earum harum autem eligendi cupiditate.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className=" flex flex-col gap-2 p-3 hover:bg-slate-100">
+                            <div className="flex gap-4 items-start">
+                                <img className="rounded-full w-10 " src="https://images.generated.photos/qI5uM1dlPhWuZfuUOvcIt7cWP0BrcyA_3RAXpw2EJ5k/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/Nzc4Mjk0LmpwZw.jpg" alt="avatar" />
+                                <div>
+                                    <h3 className='text-sm text-[#0000ff]'>@Wonder</h3>
+                                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </article>
