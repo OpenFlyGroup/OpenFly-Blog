@@ -44,9 +44,12 @@ const AppHeader = () => {
             Company
           </NavLink>
         </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-5">
           <NavLink to="/signin" className="text-sm font-bold leading-6 text-black hover:text-[#0000ff] duration-200">
             Sign in
+          </NavLink>
+          <NavLink to="/signup" className="text-sm font-bold leading-6 text-black hover:text-[#0000ff] duration-200">
+            Sign up
           </NavLink>
         </div>
       </nav>
@@ -103,6 +106,12 @@ const AppHeader = () => {
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-bold leading-7 text-[#0000ff] hover:bg-gray-50"
                 >
                   Sign in
+                </NavLink>
+                <NavLink
+                  to="/signup"
+                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-bold leading-7 text-[#0000ff] hover:bg-gray-50"
+                >
+                  Sign up
                 </NavLink>
               </div>
             </div>
