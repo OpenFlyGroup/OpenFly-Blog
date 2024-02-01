@@ -8,7 +8,7 @@ const AppLogin = () => {
                 {/* <NavLink to="/" className="flex items-center mb-6 text-2xl font-semibold text-black">
                     <img className="w-64 mr-2" src="logo2.svg" alt="logo" />
                 </NavLink> */}
-                <div className="w-full bg-white rounded-2xl shadow md:mt-0 sm:max-w-md xl:p-0">
+                <div className="w-full bg-white rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl">
                             Sign in to your account
@@ -33,7 +33,7 @@ const AppLogin = () => {
                                 </div>
                                 {/* <a href="#" className="text-sm font-medium text-[#0000ff] hover:underline">Forgot password?</a> */}
                             </div>
-                            <button type="submit" className="w-full text-white bg-[#0000ff] hover:bg-[#0000ff] focus:ring-4 focus:outline-none focus:ring-[#0000ff] font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
+                            <button type="submit" className="w-full duration-200 text-white bg-[#0000ff] hover:bg-[#ffffff] hover:text-[#0000ff] hover:ring-2 focus:ring-4 focus:outline-none focus:ring-[#0000ff] font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
                             <p className="text-sm font-light text-gray-500">
                                 Don’t have an account yet? <NavLink to="/signup" className="font-medium text-[#0000ff] hover:underline">Sign up</NavLink>
                             </p>
