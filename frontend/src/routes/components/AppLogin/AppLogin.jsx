@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const AppLogin = () => {
     return (
@@ -8,7 +9,11 @@ const AppLogin = () => {
                 {/* <NavLink to="/" className="flex items-center mb-6 text-2xl font-semibold text-black">
                     <img className="w-64 mr-2" src="logo2.svg" alt="logo" />
                 </NavLink> */}
-                <div className="w-full bg-white rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0">
+                <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity:1 }}
+                transition={{ type: "spring" }}
+                className="w-full bg-white rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl">
                             Sign in to your account
@@ -39,7 +44,7 @@ const AppLogin = () => {
                             </p>
                         </form>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
         </>
