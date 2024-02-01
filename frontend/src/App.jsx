@@ -10,6 +10,8 @@ import NewsPage from "./routes/News/NewsPage";
 import AboutPage from "./routes/About/AboutPage";
 import { HelmetProvider } from 'react-helmet-async';
 import AppFooter from "./routes/components/AppFooter/AppFooter";
+import LoginPage from './routes/LoginPage/LoginPage';
+import SignUpPage from './routes/SignUpPage/SignUpPage';
 
 const App = () => {
 
@@ -24,6 +26,8 @@ const App = () => {
             <Route path="/forum" element={<ForumPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/signin" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
           </Routes>
         </HelmetProvider>
         <AppFooter />

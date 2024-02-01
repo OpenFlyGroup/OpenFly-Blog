@@ -1,10 +1,11 @@
+// import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
-import AppPost from "../components/AppPost/AppPost";
+import AppLogin from "../components/AppLogin/AppLogin";
 
-const NewsPage = () => {
+const LoginPage = () => {
     return (
         <>
-        <Helmet title="News">
+        <Helmet title="login">
             <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
             <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
             <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -13,11 +14,9 @@ const NewsPage = () => {
             <meta name="msapplication-TileColor" content="#da532c" />
             <meta name="theme-color" content="#ffffff" />
         </Helmet>
-        <AppPost />
-        <AppPost />
-        <AppPost />
+        <AppLogin />
         </>
     );
 }
 
-export default NewsPage;
+export default LoginPage;

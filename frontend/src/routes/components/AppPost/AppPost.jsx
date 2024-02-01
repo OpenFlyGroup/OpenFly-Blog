@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-function AppPost() {
+const AppPost = () => {
     return (
         <>
         <motion.div

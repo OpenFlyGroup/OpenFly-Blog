@@ -45,9 +45,9 @@ const AppHeader = () => {
           </NavLink>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-bold leading-6 text-black hover:text-[#0000ff] duration-200">
-            Log in
-          </a>
+          <NavLink to="/signin" className="text-sm font-bold leading-6 text-black hover:text-[#0000ff] duration-200">
+            Sign in
+          </NavLink>
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -98,12 +98,12 @@ const AppHeader = () => {
                 </NavLink>
               </div>
               <div className="py-6">
-                <a
-                  href="#"
+                <NavLink
+                  to="/signin"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-bold leading-7 text-[#0000ff] hover:bg-gray-50"
                 >
-                  Log in
-                </a>
+                  Sign in
+                </NavLink>
               </div>
             </div>
           </div>
