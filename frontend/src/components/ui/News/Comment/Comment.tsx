@@ -9,7 +9,7 @@ const Comment: React.FC<ICommentsProps> = ({id, img, nick, date, text}) => {
             <img className="rounded-full w-[40px]" src={img} alt={`${nick} avatar`} />
             <div>
                 <div className=" flex gap-2">
-                    <h3 className='text-sm text-[#0000ff]'>@{nick}</h3>
+                    <h3 className='text-sm text-primary'>@{nick}</h3>
                     <h4 className='text-sm text-[#616161]'>{date}</h4>
                 </div>
                 <p>{text}</p>

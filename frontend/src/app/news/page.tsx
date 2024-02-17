@@ -1,7 +1,7 @@
 import Post from '@/components/ui/News/Post/Post'
 import { IPost } from '@/types/ui/News/news.interface'
 
-const News = () => {
+const NewsPage: React.FC = () => {
   const posts: IPost[] = [
     {
       id: 0,
@@ -72,4 +72,4 @@ const News = () => {
   )
 }
 
-export default News
+export default NewsPage;

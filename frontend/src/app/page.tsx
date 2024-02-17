@@ -1,5 +1,5 @@
 
-const Home = () => {
+const HomePage: React.FC = () => {
   
   return (
     <>
@@ -8,4 +8,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

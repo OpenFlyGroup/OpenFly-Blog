@@ -1,6 +1,6 @@
 import SignInForm from "@/components/ui/Form/SignInForm/SignInForm";
 
-const SignIn: React.FC = () => {
+const SignInPage: React.FC = () => {
     return (
         <>
         <SignInForm />
@@ -8,4 +8,4 @@ const SignIn: React.FC = () => {
     );
 }
 
-export default SignIn;
+export default SignInPage;

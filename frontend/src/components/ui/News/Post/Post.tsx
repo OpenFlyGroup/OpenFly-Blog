@@ -18,7 +18,7 @@ const Post: React.FC<IPostProps> = ({ props }) => {
                 </div>
                 <div className="flex flex-col gap-5">
                     <div className="flex">
-                        <p className=" text-sm text-white p-2 bg-[#0000ff] rounded-xl">{props.category}</p>
+                        <p className=" text-sm text-white p-2 bg-primary rounded-xl">{props.category}</p>
                     </div>
                     <p>{props.text}</p>
                     <div className="flex gap-10">
