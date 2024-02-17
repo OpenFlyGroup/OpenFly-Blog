@@ -50,7 +50,7 @@ class NewsCommentsListAPIView(APIView):
                 'author_name': output.author_name,
                 'author_img': output.author_img,
                 'date': output.date,
-                'content': output.category,
+                'content': output.content,
             } for output in NewsComments.objects.all()
         ]
         return Response(output)
