@@ -9,12 +9,16 @@ class Forum(models.Model):
 class News(models.Model):
     news_id = models.AutoField(primary_key=True)
     date = models.DateField()
-    content = models.TextField()
+    content_text = models.TextField()
+    content_img = models.TextField()
     category = models.CharField(max_length=255, null=True, blank=True)
+    likes = models.IntegerField()
 
-class Info(models.Model):
-    info_id = models.AutoField(primary_key=True)
-    project = models.CharField(max_length=255)
+class NewsComments(models.Model):
+    comment_id = models.AutoField(primary_key=True)
+    author_name = models.TextField()
+    author_img = models.TextField()
+    date = models.DateField()
     content = models.TextField()
 
 class User(models.Model):
@@ -24,3 +28,4 @@ class User(models.Model):
     info = models.TextField(blank=True)
     role = models.CharField(max_length=20, choices=[('user', 'User'), ('admin', 'Admin')], default='user')
     active = models.BooleanField(default=True)
+    profile_img = models.TextField()
