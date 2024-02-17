@@ -1,10 +1,12 @@
-import React from 'react'
+import Post from '@/components/ui/News/Post/Post'
 
-type Props = {}
-
-const News = (props: Props) => {
+const News = () => {
   return (
-    <div>News</div>
+    <>
+    <Post />
+    <Post />
+    <Post />
+    </>
   )
 }
 
