@@ -1,4 +1,4 @@
-import { ICommentsProps, IPostProps } from "@/types/ui/News/news.interface";
+import { IPostProps } from "@/types/ui/News/news.interface";
 import Image from "next/image";
 import Comment from "../Comment/Comment";
 

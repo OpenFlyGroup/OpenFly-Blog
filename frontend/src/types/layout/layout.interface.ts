@@ -6,3 +6,9 @@ export interface IContainerProps {
     children: React.ReactNode;
     addClass?: string;
 }
+
+export type TypeNavLink = {
+    id: number;
+    name: string;
+    path: string;
+}

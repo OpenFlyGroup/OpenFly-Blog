@@ -1,5 +1,6 @@
 {
-  "name": "frontend-next",
+  "name": "frontend",
+  "author": "2DuoMinds[Arthur Pechenkin (freeeakn), Daniel (Routybor)] ",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,16 +10,27 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.1",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@reduxjs/toolkit": "^2.2.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "axios": "^1.6.7",
+    "clsx": "^2.1.0",
     "framer-motion": "^11.0.5",
+    "js-cookie": "^3.0.5",
     "next": "14.1.0",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "primereact": "^10.5.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-redux": "^9.1.0"
+    "react-redux": "^9.1.0",
+    "react-toastify": "^10.0.4",
+    "swiper": "^11.0.6",
+    "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -26,6 +38,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "postcss": "^8",
+    "prettier": "3.2.5",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }

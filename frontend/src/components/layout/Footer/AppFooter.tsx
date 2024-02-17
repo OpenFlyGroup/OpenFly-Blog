@@ -1,14 +1,54 @@
+import isActive from "@/hooks/isActive";
+import { TypeNavLink } from "@/types/layout/layout.interface";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+type TypeFooterNavLink = {
+    title: string;
+    links: TypeNavLink[];
+};
 
 const AppFooter: React.FC = () => {
+    const pathname = usePathname();
+
+    const FooterNavCols: TypeFooterNavLink[] = [
+        {
+            title: "Company",
+            links: [
+                { id: 0, name: 'About', path: '/about' },
+                { id: 1, name: 'Features', path: '/features' },
+                { id: 2, name: 'Works', path: '/works' },
+                { id: 3, name: 'Career', path: '/career' },
+            ],
+        },
+        {
+            title: "Help",
+            links: [
+                { id: 0, name: 'FAQ', path: '/faq' },
+                { id: 1, name: 'Customer Support', path: '/customer_support' },
+                { id: 2, name: 'Terms & Conditions', path: '/terms_conditions' },
+                { id: 3, name: 'Privacy Policy', path: '/privacy_policy' },
+            ],
+        },
+        {
+            title: "Resources",
+            links: [
+                { id: 0, name: 'Development Tutorial', path: '/dev_tutorial' },
+                { id: 1, name: 'How to - Blog', path: '/How_to' },
+                { id: 3, name: 'YouTube Playlist', path: '/' },
+            ],
+        },
+    ];
+
     return (
         <>
         <motion.footer
         initial={{ opacity: 0 }}
         whileInView={{ opacity:1 }}
         transition={{ type: "spring" }}
-        className="footer drop-shadow-2xl py-10 bg-white sm:pt-16 lg:pt-24">
+        className="footer drop-shadow-2xl rounded-t-2xl py-10 bg-white sm:pt-16 lg:pt-24">
             <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-y-12 gap-x-8 xl:gap-x-12">
                     <div className="col-span-2 md:col-span-4 xl:pr-8">
@@ -16,94 +56,23 @@ const AppFooter: React.FC = () => {
 
                         <p className="text-base text-black mt-7">2Duo Minds - Where Innovation Meets Ingenuity.</p>
                     </div>
+                    
+                    {FooterNavCols.map((col, index) => (
+                        <div
+                        key={index}
+                        className="lg:col-span-2">
+                            <p className="text-base font-semibold text-black">{col.title}</p>
 
-                    <div className="lg:col-span-2">
-                        <p className="text-base font-semibold text-black">Company</p>
+                            <ul className="mt-6 space-y-5">
+                                {col.links.map(link => (
+                                    <li key={link.id}>
+                                        <Link href={link.path} className={`${isActive(link.path, pathname) ? "active" : " "} flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]`}> {link.name} </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
 
-                        <ul className="mt-6 space-y-5">
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> About </a>
-                            </li>
-
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> Features </a>
-                            </li>
-
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> Works </a>
-                            </li>
-
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> Career </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div className="lg:col-span-2">
-                        <p className="text-base font-semibold text-black">Help</p>
-
-                        <ul className="mt-6 space-y-4">
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> Customer Support </a>
-                            </li>
-
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> Delivery Details </a>
-                            </li>
-
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> Terms & Conditions </a>
-                            </li>
-
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> Privacy Policy </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div className="lg:col-span-2">
-                        <p className="text-base font-semibold text-black">Resources</p>
-
-                        <ul className="mt-6 space-y-5">
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> Free eBooks </a>
-                            </li>
-
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> Development Tutorial </a>
-                            </li>
-
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> How to - Blog </a>
-                            </li>
-
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> YouTube Playlist </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div className="lg:col-span-2">
-                        <p className="text-base font-semibold text-black">Extra Links</p>
-
-                        <ul className="mt-6 space-y-5">
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> Customer Support </a>
-                            </li>
-
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> Delivery Details </a>
-                            </li>
-
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> Terms & Conditions </a>
-                            </li>
-
-                            <li>
-                                <a href="#" title="" className="flex text-sm text-black transition-all duration-200 hover:text-[#0000ff] focus:text-[#0000ff]"> Privacy Policy </a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
 
                 <hr className="mt-16 mb-10 border-gray-200" />
