@@ -1,12 +1,15 @@
 from django.urls import path
-from .views import *
+from .views.forum_views import ForumListAPIView
+from .views.news_views import NewsListAPIView, NewsCommentsListAPIView
+from .views.user_views import UserListAPIView, SignInAPIView, SignUpAPIView
+
+
 
 urlpatterns = [
     path('forum/', ForumListAPIView.as_view(), name='forum-list'),
     path('news/', NewsListAPIView.as_view(), name='news-list'),
-    path('info/', InfoListAPIView.as_view(), name='info-list'),
+    path('news_comments/', NewsCommentsListAPIView.as_view(), name='news-list'),
     path('users/', UserListAPIView.as_view(), name='users-list'),
-
-    # path('login/', UserLoginView.as_view(), name='login'),
-    # path('signup/', UserCreateView.as_view(), name='signup'),
+    path('signup/', SignUpAPIView.as_view(), name='sign-up'),
+    path('signin/', SignInAPIView.as_view(), name='sign-in'),
 ]

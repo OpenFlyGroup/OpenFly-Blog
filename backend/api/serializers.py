@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Forum, News, Info, User
+from .models import Forum, News, NewsComments, User
 
 class ForumSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,9 +11,9 @@ class NewsSerializer(serializers.ModelSerializer):
         model = News
         fields = '__all__'
 
-class InfoSerializer(serializers.ModelSerializer):
+class NewsCommentsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Info
+        model = NewsComments
         fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
