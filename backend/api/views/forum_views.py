@@ -3,13 +3,14 @@ from rest_framework.response import Response
 
 from ..models import Forum
 from ..serializers import ForumSerializer
+from ..functions.token_functions import generate_access_token, get_user_by_data, get_user_by_token, token_check
 
 
 class ForumListAPIView(APIView):
     def get(self, request):
         output = [
             {
-                'thread_id': output.thread_id,
+                'id': output.thread_id,
                 'creator': output.creator,
                 'content': output.content,
                 'category': output.category,
