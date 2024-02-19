@@ -1,12 +1,11 @@
 # 2DuoMinds
 ========
 
-Welcome to Project_Zero, a repository for developing a fully functional blog using Next and Django.
+Welcome to 2DuoMinds, a repository for developing a fully functional blog using Next and Django.
 
 Features
 --------
 
-* Retro-style design
 * Built using SSR Next
 * Powered by Django
 * Custom illustrations and animations throughout the website
@@ -21,7 +20,7 @@ Usage
 2. Choose the type of post you want to create (e.g. article, video, image) and fill in the relevant fields.
 3. Use the editor to add content to your post, including text, images, videos, and other media.
 4. Click "Save" to publish your post.
-5. Customize the layout and design of your blog by modifying the React components and CSS files.
+5. Customize the layout and design of your blog by modifying the Next components.
 
 License
 -------
