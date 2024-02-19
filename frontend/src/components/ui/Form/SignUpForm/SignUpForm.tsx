@@ -1,9 +1,10 @@
 "use client"
 import { motion } from "framer-motion";
 import BtnSubmit from "../../Buttons/BtnSubmit/BtnSubmit";
+import FormLabel from "../FormLabel/FormLabel";
 // import Link from "next/link";
 
-const SignUpForm = () => {
+const SignUpForm: React.FC = () => {
     return (
         <>
         <section>
@@ -22,23 +23,22 @@ const SignUpForm = () => {
                         </h1>
                         <form className="space-y-4 md:space-y-6">
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900">Your nickname</label>
-                                <input type="text" name="text" id="text" className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-[#0000ff] focus:border-[#0000ff] block w-full p-2.5" placeholder="nickname" required />
+                                <FormLabel>Your nickname</FormLabel>
+                                <input type="text" name="text" id="text" className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="nickname" required />
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
-                                <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-[#0000ff] focus:border-[#0000ff] block w-full p-2.5" placeholder="name@company.com" required />
+                                <FormLabel>Your email</FormLabel>
+                                <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="name@company.com" required />
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-black">Password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-[#0000ff] focus:border-[#0000ff] block w-full p-2.5" required />
+                                <FormLabel>Password</FormLabel>
+                                <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-black">Repeat password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-[#0000ff] focus:border-[#0000ff] block w-full p-2.5" required />
+                                <FormLabel>Repeat password</FormLabel>
+                                <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
                             </div>
                             <BtnSubmit text="Sign up" />
-                            
                         </form>
                     </div>
                 </motion.div>

@@ -1,5 +1,6 @@
+import { NextPage } from "next";
 
-const Home = () => {
+const HomePage: NextPage = () => {
   
   return (
     <>
@@ -8,4 +9,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
