@@ -1,23 +1,9 @@
-export interface IPost {
-    id: number;
-    title: string;
-    logoImg: string;
-    mainImg: string;
-    category: string;
-    date: string;
-    text: string;
-    likes: number;
-    comments: ICommentsProps[];
-}
+import { IComment, IPost } from "@/lib/post/post.interface";
 
 export interface IPostProps {
     props: IPost;
 }
 
-export interface ICommentsProps {
-    id: number;
-    img?: string;
-    nick: string;
-    date: string;
-    text: string;
-}
+export interface ICommentProps {
+    props: IComment;
+};

@@ -10,7 +10,7 @@ const App: React.FC<Readonly<IDefaultLayout>> = ({ children }) => {
   return (
     <PrimeReactProvider value={{ unstyled: true, pt: {}, ptOptions: { mergeSections: true, mergeProps: true, classNameMergeFunction: twMerge } }}>
         <AppHeader />
-        <main className="flex-1 py-6">{children}</main>
+          <main className="flex-1 py-6">{children}</main>
         <AppFooter />
     </PrimeReactProvider>
   );

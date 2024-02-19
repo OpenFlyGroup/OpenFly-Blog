@@ -1,12 +1,10 @@
 import SignUpForm from '@/components/ui/Form/SignUpForm/SignUpForm';
-import React from 'react'
+import { NextPage } from 'next';
 
-type Props = {}
-
-const SignUp = (props: Props) => {
+const SignUpPage: NextPage = () => {
   return (
     <SignUpForm />
   )
 }
 
-export default SignUp;
+export default SignUpPage;
