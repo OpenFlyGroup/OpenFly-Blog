@@ -1,4 +1,4 @@
-import { IComment, IPost } from "@/lib/post/post.interface";
+import { IComment, IPost } from "@/store/post/post.interface";
 
 export interface IPostProps {
     props: IPost;
