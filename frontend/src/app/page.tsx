@@ -1,5 +1,6 @@
+import { NextPage } from "next";
 
-const HomePage: React.FC = () => {
+const HomePage: NextPage = () => {
   
   return (
     <>

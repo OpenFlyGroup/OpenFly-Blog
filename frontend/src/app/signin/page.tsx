@@ -1,6 +1,7 @@
 import SignInForm from "@/components/ui/Form/SignInForm/SignInForm";
+import { NextPage } from "next";
 
-const SignInPage: React.FC = () => {
+const SignInPage: NextPage = () => {
     return (
         <>
         <SignInForm />

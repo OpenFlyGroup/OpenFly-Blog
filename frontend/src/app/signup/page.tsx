@@ -1,6 +1,7 @@
 import SignUpForm from '@/components/ui/Form/SignUpForm/SignUpForm';
+import { NextPage } from 'next';
 
-const SignUpPage: React.FC = () => {
+const SignUpPage: NextPage = () => {
   return (
     <SignUpForm />
   )

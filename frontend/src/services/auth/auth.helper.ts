@@ -1,12 +1,12 @@
 import { IAuthResponse, ITokens } from '@/lib/user/user.interface';
 import Cookies from 'js-cookie';
 
-export const getAccessToken = async () => {
+export const getAccessToken = () => {
     const accessToken = Cookies.get('access_token');
     return accessToken || null;
 };
 
-export const getUserFromStorage = async () => {
+export const getUserFromStorage = () => {
     return JSON.parse(localStorage.getItem('user') || '{}');
 };
 

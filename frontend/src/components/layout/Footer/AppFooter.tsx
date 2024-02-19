@@ -1,4 +1,4 @@
-import isActive from "@/hooks/isActive";
+import isActive from "@/utils/isActive";
 import { TypeNavLink } from "@/types/layout/layout.interface";
 import { motion } from "framer-motion";
 import Image from "next/image";

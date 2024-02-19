@@ -6,13 +6,13 @@ import { saveToStorage } from "./auth.helper";
 import { IEmailPassword } from "@/lib/user/user.interface";
 import { instance } from "@/api/api.interceptor";
 
-const AUTH = 'auth';
+const PATH = 'auth';
 
 export const AuthService = {
 
     async main(type: 'signup' | 'signin', data: IEmailPassword) {
         const response = await instance<IAuthResponse>({
-            url: `/${AUTH}/${type}`,
+            url: `/${PATH}/${type}`,
             method: 'POST',
             data,
         });
@@ -27,7 +27,7 @@ export const AuthService = {
         const refreshToken = Cookies.get('refreshToken');
 
         const response = await axios.post<string, { data: IAuthResponse }>(
-            process.env.SERVER_URL + `/${AUTH}/signin/access-token`,
+            process.env.SERVER_URL + `/${PATH}/signin/access-token`,
             { refreshToken },
             { headers: getContentType() },
         )

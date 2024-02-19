@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import isActive from '@/hooks/isActive';
+import isActive from '@/utils/isActive';
 import { TypeNavLink } from '@/types/layout/layout.interface';
 
 const AppHeader: React.FC = () => {

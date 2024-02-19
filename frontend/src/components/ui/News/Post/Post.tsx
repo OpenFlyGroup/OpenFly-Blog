@@ -48,7 +48,7 @@ const Post: React.FC<IPostProps> = ({ props }) => {
                     </div>
                     <div>
                         {props.comments.map(comment => (
-                            <Comment key={comment.id} id={comment.id} nick={comment.nick} img={comment.img} date={comment.date} text={comment.text} />
+                            <Comment key={comment.id} props={comment}/>
                         ))}
                     </div>
                 </div>
