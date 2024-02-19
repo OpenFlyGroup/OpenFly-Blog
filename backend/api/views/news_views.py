@@ -20,9 +20,11 @@ class NewsListAPIView(APIView):
         valid = token_check(token)
         if valid:
             serializer = NewsSerializer(data = request.data)
+
             response_data = {
                 'id': valid
             }
+
             if serializer.is_valid():
                 serializer.save()
                 return Response(response_data['news_id'])
@@ -31,7 +33,6 @@ class NewsListAPIView(APIView):
         else:
             return Response("Invalid input", status=400)
 
-# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaDMxNDQyM24zZDNvZSIsInBhc3N3b3JkIjoiaGFzM2hlZF9wYXNzd29yZF9oZXJlIn0.Z7n4b8PqjmL-apY5LwWFwBOs1arRtwC-OKQ33Sn6-kE
 class NewsCommentsListAPIView(APIView):
     def get(self, request):
         news_instances = NewsComments.objects.all()

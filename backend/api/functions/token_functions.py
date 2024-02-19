@@ -19,7 +19,7 @@ def generate_access_token(username, user_id, expiration_minutes=30):
     - expiration_minutes (int): Token expiration time in minutes
 
     Returns:
-    - str: Generated JWT token
+    - str: Generated JWT access token
     """
     creation_time = datetime.utcnow()
     expiration_time = creation_time + timedelta(minutes=expiration_minutes)
@@ -42,7 +42,7 @@ def generate_refresh_token(username, user_id, expiration_days=30):
     - user_id (str): User's unique identifier
 
     Returns:
-    - str: Generated refresh token
+    - str: Generated JWT refresh token
     """
     creation_time = datetime.utcnow()
     expiration_time = creation_time + timedelta(days=expiration_days)

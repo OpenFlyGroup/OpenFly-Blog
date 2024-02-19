@@ -54,3 +54,27 @@ def check_user(username, password):
         return True
     except User.DoesNotExist:
         return False
+
+def check_is_unique(username=None, email=None):
+    """
+    Check is username unique.
+
+    Parameters:
+    - username (str): User's username (optional)
+    - email (str): User's email (optional)
+
+    Returns:
+    - True - if the data is unique, False - otherwise
+    """
+    if email is not None:
+        try:
+            User.objects.get(email=email)
+            return False
+        except User.DoesNotExist:
+            return True
+    else:
+        try:
+            User.objects.get(username=username)
+            return False
+        except User.DoesNotExist:
+            return True
