@@ -1,5 +1,5 @@
 import { instance } from "@/api/api.interceptor";
-import { IPost } from "@/lib/post/post.interface";
+import { IPost } from "@/store/post/post.interface";
 import { IDataFilters } from "./news.interface";
 
 const PATH = 'news';

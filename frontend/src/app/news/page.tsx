@@ -1,5 +1,5 @@
 import Post from '@/components/ui/News/Post/Post'
-import { IPost } from '@/lib/post/post.interface';
+import { IPost } from '@/store/post/post.interface';
 
 const NewsPage: React.FC = () => {
   const posts: IPost[] = [
