@@ -1,4 +1,4 @@
-import { IAuthResponse, ITokens } from '@/lib/user/user.interface';
+import { IAuthResponse, ITokens } from '@/store/user/user.interface';
 import Cookies from 'js-cookie';
 
 export const getAccessToken = () => {

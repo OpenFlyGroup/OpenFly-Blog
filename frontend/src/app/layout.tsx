@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
-import "./globals.css";
-import App from "@/components/App";
 import StoreProvider from "./StoreProvider";
-import AuthProvider from "@/providers/AuthProvider/AuthProvider";
-import { TypeComponentAuthFields } from "@/providers/AuthProvider/authPage.types";
+import { Roboto } from "next/font/google";
+import type { Metadata } from "next";
+import App from "@/components/App";
+import "./globals.css";
 
 const roboto = Roboto({
   weight: ["400", "500", "700", "900"],
@@ -35,23 +33,17 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-  Component,
   children,
 }: Readonly<{
   children: React.ReactNode;
-} & TypeComponentAuthFields>) {
+}>) {
   return (
     <html lang="en">
       <body className={roboto.className}>
         <StoreProvider>
-          <AuthProvider Component={{
-            isOnlyUser: false,
-            isOnlyAdmin: false
-          }}>
             <App>
               {children}
             </App>
-          </AuthProvider>
         </StoreProvider>
       </body>
     </html>

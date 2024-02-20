@@ -1,9 +1,9 @@
 import { getContentType } from "@/api/api.helper";
-import { IAuthResponse } from "@/lib/user/user.interface";
+import { IAuthResponse } from "@/store/user/user.interface";
 import axios from "axios";
 import Cookies  from "js-cookie";
 import { saveToStorage } from "./auth.helper";
-import { IEmailPassword } from "@/lib/user/user.interface";
+import { IEmailPassword } from "@/store/user/user.interface";
 import { instance } from "@/api/api.interceptor";
 
 const PATH = 'auth';
