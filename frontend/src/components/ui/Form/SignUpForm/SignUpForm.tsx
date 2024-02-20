@@ -8,19 +8,24 @@ import { IEmailPassword } from "@/store/user/user.interface";
 import { SubmitHandler, useForm } from "react-hook-form";
 // import Link from "next/link";
 
+interface ISignup extends IEmailPassword {
+    nickname: string;
+}
+
 const SignUpForm: React.FC = () => {
     const { isLoading } = useAuth();
 
-    const { signin } = useActions();
+    const { signup } = useActions();
 
-    const {register: formRegister, handleSubmit, formState: { errors }, reset} = useForm<IEmailPassword & {nickname: string}>({
+    const {register: formRegister, handleSubmit, formState: { errors }, reset} = useForm<ISignup>({
         mode: "onChange"
     });
 
-    const onSubmit: SubmitHandler<IEmailPassword> = data => {
-        signin(data);
+    const onSubmit: SubmitHandler<ISignup> = data => {
+        signup(data);
         reset();
     };
+
     return (
         <>
         <section>
