@@ -5,12 +5,10 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
 DB_PASSWORD = getenv("PGPASSWORD")
-
 DB_USER =  getenv("PGUSER")
+SECRET_KEY = getenv("SECRET_KEY")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-SECRET_KEY = getenv("SECRET_KEY")
 
 DEBUG = True
 
