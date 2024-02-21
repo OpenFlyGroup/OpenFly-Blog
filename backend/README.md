@@ -8,13 +8,14 @@
 - [User List](#user-list)
 - [Sign Up](#sign-up)
 - [Sign In](#sign-in)
+- [Get new access token](#get_new_access_token)
 
 ---
 
 ## Forum List
 
 ### Route
-- `api/forum/`
+- `api/forum`
 
 ### Description
 - Get a list of forums.
@@ -48,7 +49,7 @@
 ## News List
 
 ### Route
-- `api/news/`
+- `api/news`
 
 ### Description
 - Get a list of news.
@@ -83,88 +84,10 @@
 
 ---
 
-## News Comments List
-
-### Route
-- `api/news_comments/`
-
-### Description
-- Get a list of comments on news articles.
-
-### Method
-- GET
-
-### Expected Input
-- None
-
-### Expected Output
-```json
-[
-    {
-        "comment_id": 1,
-        "author_name": "string",
-        "author_img": "string",
-        "date": "YYYY-MM-DD",
-        "content": "string"
-    },
-    {
-        "comment_id": 2,
-        "author_name": "string",
-        "author_img": "string",
-        "date": "YYYY-MM-DD",
-        "content": "string"
-    },
-]
-```
-
----
-
-## User List
-
-### Route
-- `api/users/`
-
-### Description
-- Get a list of users.
-
-### Method
-- GET
-
-### Expected Input
-- None
-
-### Expected Output
-```json
-[
-    {
-        "id": 1,
-        "email": "user@example.com",
-        "username": "string",
-        "password": "string",
-        "info": "string",
-        "role": "user",
-        "active": true,
-        "profile_img": "string"
-    },
-    {
-        "id": 2,
-        "email": "admin@example.com",
-        "username": "string",
-        "password": "string",
-        "info": "string",
-        "role": "admin",
-        "active": true,
-        "profile_img": "string"
-    },
-]
-```
-
----
-
 ## Sign Up
 
 ### Route
-- `api/signup/`
+- `api/auth/signup`
 
 ### Description
 - Create a new user account.
@@ -184,7 +107,8 @@
 ### Expected Output
 ```json
 {
-    "token": "JWT_TOKEN"
+    "access_token": "JWT_TOKEN",
+    "refresh_token": "JWT_TOKEN"
 }
 ```
 
@@ -193,7 +117,7 @@
 ## Sign In
 
 ### Route
-- `api/signin/`
+- `api/signin`
 
 ### Description
 - Authenticate and sign in a user.
@@ -212,9 +136,38 @@
 ### Expected Output
 ```json
 {
-    "valid": "bool",
-    "token": "JWT_TOKEN",
-    "user_id": "int"
+    "access_token": "JWT_TOKEN",
+    "refresh_token": "JWT_TOKEN"
+}
+```
+
+---
+
+---
+
+## Get new access token
+
+### Route
+- `api/auth/signin/access-token`
+
+### Description
+- Update current access token.
+
+### Method
+- POST
+
+### Expected Input
+```json
+{
+    "access_token": "JWT_TOKEN",
+    "refresh_token": "JWT_TOKEN"
+}
+```
+
+### Expected Output
+```json
+{
+    "access_token": "JWT_TOKEN"
 }
 ```
 
