@@ -1,76 +1,84 @@
+from django.contrib.auth import authenticate, login
+from django.contrib.sessions.models import Session
+from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from ..models import User
 from ..serializers import UserSerializer
-from ..functions.token_functions import generate_access_token, generate_refresh_token, get_user_by_token, token_check
-from ..functions.user_functions import get_user_by_data, check_user, check_is_unique
+from ..utils.token_utils import generate_token, get_user_by_token, token_check, refresh_access_token
+from ..utils.user_utils import get_user_by_data, check_user, check_is_unique
 
 
 class SignInAPIView(APIView):
     def post(self, request):
-        username = str(request.data.get('username', ''))
-        password = str(request.data.get('password', ''))
-        user = get_user_by_data(username=username, password=password)
-        if user is not None:
-            user_id = user['user_id']
-            access_token = generate_access_token(username, user_id)
-            refresh_token = generate_refresh_token(username, user_id)
+        try:
+            username = request.data.get('nickname', '')
+            password = request.data.get('password', '')
 
-            response_data = {
-                'access_token': access_token,
-                'refresh_token': refresh_token,
-            }
+            user = get_user_by_data(username=username, password=password) # Authenticate user
 
-            return Response(response_data)
-        else:
-            return Response("Invalid data.", status=400)
+            if user:
+                user_id = user['user_id']
+                access_token = generate_token(username=username, user_id=user_id, token_type="access", exp_period=30)
+                refresh_token = generate_token(username=username, user_id=user_id, token_type="refresh", exp_period=30)
+                response_data = {
+                    'access_token': access_token,
+                    'refresh_token': refresh_token,
+                }
+                return Response(response_data, status=201) # Return access and refresh token
+            else:
+                return Response("Invalid username or password.", status=400) # Return authentication error
+        except Exception as e:
+            return Response("An error occurred: " + str(e), status=400) # Return generic error message
+
 
 class SignUpAPIView(APIView):
     def get(self, request):
-        response_data = [
-            {
-                'id': response_data.user_id,
-                'email': response_data.email,
-                'username': response_data.username,
-                'password': response_data.password,
-                'info': response_data.info,
-                'role': response_data.role,
-                'active': response_data.active,
-                'profile_img': response_data.profile_img,
-            } for response_data in User.objects.all()
-        ]
-        return Response(response_data)
+        users = User.objects.all()
+        response_data = []
+        for user in users:
+            response_data.append({
+                'id': user.user_id,
+                'email': user.email,
+                'nickname': user.username,
+                'password': user.password,
+                'info': user.info,
+                'role': user.role,
+                'active': user.active,
+                'profile_img': user.profile_img,
+            })
+        return Response(response_data) # Return all users information !!! INSECURE !!!
 
     def post(self, request):
-        username = str(request.data.get('username', ''))
-        password = str(request.data.get('password', ''))
-        email = str(request.data.get('email', ''))
+        username = request.data.get('nickname', '')
+        password = request.data.get('password', '')
+        email = request.data.get('email', '')
 
         if not check_is_unique(username=username):
-            return Response("Username already exists", status=400)
+            return Response("Username already exists", status=400) # Return uniqueness of username
+        if not check_is_unique(email=email):
+            return Response("Email already exists", status=400) # Return uniqueness of email
 
-        if not check_is_unique(username=username):
-            return Response("Email already exists", status=400)
-
-        input_data = {
-            'username': username,
-            'email': email,
-            'password': password
-        }
+        input_data = {'username': username, 'email': email, 'password': password}
 
         serializer = UserSerializer(data=input_data)
         if serializer.is_valid():
-            serializer.save()
-            user_id = serializer.data['user_id']
-            access_token = generate_access_token(username, user_id)
-            refresh_token = generate_refresh_token(username, user_id)
-
-            response_data = {
-                'access_token': access_token,
-                'refresh_token': refresh_token,
-            }
-
-            return Response(response_data)
+            user = serializer.save()
+            user_id = user.user_id
+            access_token = generate_token(username=username, user_id=user_id, token_type="access", exp_period=30)
+            refresh_token = generate_token(username=username, user_id=user_id, token_type="refresh", exp_period=30)
+            response_data = {'access_token': access_token, 'refresh_token': refresh_token}
+            return Response(response_data, status=201) # Return access and refresh token
         else:
-            return Response(serializer.errors, status=400)
+            return Response(serializer.errors, status=400) # Return generic error message
+
+class UpdateTokenAPIView(APIView):
+    def post(self, request):
+        access_token = request.data.get('access_token', '')
+        refresh_token = request.data.get('refresh_token', '')
+        new_token, error = refresh_access_token(refresh_token, access_token)
+        if error:
+            return Response(error, status=400)
+        else:
+            return Response({'access_token': new_token}, status=201)
