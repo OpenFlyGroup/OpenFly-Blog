@@ -45,3 +45,7 @@ class User(models.Model):
     role = models.CharField(max_length=20, choices=[('user', 'User'), ('admin', 'Admin')], default='user')
     active = models.BooleanField(default=True)
     profile_img = models.TextField(null=True, default="")
+
+class Sessions(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField()
