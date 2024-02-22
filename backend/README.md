@@ -1,174 +1,36 @@
-# Backend API Documentation
+# Django Backend Docker Setup
 
-## Navigation Links
+This repository contains the Docker setup for a Django backend.
 
-- [Forum List](#forum-list)
-- [News List](#news-list)
-- [News Comments List](#news-comments-list)
-- [User List](#user-list)
-- [Sign Up](#sign-up)
-- [Sign In](#sign-in)
-- [Get new access token](#get_new_access_token)
 
----
+## Building the Docker Image
 
-## Forum List
-
-### Route
-- `api/forum`
-
-### Description
-- Get a list of forums.
-
-### Method
-- GET
-
-### Expected Input
-- None
-
-### Expected Output
-```json
-[
-    {
-        "thread_id": 1,
-        "creator": "string",
-        "content": "string",
-        "category": "string"
-    },
-    {
-        "thread_id": 2,
-        "creator": "string",
-        "content": "string",
-        "category": "string"
-    },
-]
+```bash
+docker build -t backend:latest .
 ```
 
----
+This command builds Docker image named `backend:latest` based on the Dockerfile in the project.
 
-## News List
+## Running the Docker Container
 
-### Route
-- `api/news`
-
-### Description
-- Get a list of news.
-
-### Method
-- GET
-
-### Expected Input
-- None
-
-### Expected Output
-```json
-[
-    {
-        "news_id": 1,
-        "date": "YYYY-MM-DD",
-        "content_text": "string",
-        "content_img": "string",
-        "category": "string",
-        "likes": 0
-    },
-    {
-        "news_id": 2,
-        "date": "YYYY-MM-DD",
-        "content_text": "string",
-        "content_img": "string",
-        "category": "string",
-        "likes": 0
-    },
-]
+```bash
+docker run -p 8000:8000 backend
 ```
 
----
+This command runs the Docker container from the `backend:latest` image, mapping port 8000 on the host to port 8000 in the container.
 
-## Sign Up
+Access your Django app in a web browser at [http://localhost:8000/](http://localhost:8000/).
 
-### Route
-- `api/auth/signup`
+## Possible Issues and Feedback
 
-### Description
-- Create a new user account.
+If you encounter issues or have feedback, consider the following:
 
-### Method
-- POST
+- **Container Startup Issues:** Check the console output when starting the container for any error messages. Ensure that the necessary dependencies are correctly installed.
 
-### Expected Input
-```json
-{
-    "username": "string",
-    "password": "string",
-    "email": "user@example.com"
-}
-```
+- **Port Conflicts:** Make sure no other processes are using port 8000 on your machine. If needed, you can modify the port mapping in the `docker run` command.
 
-### Expected Output
-```json
-{
-    "access_token": "JWT_TOKEN",
-    "refresh_token": "JWT_TOKEN"
-}
-```
+- **Feedback:** Please feel free to open an issue in this repository for any questions, issues, or feedback. (There is a good chance that I made a mistake xD)
 
----
+### Notes
 
-## Sign In
-
-### Route
-- `api/signin`
-
-### Description
-- Authenticate and sign in a user.
-
-### Method
-- POST
-
-### Expected Input
-```json
-{
-    "username": "string",
-    "password": "string"
-}
-```
-
-### Expected Output
-```json
-{
-    "access_token": "JWT_TOKEN",
-    "refresh_token": "JWT_TOKEN"
-}
-```
-
----
-
----
-
-## Get new access token
-
-### Route
-- `api/auth/signin/access-token`
-
-### Description
-- Update current access token.
-
-### Method
-- POST
-
-### Expected Input
-```json
-{
-    "access_token": "JWT_TOKEN",
-    "refresh_token": "JWT_TOKEN"
-}
-```
-
-### Expected Output
-```json
-{
-    "access_token": "JWT_TOKEN"
-}
-```
-
----
+- API documentation has been moved to the api folder/
