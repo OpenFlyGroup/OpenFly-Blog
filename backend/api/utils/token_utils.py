@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from ..models import User, Sessions
 from ..serializers import SessionsSerializer
 from .user_utils import get_user_by_data
+from .session_utils import session_update
 
 load_dotenv()
 JWT_KEY = getenv("JWT_KEY")
@@ -28,6 +29,9 @@ def generate_token(username, user_id, token_type, exp_period):
         expiration_time = creation_time + timedelta(minutes=exp_period)
     elif token_type == 'refresh':
         expiration_time = creation_time + timedelta(days=exp_period)
+        session_error = session_update(creation_time, user_id)
+        if session_error is not None:
+            raise(session_error)
     else:
         raise('Invalid token type')
 
@@ -38,9 +42,9 @@ def generate_token(username, user_id, token_type, exp_period):
         'created': creation_time.isoformat(),
         'expired': expiration_time.isoformat()
     }
+
     token = encode(payload, JWT_KEY, algorithm='HS256')
     return token
-
 
 def token_check(token, token_type):
     """
