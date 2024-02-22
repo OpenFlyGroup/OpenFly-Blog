@@ -79,6 +79,6 @@ class UpdateTokenAPIView(APIView):
         refresh_token = request.data.get('refresh_token', '')
         new_token, error = refresh_access_token(refresh_token, access_token)
         if error:
-            return Response(error, status=400)
+            return Response(error, status=400) # Return error message
         else:
-            return Response({'access_token': new_token}, status=201)
+            return Response({'access_token': new_token}, status=201) # Return new access token
