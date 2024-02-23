@@ -48,25 +48,25 @@ const AppFooter: React.FC = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity:1 }}
         transition={{ type: "spring" }}
-        className="footer drop-shadow-2xl rounded-t-2xl py-10 bg-white sm:pt-16 lg:pt-24">
+        className="footer drop-shadow-2xl rounded-t-2xl py-10 bg-secondary sm:pt-16 lg:pt-24">
             <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-y-12 gap-x-8 xl:gap-x-12">
                     <div className="col-span-2 md:col-span-4 xl:pr-8">
-                        <Image width={340} height={40} src="/logo2.svg" alt="logo" />
+                        <Image width={340} height={40} src="/logo_2.svg" alt="logo" />
 
-                        <p className="text-base text-black mt-7">2Duo Minds - Where Innovation Meets Ingenuity.</p>
+                        <p className="text-base text-white mt-7">2Duo Minds - Where Innovation Meets Ingenuity.</p>
                     </div>
                     
                     {FooterNavCols.map((col, index) => (
                         <div
                         key={index}
                         className="lg:col-span-2">
-                            <p className="text-base font-semibold text-black">{col.title}</p>
+                            <p className="text-base font-semibold text-white">{col.title}</p>
 
                             <ul className="mt-6 space-y-5">
                                 {col.links.map(link => (
                                     <li key={link.id}>
-                                        <Link href={link.path} className={`${isActive(link.path, pathname) ? "active" : " "} flex text-sm text-black transition-all duration-200 hover:text-primary focus:text-primary`}> {link.name} </Link>
+                                        <Link href={link.path} className={`${isActive(link.path, pathname) ? "active" : " "} flex text-sm text-white transition-all duration-200 hover:text-primary focus:text-primary`}> {link.name} </Link>
                                     </li>
                                 ))}
                             </ul>
@@ -85,7 +85,7 @@ const AppFooter: React.FC = () => {
                             <a
                                 href="#"
                                 title=""
-                                className="flex items-center justify-center text-black transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-primary hover:text-white focus:text-white hover:bg-primary hover:border-primary focus:border-primary"
+                                className="flex items-center justify-center text-white transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-primary hover:text-white focus:text-white hover:bg-primary hover:border-primary focus:border-primary"
                             >
                                 <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path
@@ -99,7 +99,7 @@ const AppFooter: React.FC = () => {
                             <a
                                 href="#"
                                 title=""
-                                className="flex items-center justify-center text-black transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-primary hover:text-white focus:text-white hover:bg-primary hover:border-primary focus:border-primary"
+                                className="flex items-center justify-center text-white transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-primary hover:text-white focus:text-white hover:bg-primary hover:border-primary focus:border-primary"
                             >
                                 <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"></path>
@@ -111,7 +111,7 @@ const AppFooter: React.FC = () => {
                             <a
                                 href="#"
                                 title=""
-                                className="flex items-center justify-center text-black transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-primary hover:text-white focus:text-white hover:bg-primary hover:border-primary focus:border-primary"
+                                className="flex items-center justify-center text-white transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-primary hover:text-white focus:text-white hover:bg-primary hover:border-primary focus:border-primary"
                             >
                                 <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M11.999 7.377a4.623 4.623 0 1 0 0 9.248 4.623 4.623 0 0 0 0-9.248zm0 7.627a3.004 3.004 0 1 1 0-6.008 3.004 3.004 0 0 1 0 6.008z"></path>
@@ -127,7 +127,7 @@ const AppFooter: React.FC = () => {
                             <a
                                 href="https://github.com/freeeakn/Project_Zero.git"
                                 title=""
-                                className="flex items-center justify-center text-black transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-primary hover:text-white focus:text-white hover:bg-primary hover:border-primary focus:border-primary"
+                                className="flex items-center justify-center text-white transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-primary hover:text-white focus:text-white hover:bg-primary hover:border-primary focus:border-primary"
                             >
                                 <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path
