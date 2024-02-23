@@ -27,12 +27,12 @@ const AppHeader: React.FC = () => {
     initial={{ opacity: 0 }}
     whileInView={{ opacity:1 }}
     transition={{ type: "spring" }}
-    className=' sticky top-0 rounded-b-2xl bg-white drop-shadow-2xl z-10'>
+    className=' sticky top-0 rounded-b-2xl bg-secondary drop-shadow-2xl z-10'>
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link href="/" >
             <span className="sr-only">2DuoMinds</span>
-            <Image width={175} height={20} className="drop-shadow-2xl" src="/logo2.svg" alt="logo" />
+            <Image width={100} height={20} className="drop-shadow-2xl" src="/logo_2.svg" alt="logo" />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -49,14 +49,14 @@ const AppHeader: React.FC = () => {
           {NavLinks.map(item => (
             <Link
             key={item.id}
-            href={item.path} className={`${isActive(item.path, pathname) ? "active" : " "} text-sm font-[500] leading-6 text-black hover:text-primary duration-200`}>
+            href={item.path} className={`${isActive(item.path, pathname) ? "active" : " "} text-sm font-[500] leading-6 text-white hover:text-primary duration-200`}>
               {item.name}
             </Link>
           ))}
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link href="/signin"
-          className={`${isActive("/signin", pathname) ? "active" : " "} text-sm font-[500] leading-6 text-black hover:text-primary duration-200`}
+          className={`${isActive("/signin", pathname) ? "active" : " "} text-sm font-[500] leading-6 text-white hover:text-primary duration-200`}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
               <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clipRule="evenodd" />

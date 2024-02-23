@@ -4,4 +4,5 @@ export interface IUser {
     nickname: string;
     avatarPath: string;
     isAdmin: boolean;
+    isActive: boolean;
 };
