@@ -1,5 +1,5 @@
 
-const NewsPostPage: React.FC = () => {
+const NewsPostPage = ({ params }: { params: { id: string } }) => {
   return (
     <div>NewsPost</div>
   )
