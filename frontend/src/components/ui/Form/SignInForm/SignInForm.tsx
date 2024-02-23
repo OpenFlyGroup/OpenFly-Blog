@@ -28,16 +28,16 @@ const SignInForm: React.FC = () => {
         <>
         <section>
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                {/* <NavLink to="/" className="flex items-center mb-6 text-2xl font-semibold text-black">
+                {/* <NavLink to="/" className="flex items-center mb-6 text-2xl font-semibold text-white">
                     <img className="w-64 mr-2" src="logo2.svg" alt="logo" />
                 </NavLink> */}
                 <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity:1 }}
                 transition={{ type: "spring" }}
-                className="w-full bg-white rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0">
+                className="w-full bg-secondary rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl">
+                        <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
                             Sign in to your account
                         </h1>
                         <form
@@ -52,7 +52,7 @@ const SignInForm: React.FC = () => {
                                         message: 'Please enter valid email',
                                     },
                                 })}
-                                className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="name@company.com" required />
+                                className="bg-gray-50 border border-gray-300 text-secondary sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="name@company.com" required />
                             </div>
                             <div>
                                 <FormLabel>Password</FormLabel>
@@ -62,7 +62,7 @@ const SignInForm: React.FC = () => {
                                         value: 6,
                                         message: 'Min length must be 6 characters',
                                     }
-                                })} placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
+                                })} placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-secondary sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" required />
                             </div>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-start">
