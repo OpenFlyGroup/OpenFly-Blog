@@ -4,13 +4,14 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
-DB_PASSWORD = getenv("PGPASSWORD")
-
-DB_USER =  getenv("PGUSER")
+DB_PASSWORD = getenv("PG_PASSWORD")
+DB_USER =  getenv("PG_USER")
+DB_HOST =  getenv("PG_HOST")
+DB_NAME = getenv("PG_DATABASE")
+DB_PORT = getenv("PG_PORT")
+SECRET_KEY = getenv("SECRET_KEY")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-SECRET_KEY = getenv("SECRET_KEY")
 
 DEBUG = True
 
@@ -67,12 +68,12 @@ WSGI_APPLICATION = "backend.wsgi.application"
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'blog_db',
-    'USER': 'Routybor',
-    'PASSWORD': 'oWgxR70TSDdw',
-    'HOST': 'ep-lively-moon-a5ip03c5.us-east-2.aws.neon.tech',
-    'PORT': '5432',
-    'OPTIONS': {'sslmode': 'require'},
+    'NAME': DB_NAME,
+    'USER': DB_USER,
+    'PASSWORD': DB_PASSWORD,
+    'HOST': DB_HOST,
+    'PORT': DB_PORT,
+    'OPTIONS': {'sslmode': 'prefer'},
   }
 }
 

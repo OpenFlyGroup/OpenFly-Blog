@@ -3,7 +3,7 @@ from ..models import User
 
 def get_user_by_data(username=None, user_id=None, password=None):
     """
-    Retrieve user information from the database based on provided data.
+    Retrieve user information from database based on provided data.
 
     Parameters:
     - username (str): User's username (optional)
@@ -11,7 +11,7 @@ def get_user_by_data(username=None, user_id=None, password=None):
     - password (str): User's password (optional)
 
     Returns:
-    - dict or None: User information as a dictionary or None if the user is not found
+    - dict or None: User information as dictionary or None if user is not found
     """
     try:
         if user_id is not None and password is not None:
@@ -40,14 +40,14 @@ def get_user_by_data(username=None, user_id=None, password=None):
 
 def check_user(username, password):
     """
-    Retrieve user information from the database based on provided data.
+    Retrieve user information from database based on provided data.
 
     Parameters:
     - username (str): User's username
     - password (str): User's password
 
     Returns:
-    - True - if the data is valid, False - otherwise
+    - True - if data is valid, False - otherwise
     """
     try:
         User.objects.get(username=username, password=password)
@@ -64,7 +64,7 @@ def check_is_unique(username=None, email=None):
     - email (str): User's email (optional)
 
     Returns:
-    - True - if the data is unique, False - otherwise
+    - True - if data is unique, False - otherwise
     """
     if email is not None:
         try:

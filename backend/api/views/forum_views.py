@@ -3,7 +3,7 @@ from rest_framework.response import Response
 
 from ..models import Forum
 from ..serializers import ForumSerializer
-from ..functions.token_functions import generate_access_token, get_user_by_data, get_user_by_token, token_check
+from ..utils.token_utils import generate_token, get_user_by_data, get_user_by_token, token_check
 
 
 class ForumListAPIView(APIView):
