@@ -1,6 +1,8 @@
-const ProfilePage = ({ params }: { params: { id: string } }) => {
+import AppProfile from "@/components/layout/Profile/AppProfile";
+
+const ProfilePage = () => {
     return (
-      <div>ProfilePage</div>
+      <AppProfile />
     )
 };
 
