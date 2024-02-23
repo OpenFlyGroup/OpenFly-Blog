@@ -52,6 +52,7 @@ class SignUpAPIView(APIView):
 
     def post(self, request):
         username = request.data.get('nickname', '')
+        print(username)
         password = request.data.get('password', '')
         email = request.data.get('email', '')
 
@@ -60,7 +61,7 @@ class SignUpAPIView(APIView):
         if not check_is_unique(email=email):
             return Response("Email already exists", status=400) # Return uniqueness of email
 
-        input_data = {'nickname': username, 'email': email, 'password': password}
+        input_data = {'username': username, 'email': email, 'password': password}
 
         serializer = UserSerializer(data=input_data)
         if serializer.is_valid():
