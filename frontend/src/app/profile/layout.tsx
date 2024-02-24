@@ -1,3 +1,4 @@
+import AppProfile from "@/components/layout/Profile/AppProfile";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -24,12 +25,14 @@ export const metadata: Metadata = {
   }
 
 const ProfileLayout = ({
-    children,
+    base,
+    admin,
 }: Readonly<{
-    children: React.ReactNode;
+    base: React.ReactNode;
+    admin: React.ReactNode;
 }>) => {
   return (
-    <>{children}</>
+    <AppProfile base={base} admin={admin} />
   )
 }
 

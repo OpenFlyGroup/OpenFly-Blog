@@ -1,7 +1,7 @@
-# 2DuoMinds-Blog
+# OpenFly-Blog
 ========
 
-Welcome to 2DuoMinds, a repository for developing a fully functional blog using Next and Django.
+Welcome to OpenFly, a repository for developing a fully functional blog using Next and Django.
 
 Features
 --------
@@ -25,17 +25,17 @@ Usage
 License
 -------
 
-2DuoMinds is licensed under the GNU License.
+OpenFly is licensed under the GNU License.
 
 Contributing
 ------------
 
-Contributions to 2DuoMinds are welcome! If you would like to contribute to the project, please fork the repository, make your changes, and submit a pull request.
+Contributions to OpenFly are welcome! If you would like to contribute to the project, please fork the repository, make your changes, and submit a pull request.
 
 Acknowledgments
 ---------------
 
-Thanks to the following people and projects for their contributions to 2DuoMinds:
+Thanks to the following people and projects for their contributions to OpenFly:
 
 * Me for creating the initial version of the blog
 * [Other Contributors] for their help with coding and design
@@ -44,6 +44,6 @@ Thanks to the following people and projects for their contributions to 2DuoMinds
 Contact
 ---------
 
-If you have any questions or issues with 2DuoMinds, please open a new issue ticket on GitHub.
+If you have any questions or issues with OpenFly, please open a new issue ticket on GitHub.
 
-Thank you for using 2DuoMinds!
+Thank you for using OpenFly!
