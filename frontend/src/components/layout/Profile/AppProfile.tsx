@@ -1,7 +1,13 @@
 'use client'
 import { motion } from "framer-motion";
 
-const AppProfile = () => {
+const AppProfile= ({
+    base,
+    admin,
+}: Readonly<{
+    base: React.ReactNode;
+    admin: React.ReactNode;
+}>) => {
   return (
     <>
         <div className="container mx-auto">
