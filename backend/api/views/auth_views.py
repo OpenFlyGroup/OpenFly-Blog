@@ -52,6 +52,7 @@ class SignUpAPIView(APIView):
 
     def post(self, request):
         username = request.data.get('nickname', '')
+        print(username)
         password = request.data.get('password', '')
         email = request.data.get('email', '')
 
