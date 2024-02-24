@@ -1,13 +1,13 @@
 import { IPostProps } from "@/types/ui/News/news.interface";
 import Image from "next/image";
 import Comment from "../Comment/Comment";
+import Container from "@/components/layout/Container/Container";
 
 const Post: React.FC<IPostProps> = ({ props }) => {
 
     return (
-        <>
-        <div className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-            <article className="drop-shadow-2xl p-5 flex flex-col lg:flex-row border-y-2 gap-5 bg-white rounded-xl cursor-pointer">
+        <Container>
+            <article className="drop-shadow-2xl p-5 flex flex-col lg:flex-row gap-5 bg-secondary text-white rounded-xl cursor-pointer">
                 <div className="flex flex-col gap-5">
                     <a className=" flex justify-start items-center gap-5" href="">
                         <Image width={48} height={20} src={props.logoImg} alt="avatar" />
@@ -18,7 +18,7 @@ const Post: React.FC<IPostProps> = ({ props }) => {
                 </div>
                 <div className="flex flex-col gap-5">
                     <div className="flex">
-                        <p className=" text-sm text-white p-2 bg-primary rounded-xl">{props.category}</p>
+                        <p className=" text-sm text-secondary p-2 bg-primary rounded-xl">{props.category}</p>
                     </div>
                     <p>{props.text}</p>
                     <div className="flex gap-10">
@@ -36,7 +36,7 @@ const Post: React.FC<IPostProps> = ({ props }) => {
                                     <path fillRule="evenodd" d="M10 3c-4.31 0-8 3.033-8 7 0 2.024.978 3.825 2.499 5.085a3.478 3.478 0 01-.522 1.756.75.75 0 00.584 1.143 5.976 5.976 0 003.936-1.108c.487.082.99.124 1.503.124 4.31 0 8-3.033 8-7s-3.69-7-8-7zm0 8a1 1 0 100-2 1 1 0 000 2zm-2-1a1 1 0 11-2 0 1 1 0 012 0zm5 1a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
                                 </svg>
                             </button>
-                            <p>{props.comments.length}</p>
+                            <p>{props.comments ? props.comments.length : 0}</p>
                         </div>
                         <div className="flex items-center gap-2">
                             <button>
@@ -47,14 +47,13 @@ const Post: React.FC<IPostProps> = ({ props }) => {
                         </div>
                     </div>
                     <div>
-                        {props.comments.map(comment => (
+                        {props.comments && props.comments.map(comment => (
                             <Comment key={comment.id} props={comment}/>
                         ))}
                     </div>
                 </div>
             </article>
-        </div>
-        </>
+        </Container>
     );
 }
 
