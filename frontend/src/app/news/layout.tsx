@@ -8,7 +8,6 @@ export const metadata: Metadata = {
       shortcut: { url: "/favicon.ico", type: "image/x-icon" },
       icon: [
         { url: "/favicon.ico", type: "image/x-icon" },
-        { url: "/favicon.svg", type: "image/svg+xml" },
         { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
         { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
         {
@@ -16,9 +15,15 @@ export const metadata: Metadata = {
           type: "image/png",
           sizes: "192x192",
         },
+        {
+          url: "/android-chrome-512x512.png",
+          type: "image/png",
+          sizes: "512x512",
+        },
       ],
       apple: [
         { url: "/apple-touch-icon.png", sizes: "57x57", type: "image/png" },
+        { url: "/safari-pinned-tab.svg", type: "image/svg" },
       ],
     },
   }
