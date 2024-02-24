@@ -15,7 +15,7 @@ export const NewsService = {
     },
 
     async getById(id: string | number) {
-        return instance<IPost[]>({
+        return instance<IPost>({
             url: `/${PATH}/post/${id}`,
             method: 'GET',
         })
