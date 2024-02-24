@@ -14,7 +14,7 @@ import { TypeNavLink } from '@/types/layout/layout.interface';
 
 const AppHeader: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-  const [isUser, setIsUser] = useState<boolean>(false);
+  const [isUser, setIsUser] = useState<boolean>(true);
   const pathname = usePathname();
 
   const NavLinks: TypeNavLink[] = [
