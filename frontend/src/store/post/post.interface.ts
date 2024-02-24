@@ -1,13 +1,13 @@
 export interface IPost {
-    id: number;
+    id?: number;
     title: string;
     logoImg: string;
     mainImg: string;
     category: string;
-    date: string;
+    date?: string;
     text: string;
-    likes: number;
-    comments: IComment[];
+    likes?: number;
+    comments?: IComment[];
 };
 
 export interface IComment {

@@ -9,12 +9,6 @@
   @tailwind utilities;
 }
 
-
-body {
-  background: url('/bg.svg');
-  background-size: cover;
-}
-
 a.active {
   text-decoration: underline;
   color: #e0ff4f;

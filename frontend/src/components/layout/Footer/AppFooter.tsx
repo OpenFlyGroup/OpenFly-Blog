@@ -48,13 +48,13 @@ const AppFooter: React.FC = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity:1 }}
         transition={{ type: "spring" }}
-        className="footer drop-shadow-2xl rounded-t-2xl py-10 bg-secondary sm:pt-16 lg:pt-24">
-            <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+        className=" drop-shadow-2xl rounded-t-2xl py-10 bg-secondary sm:pt-16 lg:pt-24">
+            <div className="container px-4 mx-auto">
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-y-12 gap-x-8 xl:gap-x-12">
                     <div className="col-span-2 md:col-span-4 xl:pr-8">
                         <Image width={340} height={40} src="/logo_2.svg" alt="logo" />
 
-                        <p className="text-base text-white mt-7">2Duo Minds - Where Innovation Meets Ingenuity.</p>
+                        <p className="text-base text-white mt-7">OpenFly - Where Innovation Meets Ingenuity.</p>
                     </div>
                     
                     {FooterNavCols.map((col, index) => (
@@ -78,7 +78,7 @@ const AppFooter: React.FC = () => {
                 <hr className="mt-16 mb-10 border-gray-200" />
 
                 <div className="sm:flex sm:items-center sm:justify-between">
-                    <p className="text-sm text-gray-600">© Copyright 2024, All Rights Reserved by 2Duo Minds</p>
+                    <p className="text-sm text-gray-600">© Copyright 2024, All Rights Reserved by OpenFly</p>
 
                     <ul className="flex items-center mt-5 space-x-3 md:order-3 sm:mt-0">
                         {/* <li>

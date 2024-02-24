@@ -14,6 +14,7 @@ import { TypeNavLink } from '@/types/layout/layout.interface';
 
 const AppHeader: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [isUser, setIsUser] = useState<boolean>(true);
   const pathname = usePathname();
 
   const NavLinks: TypeNavLink[] = [
@@ -27,11 +28,11 @@ const AppHeader: React.FC = () => {
     initial={{ opacity: 0 }}
     whileInView={{ opacity:1 }}
     transition={{ type: "spring" }}
-    className=' sticky top-0 rounded-b-2xl bg-secondary drop-shadow-2xl z-10'>
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+    className='sticky top-0 rounded-b-2xl bg-secondary drop-shadow-2xl z-10'>
+      <nav className="container mx-auto flex items-center justify-between py-6 px-4 lg:px-0" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link href="/" >
-            <span className="sr-only">2DuoMinds</span>
+            <span className="sr-only">OpenFly</span>
             <Image width={100} height={20} className="drop-shadow-2xl" src="/logo_2.svg" alt="logo" />
           </Link>
         </div>
@@ -55,8 +56,8 @@ const AppHeader: React.FC = () => {
           ))}
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="/signin"
-          className={`${isActive("/signin", pathname) ? "active" : " "} text-sm font-[500] leading-6 text-white hover:text-primary duration-200`}
+          <Link href={isUser ? "/profile" : "/signin" }
+          className={`${isActive(isUser ? "/profile" : "/signin", pathname) ? "active" : " "} text-sm font-[500] leading-6 text-white hover:text-primary duration-200`}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
               <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clipRule="evenodd" />
@@ -70,14 +71,14 @@ const AppHeader: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         >
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-20 w-full overflow-y-auto bg-secondary px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link href="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">/PROJECTZERO</span>
+              <span className="sr-only">OpenFly</span>
               <Image
                 width={175}
                 height={20}
-                src="/logo2.svg"
+                src="/logo_2.svg"
                 alt="logo"
               />
             </Link>
@@ -97,25 +98,38 @@ const AppHeader: React.FC = () => {
                   <Link
                     key={item.id}
                     href={item.path}
-                    className={`${isActive(item.path, pathname) ? "active" : " "} -mx-3 block rounded-lg px-3 py-2 text-base font-bold leading-7 text-primary hover:bg-gray-50`}
+                    className={`${isActive(item.path, pathname) ? "active" : " "} -mx-3 block rounded-lg px-3 py-2 text-base font-bold leading-7 text-primary hover:bg-primary hover:text-secondary`}
                   >
                     {item.name}
                   </Link>
                 ))}
               </div>
               <div className="py-6">
-                <Link
-                  href="/signin"
-                  className={`${isActive("/signin", pathname) ? "active" : " "} -mx-3 block rounded-lg px-3 py-2 text-base font-bold leading-7 text-primary hover:bg-gray-50`}
-                >
-                  Sign in
-                </Link>
-                <Link
-                  href="/signup"
-                  className={`${isActive("/signup", pathname) ? "active" : " "} -mx-3 block rounded-lg px-3 py-2 text-base font-bold leading-7 text-primary hover:bg-gray-50`}
-                >
-                  Sign up
-                </Link>
+                {isUser ? (
+                  <Link href="/profile"
+                  className={`${isActive("/profile", pathname) ? "active" : " "} -mx-3 flex gap-2 items-center rounded-lg px-3 py-2 text-base font-bold leading-7 text-primary hover:bg-primary hover:text-secondary`}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                      <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clipRule="evenodd" />
+                    </svg>
+                    Profile
+                  </Link>
+                ):(
+                  <>
+                    <Link
+                      href="/signin"
+                      className={`${isActive("/signin", pathname) ? "active" : " "} -mx-3 block rounded-lg px-3 py-2 text-base font-bold leading-7 text-primary hover:bg-primary hover:text-secondary`}
+                    >
+                      Sign in
+                    </Link>
+                    <Link
+                      href="/signup"
+                      className={`${isActive("/signup", pathname) ? "active" : " "} -mx-3 block rounded-lg px-3 py-2 text-base font-bold leading-7 text-primary hover:bg-primary hover:text-secondary`}
+                    >
+                      Sign up
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
