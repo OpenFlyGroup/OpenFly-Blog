@@ -18,6 +18,10 @@ export interface IComment {
     text: string;
 };
 
+export interface IPostResponse {
+    posts: IPost[];
+};
+
 export interface IInitialState {
     postArr: IPost[] | null;
     isLoading: boolean;

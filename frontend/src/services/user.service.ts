@@ -6,14 +6,14 @@ const PATH = 'users';
 export const UserService = {
 
     async getProfile() {
-        return instance<IUser[]>({
+        return instance<IUser>({
             url: `/${PATH}/profile`,
             method: 'GET',
         })
     },
 
     async updateProfile(data: IUser) {
-        return instance<IUser[]>({
+        return instance<IUser>({
             url: `/${PATH}/profile`,
             method: 'PUT',
             data,
@@ -21,7 +21,7 @@ export const UserService = {
     },
 
     async toggleLike(id: string | number) {
-        return instance<IUser[]>({
+        return instance<IUser>({
             url: `/${PATH}/profile/likes/${id}`,
             method: 'PATCH',
         })

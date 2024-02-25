@@ -11,11 +11,6 @@ export interface ITokens {
     refreshToken: string;
 };
 
-export interface IInitialState {
-    user: IUserState | null;
-    isLoading: boolean;
-};
-
 export interface IEmailPassword {
     email: string;
     password: string;
@@ -23,4 +18,9 @@ export interface IEmailPassword {
 
 export interface IAuthResponse extends ITokens {
     user: IUser;
-}
+};
+
+export interface IInitialState {
+    user: IUserState | null;
+    isLoading: boolean;
+};

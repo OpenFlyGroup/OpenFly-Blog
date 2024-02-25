@@ -8,7 +8,7 @@ export const NewsService = {
 
     async getAll(queryData = {} as IDataFilters) {
         return instance<IPost[]>({
-            url: `/${PATH}/`,
+            url: `/${PATH}`,
             method: 'GET',
             params: queryData,
         })
@@ -22,14 +22,14 @@ export const NewsService = {
     },
 
     async create() {
-        return instance<IPost[]>({
+        return instance<IPost>({
             url: `/${PATH}/post-create`,
             method: 'POST',
         })
     },
 
     async update(id: string | number, data: IPost) {
-        return instance<IPost[]>({
+        return instance<IPost>({
             url: `/${PATH}/post/${id}`,
             method: 'PUT',
             data,
@@ -37,14 +37,14 @@ export const NewsService = {
     },
 
     async delete(id: string | number) {
-        return instance<IPost[]>({
+        return instance<IPost>({
             url: `/${PATH}/post/${id}`,
             method: 'DELETE',
         })
     },
 
     async leaveComment(id: string | number, data: string) {
-        return instance<IPost[]>({
+        return instance<IPost>({
             url: `/${PATH}/post/${id}`,
             method: 'POST',
             data,
