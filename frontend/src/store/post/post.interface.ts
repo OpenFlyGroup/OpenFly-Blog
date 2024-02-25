@@ -17,3 +17,8 @@ export interface IComment {
     date: string;
     text: string;
 };
+
+export interface IInitialState {
+    postArr: IPost[] | null;
+    isLoading: boolean;
+};
