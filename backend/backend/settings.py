@@ -1,4 +1,4 @@
-from os import getenv
+from os import getenv, path
 from pathlib import Path
 from dotenv import load_dotenv, find_dotenv
 
@@ -12,6 +12,10 @@ DB_PORT = getenv("PG_PORT")
 SECRET_KEY = getenv("SECRET_KEY")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+MEDIA_ROOT = path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
 
 DEBUG = True
 
