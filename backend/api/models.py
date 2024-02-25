@@ -15,26 +15,25 @@ class NewsComments(models.Model):
 
 class News(models.Model):
     news_id = models.AutoField(primary_key=True)
+    title = models.TextField()
+    category = models.CharField(max_length=255, null=True, blank=True)
     creation_date = models.DateField()
     content_text = models.TextField()
-    content_img = models.TextField()
-    category = models.CharField(max_length=255, null=True, blank=True)
+    main_img = models.ImageField(upload_to='news_images/')
+    logo_img = models.ImageField(upload_to='news_images/')
     likes = models.IntegerField(default=0)
     comments = models.ManyToManyField(NewsComments, default=[])
 
-    def add_comment(self, content):
-        comment = NewsComments.objects.create(content=content)
-        self.comments.add(comment)
-        return comment.comment_id
+    def get_logo_img_url(self):
+        return self.get_image_url(self.logo_img)
 
-    def remove_comment(self, comment_id):
-        try:
-            comment = self.comments.get(comment_id=comment_id)
-            self.comments.remove(comment)
-            comment.delete()
-            return True
-        except NewsComments.DoesNotExist:
-            return False
+    def get_main_img_url(self):
+        return self.get_image_url(self.main_img)
+
+    def get_image_url(self, image_field):
+        if image_field and hasattr(image_field, 'url'):
+            return image_field.url
+        return ''
 
 class User(models.Model):
     user_id = models.AutoField(primary_key=True)
