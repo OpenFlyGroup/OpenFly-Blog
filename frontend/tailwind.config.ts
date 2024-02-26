@@ -10,11 +10,11 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "main": "url('/bg.svg')",
+        main: "url('/bg.svg')",
       },
       colors: {
-        primary: '#e0ff4f',
-        secondary: '#00272b',
+        primary: "#e0ff4f",
+        secondary: "#00272b",
       },
     },
   },

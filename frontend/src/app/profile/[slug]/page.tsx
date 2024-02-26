@@ -1,8 +1,5 @@
-
 const ProfileSlugPage = ({ params }: { params: { slug: string } }) => {
-  return (
-    <div>ProfileSlugPage</div>
-  )
-}
+  return <div>ProfileSlugPage</div>;
+};
 
-export default ProfileSlugPage
+export default ProfileSlugPage;

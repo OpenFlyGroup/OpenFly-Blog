@@ -1,13 +1,13 @@
 const Container = ({
-    children
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) => {
   return (
     <div className="container mx-auto flex items-center justify-between py-6 px-4 lg:px-0">
-        {children}
+      {children}
     </div>
-  )
-}
+  );
+};
 
-export default Container
+export default Container;
