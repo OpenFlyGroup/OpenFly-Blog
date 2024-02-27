@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
+
 
 class Forum(models.Model):
     thread_id = models.AutoField(primary_key=True)

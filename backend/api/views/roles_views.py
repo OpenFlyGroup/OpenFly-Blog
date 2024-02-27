@@ -5,8 +5,7 @@ from dotenv import load_dotenv
 
 from ..models import User
 from ..serializers import UserSerializer
-from ..utils.token_utils import generate_token, get_user_by_token, token_check
-from ..utils.user_utils import get_user_by_data, check_user, check_is_unique
+
 
 load_dotenv()
 ADMIN_KEY = getenv("ADMIN_KEY")
