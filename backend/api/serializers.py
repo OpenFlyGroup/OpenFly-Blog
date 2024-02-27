@@ -3,7 +3,6 @@ from rest_framework import serializers
 from .models import Forum, News, NewsComments, User, Sessions
 from shutil import copyfileobj
 
-
 class ForumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Forum
