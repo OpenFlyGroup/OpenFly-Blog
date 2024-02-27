@@ -11,6 +11,7 @@ from .session_utils import session_update
 load_dotenv()
 JWT_KEY = getenv("JWT_KEY")
 
+
 def generate_token(username, user_id, token_type, exp_period):
     """
     Generate JWT token with specified parameters.
@@ -52,6 +53,7 @@ def token_check(token, token_type):
 
     Parameters:
     - token (str): JWT token to be checked
+    - token_type (str): JWT token style. refresh/access
 
     Returns:
     - int: 1 if token is valid

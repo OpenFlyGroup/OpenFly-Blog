@@ -7,7 +7,7 @@ from datetime import datetime
 from ..models import News, NewsComments
 from ..serializers import NewsSerializer, NewsCommentsSerializer
 from ..utils.token_utils import generate_token, get_user_by_data, get_user_by_token, token_check
-
+from ..utils.roles_utils import is_admin
 
 class NewsListAPIView(APIView):
     def get(self, request):
@@ -20,7 +20,7 @@ class NewsListAPIView(APIView):
                 'title': news.title,
                 'category': news.category,
                 'creationDate': news.creation_date,
-                'contentText': news.content_text,
+                'text': news.content_text,
                 'mainImg': news.main_img.url if news.main_img else None,
                 'logoImg': news.logo_img.url if news.logo_img else None,
                 'likes': news.likes,
@@ -42,13 +42,17 @@ class NewsAddAPIViews(APIView):
             token = request.data.get('token', '')
             category = request.data.get('category', '')
             creation_date = datetime.utcnow()
-
+            try:
+                check_result = token_check(token=token, token_type="access")
+                if check_result != 1:
+                    raise
+            except:
+                return Response("Token is invalid", status=400)
             input_data = {
                 'title': title,
                 'content_text': text,
                 'logo_img': logo_img,
                 'main_img': main_img,
-                'token': token,
                 'creation_date': creation_date,
                 'category': category,
             }
@@ -56,7 +60,6 @@ class NewsAddAPIViews(APIView):
 
             if serializer.is_valid():
                 saved_news = serializer.save()
-                print(saved_news.news_id)
                 return Response(saved_news.news_id, status=201)
             else:
                 return Response(serializer.errors, status=400)
@@ -64,15 +67,10 @@ class NewsAddAPIViews(APIView):
             return Response(str(err), status=400)
 
 class NewsCommentsListAPIView(APIView):
-    def get(self, request):
-        news_instances = NewsComments.objects.all()
-        serializer = NewsCommentsSerializer(news_instances, many=True)
-        output = serializer.data
-        return Response(output)
-
-    def post(self, request):
+   def post(self, request):
         try:
-            content = str(request.data.get('content', ''))
+            content = str(request.data.get('text', ''))
+            news_id = str(request.data.get('news', ''))
             token = str(request.data.get('token', ''))
 
             serializer = NewsCommentsSerializer(data=request.data)
