@@ -8,13 +8,13 @@ from ..serializers import UserSerializer
 
 
 load_dotenv()
-ADMIN_KEY = getenv("ADMIN_KEY")
+ADMIN_KEY = "REMOVE THIS"
 
 class RoleListAPIView(APIView):
     def get(self, request):
         response_data = [
             {
-                'username': response_data.username,
+                'nickname': response_data.nickname,
                 'role': response_data.role,
                 'profile_img': response_data.profile_img,
             } for response_data in User.objects.all()
@@ -23,15 +23,16 @@ class RoleListAPIView(APIView):
 
     def post(self, request):
         try:
-            username = str(request.data.get('username', ''))
+            nickname = str(request.data.get('nickname', ''))
             admin_key = str(request.data.get('admin_key', ''))
             new_role = str(request.data.get('role', ''))
             if admin_key == ADMIN_KEY:
-                serializer = UserSerializer(username=username, role=new_role)
+                serializer = UserSerializer(nickname=nickname, role=new_role)
                 if serializer.is_valid():
                     serializer.save()
                     return Response(serializer.data)
-                return Response(serializer.errors, status=400)
+                else:
+                    return Response(serializer.errors, status=400)
             else:
                 return Response("Wrong key.", status=400)
         except Exception as err:

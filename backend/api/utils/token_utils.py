@@ -5,19 +5,19 @@ from dotenv import load_dotenv
 
 from ..models import User, Sessions
 from ..serializers import SessionsSerializer
-from .user_utils import get_user_by_data
+from .user_utils import authenticate_user
 from .session_utils import session_update
 
 load_dotenv()
 JWT_KEY = getenv("JWT_KEY")
 
 
-def generate_token(username, user_id, token_type, exp_period):
+def generate_token(nickname, user_id, token_type, exp_period):
     """
     Generate JWT token with specified parameters.
 
     Parameters:
-    - username (str): Name of user 0_0
+    - nickname (str): Name of user 0_0
     - user_id (str): Unique identifier of user
     - token_type (str): Type of token ('access' or 'refresh')
     - exp_period (int): Expiration period of token in minutes (for 'access' type) or days (for 'refresh' type)
@@ -38,7 +38,7 @@ def generate_token(username, user_id, token_type, exp_period):
 
     payload = {
         'token_type': token_type,
-        'username': username,
+        'nickname': nickname,
         'user_id': user_id,
         'created': creation_time.isoformat(),
         'expired': expiration_time.isoformat()
@@ -46,6 +46,7 @@ def generate_token(username, user_id, token_type, exp_period):
 
     token = encode(payload, JWT_KEY, algorithm='HS256')
     return token
+
 
 def token_check(token, token_type):
     """
@@ -72,11 +73,11 @@ def token_check(token, token_type):
     if token_type != real_type: # Type check
         return -1 # Token invalid
 
-    username = decoded_payload.get('username', None)
+    nickname = decoded_payload.get('nickname', None)
     user_id = decoded_payload.get('user_id', None)
     token_created_str = decoded_payload.get('created', None)
     token_created = datetime.strptime(token_created_str, "%Y-%m-%dT%H:%M:%S.%f")
-    user = get_user_by_data(username=username, user_id=user_id)
+    user = authenticate_user(nickname=nickname, user_id=user_id)
     if user is not None:
         if token_type == "refresh":
             # Sessions check
@@ -105,7 +106,8 @@ def token_check(token, token_type):
     else:
         return -1  # Token is invalid
 
-def get_user_by_token(token):
+
+def authenticate_by_token(token):
     """
     Retrieve user information based on a JWT token.
 
@@ -120,9 +122,9 @@ def get_user_by_token(token):
     if expiration_time is not None and datetime.utcnow() > expiration_time:
         return None
     else:
-        username = str(decoded_payload['username'])
+        nickname = str(decoded_payload['nickname'])
         user_id = str(decoded_payload['user_id'])
-        user_out = get_user_by_data(username=username, user_id=user_id)
+        user_out = authenticate_user(nickname=nickname, user_id=user_id)
         return user_out
 
 def refresh_access_token(refresh_token, access_token):
@@ -146,9 +148,9 @@ def refresh_access_token(refresh_token, access_token):
         case 1:
             if access_validity in [0, 1]:
                 decoded_payload = decode(refresh_token, JWT_KEY, algorithms=['HS256'])
-                username = decoded_payload.get('username', None)
+                nickname = decoded_payload.get('nickname', None)
                 user_id = decoded_payload.get('user_id', None)
-                access_token = generate_token(username=username, user_id=user_id, token_type="access", exp_period=30)
+                access_token = generate_token(nickname=nickname, user_id=user_id, token_type="access", exp_period=15)
                 return access_token, None
             else:
                 error_message = "Token is invalid"

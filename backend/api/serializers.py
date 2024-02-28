@@ -20,12 +20,12 @@ class NewsSerializer(serializers.Serializer):
         creation_date = validated_data.pop('creation_date', None)
         news_instance = News.objects.create(**validated_data, creation_date=creation_date)
         folder_name = str(news_instance.news_id)
-        image_path = path.join('media', 'news_images', folder_name)
+        image_path = path.join('media', 'news-images', folder_name)
         makedirs(image_path, exist_ok=True)
-        self.move_uploaded_file(news_instance.logo_img, path.join(image_path, 'logo_img.jpg'))
-        self.move_uploaded_file(news_instance.main_img, path.join(image_path, 'main_img.jpg'))
-        news_instance.logo_img.name = path.join('news_images', folder_name, 'logo_img.jpg')
-        news_instance.main_img.name = path.join('news_images', folder_name, 'main_img.jpg')
+        self.move_uploaded_file(news_instance.logo_img, path.join(image_path, 'logo-img.jpg'))
+        self.move_uploaded_file(news_instance.main_img, path.join(image_path, 'main-img.jpg'))
+        news_instance.logo_img.name = path.join('news-images', folder_name, 'logo-img.jpg')
+        news_instance.main_img.name = path.join('news-images', folder_name, 'main-img.jpg')
         news_instance.save()
         return news_instance
 
