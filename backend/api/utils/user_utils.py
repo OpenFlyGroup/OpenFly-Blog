@@ -1,4 +1,5 @@
 from ..models import User
+from .cript_utils import decrypt, encrypt, check_password, hash_password
 
 
 def authenticate_user(nickname=None, user_id=None, password=None, email=None):
@@ -21,16 +22,19 @@ def authenticate_user(nickname=None, user_id=None, password=None, email=None):
     """
     try:
         if nickname is not None and password is not None:
-            user = User.objects.get(nickname=nickname, password=password)
+            user = User.objects.get(nickname=encrypt(nickname))
+            if not check_password(password, user.password):
+                user = None
         elif email is not None and password is not None:
-            user = User.objects.get(email=email, password=password)
+            user = User.objects.get(email=encrypt(email))
+            if not check_password(password, user.password):
+                user = None
         elif nickname is not None and user_id is not None:
-            user = User.objects.get(nickname=nickname, user_id=user_id)
+            user = User.objects.get(nickname=encrypt(nickname), user_id=user_id)
         user_out = {
             'user_id': user.user_id,
-            'email': user.email,
-            'nickname': user.nickname,
-            'password': user.password,
+            'email': decrypt(user.email),
+            'nickname': decrypt(user.nickname),
             'info': user.info,
             'role': user.role,
             'active': user.active,
@@ -54,8 +58,8 @@ def check_user(nickname, password):
     - True - if data is valid, False - otherwise
     """
     try:
-        User.objects.get(nickname=nickname, password=password)
-        return True
+        user = User.objects.get(nickname=encrypt(nickname))
+        return check_password(password, user['password'])
     except User.DoesNotExist:
         return False
 
@@ -73,13 +77,13 @@ def check_is_unique(nickname=None, email=None):
     """
     if email is not None:
         try:
-            User.objects.get(email=email)
+            User.objects.get(email=encrypt(email))
             return False
         except User.DoesNotExist:
             return True
     else:
         try:
-            User.objects.get(nickname=nickname)
+            User.objects.get(nickname=encrypt(nickname))
             return False
         except User.DoesNotExist:
             return True

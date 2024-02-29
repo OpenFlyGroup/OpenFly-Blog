@@ -30,9 +30,9 @@ class News(models.Model):
 
 class User(models.Model):
     user_id = models.AutoField(primary_key=True)
-    email = models.EmailField(unique=True)
-    nickname = models.CharField(max_length=30, unique=True)
-    password = models.CharField(max_length=128)
+    email = models.CharField(max_length=255, unique=True)
+    nickname = models.CharField(max_length=255, unique=True)
+    password = models.CharField(max_length=255)
     info = models.TextField(null=True, default="")
     role = models.CharField(max_length=20, choices=[('user', 'User'), ('admin', 'Admin')], default='user')
     active = models.BooleanField(default=True)

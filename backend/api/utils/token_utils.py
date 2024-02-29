@@ -7,6 +7,7 @@ from ..models import User, Sessions
 from ..serializers import SessionsSerializer
 from .user_utils import authenticate_user
 from .session_utils import session_update
+from .cript_utils import decrypt, encrypt, check_password, hash_password
 
 load_dotenv()
 JWT_KEY = getenv("JWT_KEY")
@@ -124,7 +125,7 @@ def authenticate_by_token(token):
     else:
         nickname = str(decoded_payload['nickname'])
         user_id = str(decoded_payload['user_id'])
-        user_out = authenticate_user(nickname=nickname, user_id=user_id)
+        user_out = authenticate_user(nickname=encode(nickname), user_id=user_id)
         return user_out
 
 def refresh_access_token(refresh_token, access_token):

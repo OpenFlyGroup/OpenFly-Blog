@@ -10,6 +10,7 @@ from ..models import User
 from ..serializers import UserSerializer
 from ..utils.token_utils import generate_token, token_check, refresh_access_token
 from ..utils.user_utils import authenticate_user, check_user, check_is_unique
+from ..utils.cript_utils import decrypt, encrypt, check_password, hash_password
 
 
 class SignInAPIView(APIView):
@@ -40,6 +41,7 @@ class SignInAPIView(APIView):
             else:
                 return Response(f"Invalid {'nickname' if not email else 'email'} or password.", status=400) # Return authentication error
         except Exception as e:
+            print(e)
             return Response("An error occurred", status=400) # Return generic error
 
 
@@ -51,8 +53,8 @@ class SignUpAPIView(APIView):
             for user in users:
                 response_data.append({
                     'id': user.user_id,
-                    'email': user.email,
-                    'nickname': user.nickname,
+                    'email': decrypt(user.email),
+                    'nickname': decrypt(user.nickname),
                     'password': user.password,
                     'info': user.info,
                     'role': user.role,
@@ -70,17 +72,18 @@ class SignUpAPIView(APIView):
             password = request.data.get('password', '')
             email = request.data.get('email', '')
 
+            if not nickname or not email or not email:
+                return Response("Not enough data", status=400) # Return error
             if not check_is_unique(nickname=nickname):
                 return Response("Username already exists", status=400) # Return uniqueness of nickname
             if not check_is_unique(email=email):
                 return Response("Email already exists", status=400) # Return uniqueness of email
 
             input_data = {
-                'nickname': nickname,
-                'email': email,
-                'password': password
+                'nickname': encrypt(nickname),
+                'email': encrypt(email),
+                'password': hash_password(password)
             }
-
             serializer = UserSerializer(data=input_data)
             if serializer.is_valid():
                 user = serializer.save()
@@ -96,7 +99,6 @@ class SignUpAPIView(APIView):
                 }
                 return Response(response_data, status=201) # Return access and refresh token
             else:
-                print(serializer.errors)
                 return Response("An error occurred", status=400) # Return generic error
         except Exception as e:
             print(e)
