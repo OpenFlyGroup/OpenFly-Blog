@@ -1,42 +1,55 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from os import getenv
-from dotenv import load_dotenv
 
 from ..models import User
 from ..serializers import UserSerializer
-
-
-load_dotenv()
-ADMIN_KEY = "REMOVE THIS"
+from ..utils.cript_utils import decrypt, encrypt, check_password, hash_password
+from ..utils.roles_utils import admin_check
 
 class RoleListAPIView(APIView):
     def get(self, request):
-        response_data = [
-            {
-                'nickname': response_data.nickname,
-                'role': response_data.role,
-                'profile_img': response_data.profile_img,
-            } for response_data in User.objects.all()
-        ]
-        return Response(response_data)
-
-    def post(self, request):
         try:
-            nickname = str(request.data.get('nickname', ''))
-            admin_key = str(request.data.get('admin_key', ''))
-            new_role = str(request.data.get('role', ''))
-            if admin_key == ADMIN_KEY:
-                serializer = UserSerializer(nickname=nickname, role=new_role)
-                if serializer.is_valid():
-                    serializer.save()
-                    return Response(serializer.data)
-                else:
-                    return Response(serializer.errors, status=400)
+            users = User.objects.all()
+            response_data = []
+            for user in users:
+                response_data.append({
+                    'email': decrypt(user.email),
+                    'nickname': decrypt(user.nickname),
+                    'role': user.role,
+                })
+            return Response(response_data) #Return all users information
+        except Exception as e:
+            print(e)
+            return Response("An error occurred", status=400) # Return generic error
+
+    def put(self, request):
+        try:
+            nickname = request.data.get('nickname', '')
+            token = request.data.get('token', '')
+            new_role = request.data.get('role', '')
+            is_admin = admin_check(token)
+            if is_admin:
+                try:
+                    user = User.objects.get(nickname=encrypt(nickname))
+                    user.role = new_role
+                    user.save()
+                except User.DoesNotExist:
+                    return Response("User not found", status=404)
+                return Response("Success")
             else:
-                return Response("Wrong key.", status=400)
-        except Exception as err:
-            return Response(str(err), status=400)
+                return Response("You don't have permission.", status=400)
+        except Exception as e:
+            print(e)
+            return Response("An error occurred", status=400) # Return generic error
+
 class IsAdminAPIView(APIView):
     def post(self, request):
-        pass
+        try:
+            token = request.data.get('token', '')
+            response = {
+                'isAdmin': admin_check(token)
+            }
+            return Response(response)
+        except Exception as e:
+            print(e)
+            return Response("An error occurred", status=400) # Return generic error

@@ -21,6 +21,7 @@ def authenticate_user(nickname=None, user_id=None, password=None, email=None):
     - dict or None: User information as dictionary or None if user is not found
     """
     try:
+        user = None
         if nickname is not None and password is not None:
             user = User.objects.get(nickname=encrypt(nickname))
             if not check_password(password, user.password):
@@ -31,6 +32,9 @@ def authenticate_user(nickname=None, user_id=None, password=None, email=None):
                 user = None
         elif nickname is not None and user_id is not None:
             user = User.objects.get(nickname=encrypt(nickname), user_id=user_id)
+
+        if not user:
+            return None
         user_out = {
             'user_id': user.user_id,
             'email': decrypt(user.email),

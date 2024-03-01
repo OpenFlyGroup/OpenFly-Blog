@@ -25,7 +25,6 @@ class SignInAPIView(APIView):
                 email = None
 
             user = authenticate_user(nickname=nickname, password=password, email=email) # Authenticate user
-
             if user:
                 user_id = user['user_id']
                 profile_img = user['profile_img']

@@ -7,7 +7,7 @@ from datetime import datetime
 from ..models import News, NewsComments
 from ..serializers import NewsSerializer, NewsCommentsSerializer
 from ..utils.token_utils import token_check
-from ..utils.roles_utils import is_admin
+from ..utils.roles_utils import admin_check
 
 class NewsListAPIView(APIView):
     def get(self, request):

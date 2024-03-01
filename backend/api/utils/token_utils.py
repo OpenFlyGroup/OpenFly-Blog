@@ -44,7 +44,6 @@ def generate_token(nickname, user_id, token_type, exp_period):
         'created': creation_time.isoformat(),
         'expired': expiration_time.isoformat()
     }
-
     token = encode(payload, JWT_KEY, algorithm='HS256')
     return token
 
@@ -118,14 +117,14 @@ def authenticate_by_token(token):
     Returns:
     - dict or None: User information as a dictionary or None if token is invalid or expired
     """
-    decoded_payload = decode(token, JWT_KEY, algorithms=['HS256'])
-    expiration_time = decoded_payload.get('expired', None)
-    if expiration_time is not None and datetime.utcnow() > expiration_time:
+    check_code = token_check(token=token, token_type="access")
+    if check_code != 1:
         return None
     else:
+        decoded_payload = decode(token, JWT_KEY, algorithms=['HS256'])
         nickname = str(decoded_payload['nickname'])
         user_id = str(decoded_payload['user_id'])
-        user_out = authenticate_user(nickname=encode(nickname), user_id=user_id)
+        user_out = authenticate_user(nickname=nickname, user_id=user_id)
         return user_out
 
 def refresh_access_token(refresh_token, access_token):

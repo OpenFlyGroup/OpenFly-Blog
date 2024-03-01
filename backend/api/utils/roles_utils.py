@@ -7,9 +7,9 @@ from .token_utils import authenticate_by_token
 from .session_utils import session_update
 
 
-def is_admin(token):
+def admin_check(token):
     user = authenticate_by_token(token)
-    if user['role'] == 'admin':
+    if user and user['role'] == 'admin':
         return True
     else:
         return False
