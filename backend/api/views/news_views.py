@@ -6,31 +6,33 @@ from datetime import datetime
 
 from ..models import News, NewsComments
 from ..serializers import NewsSerializer, NewsCommentsSerializer
-from ..utils.token_utils import generate_token, get_user_by_data, get_user_by_token, token_check
-from ..utils.roles_utils import is_admin
+from ..utils.token_utils import token_check
+from ..utils.roles_utils import admin_check
 
 class NewsListAPIView(APIView):
     def get(self, request):
-        all_news = News.objects.all()
-
-        news_list = []
-        for news in all_news:
-            news_dict = {
-                'newsId': news.news_id,
-                'title': news.title,
-                'category': news.category,
-                'creationDate': news.creation_date,
-                'text': news.content_text,
-                'mainImg': news.main_img.url if news.main_img else None,
-                'logoImg': news.logo_img.url if news.logo_img else None,
-                'likes': news.likes,
-                'comments': [comment.text for comment in news.comments.all()]
-            }
-            news_list.append(news_dict)
-        return Response(news_list)
+        try:
+            all_news = News.objects.all()
+            news_list = []
+            for news in all_news:
+                news_dict = {
+                    'newsId': news.news_id,
+                    'title': news.title,
+                    'category': news.category,
+                    'creationDate': news.creation_date,
+                    'text': news.content_text,
+                    'mainImg': news.main_img.url if news.main_img else None,
+                    'logoImg': news.logo_img.url if news.logo_img else None,
+                    'likes': news.likes,
+                    'comments': [comment.text for comment in news.comments.all()]
+                }
+                news_list.append(news_dict)
+            return Response(news_list)
+        except Exception as e:
+            print(e)
+            return Response("An error occurred", status=400) # Return generic error
 
 class NewsAddAPIViews(APIView):
-
     parser_classes = [MultiPartParser]
 
     def post(self, request):
@@ -60,11 +62,13 @@ class NewsAddAPIViews(APIView):
 
             if serializer.is_valid():
                 saved_news = serializer.save()
-                return Response(saved_news.news_id, status=201)
+                return Response(saved_news.news_id, status=201) # Return created news id
             else:
-                return Response(serializer.errors, status=400)
-        except Exception as err:
-            return Response(str(err), status=400)
+                print(serializer.errors)
+                return Response("An error occurred", status=400) # Return generic error
+        except Exception as e:
+            print(e)
+            return Response("An error occurred", status=400) # Return generic error
 
 class NewsCommentsListAPIView(APIView):
    def post(self, request):
@@ -77,6 +81,9 @@ class NewsCommentsListAPIView(APIView):
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data)
-            return Response(serializer.errors, status=400)
-        except Exception as err:
-            return Response(str(err), status=400)
+            else:
+                print(serializer.errors)
+                return Response("An error occurred", status=400) # Return generic error
+        except Exception as e:
+            print(e)
+            return Response("An error occurred", status=400) # Return generic error
