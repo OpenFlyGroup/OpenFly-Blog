@@ -1,1 +1,17 @@
-{}
+{
+  "semi": false,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "tabWidth": 2,
+  "useTabs": false,
+  "jsxSingleQuote": true,
+  "arrowParens": "avoid",
+  "importOrder": [
+      "^@layout/(.*)$",
+      "^@/components/(.*)$",
+      "^@/ui/(.*)$",
+      "^@/types/(.*)$",
+      "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}

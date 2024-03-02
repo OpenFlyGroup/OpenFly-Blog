@@ -1,5 +1,3 @@
-const BaseProfilePage = () => {
-  return <div>BaseProfilePage</div>;
-};
+const BaseProfilePage = () => <div>BaseProfilePage</div>
 
-export default BaseProfilePage;
+export default BaseProfilePage

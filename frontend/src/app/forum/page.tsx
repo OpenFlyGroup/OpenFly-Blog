@@ -1,9 +1,3 @@
-import React from "react";
+const Forum = () => <div>Forum</div>
 
-type Props = {};
-
-const Forum = (props: Props) => {
-  return <div>Forum</div>;
-};
-
-export default Forum;
+export default Forum

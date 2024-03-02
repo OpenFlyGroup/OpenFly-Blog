@@ -1,19 +1,17 @@
-"use client";
-import Post from "@/components/ui/News/Post/Post";
-import { useActions } from "@/hooks/useActions";
-import { IPost } from "@/store/post/post.interface";
-import { useState } from "react";
+'use client'
+import Post from '@/components/ui/News/Post/Post'
+import { useActions } from '@/hooks/useActions'
 
 const NewsPage: React.FC = () => {
-  const { fetchAllPosts } = useActions();
-  const post = fetchAllPosts({});
+  const { fetchAllPosts } = useActions()
+  const posts = fetchAllPosts({})
   return (
     <>
       {posts.map((post) => (
         <Post key={post.id} props={post} />
       ))}
     </>
-  );
-};
+  )
+}
 
-export default NewsPage;
+export default NewsPage
