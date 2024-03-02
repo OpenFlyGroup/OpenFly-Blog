@@ -30,7 +30,6 @@ export const metadata: Metadata = {
 
 const NewsLayout = ({
   children,
-  children,
 }: Readonly<{
   children: React.ReactNode
 }>) => <>{children}</>

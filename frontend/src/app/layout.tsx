@@ -47,7 +47,6 @@ export default function RootLayout({
       <body className={`${roboto.className} bg-cover bg-main`}>
         <StoreProvider>
           <App>{children}</App>
-          <App>{children}</App>
         </StoreProvider>
       </body>
     </html>
