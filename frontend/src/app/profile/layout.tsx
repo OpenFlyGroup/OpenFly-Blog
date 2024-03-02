@@ -32,8 +32,6 @@ export const metadata: Metadata = {
 const ProfileLayout = ({
   base,
   admin,
-  base,
-  admin,
 }: Readonly<{
   base: React.ReactNode
   admin: React.ReactNode

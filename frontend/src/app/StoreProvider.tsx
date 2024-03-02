@@ -7,11 +7,11 @@ import { useRef } from 'react'
 export default function StoreProvider({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  const storeRef = useRef<AppStore>();
+  const storeRef = useRef<AppStore>()
   if (!storeRef.current) {
-    storeRef.current = makeStore();
+    storeRef.current = makeStore()
   }
 
   return (
@@ -22,4 +22,3 @@ export default function StoreProvider({
     </Provider>
   )
 }
-
