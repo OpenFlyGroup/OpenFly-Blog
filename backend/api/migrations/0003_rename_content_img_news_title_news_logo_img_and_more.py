@@ -11,6 +11,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RenameField(
+            model_name="user",
+            old_name="username",
+            new_name="nickname",
+        ),
+        migrations.RenameField(
             model_name="news",
             old_name="content_img",
             new_name="title",

@@ -1,3 +1,56 @@
+# Project Setup Documentation
+
+## Creating a .env File
+
+1. **Create the File:**
+   - In the backend/ directory of project, create a file `.env`.
+
+2. **Define Environment Variables:**
+   - Add environment variables in the `.env` file:
+     ```dotenv
+        PG_USER=YOUR_VALUE
+        PG_PASSWORD=YOUR_VALUE
+        PG_HOST=YOUR_VALUE
+        PG_DATABASE=YOUR_VALUE
+        PG_PORT=YOUR_VALUE
+        JWT_KEY=YOUR_VALUE
+        SECRET_KEY=YOUR_VALUE
+     ```
+
+3. **Important Note:**
+   - Ensure that the `.env` file is included in your project's `.gitignore` to prevent sensitive information from being pushed to version control.
+
+## Setting Up a Virtual Environment (venv)
+
+1. **Create Virtual Environment:**
+   - Open a terminal in your project's root directory.
+
+   - Run the following command to create a virtual environment:
+     ```bash
+     python -m venv venv
+     ```
+
+2. **Activate Virtual Environment:**
+   - Activate the virtual environment based on your operating system:
+     - **Windows:**
+       ```bash
+       .\venv\Scripts\activate
+       ```
+     - **Unix or MacOS:**
+       ```bash
+       source venv/bin/activate
+       ```
+
+3. **Install Dependencies:**
+   - While the virtual environment is active, install your project dependencies using `pip`. For example:
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+5. **Important Note:**
+   - Include the `venv` directory in your project's `.gitignore` to avoid pushing the virtual environment to version control.
+
+
 # Django Backend Docker Setup
 
 This repository contains the Docker setup for a Django backend.

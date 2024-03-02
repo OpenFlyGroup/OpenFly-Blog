@@ -8,7 +8,7 @@
 - [User List](#user-list)
 - [Sign Up](#sign-up)
 - [Sign In](#sign-in)
-- [Get new access token](#get_new_access_token)
+- [Get new access token](#get-new-access-token)
 
 ---
 
@@ -64,24 +64,56 @@
 ```json
 [
     {
-        "news_id": 1,
-        "date": "YYYY-MM-DD",
-        "content_text": "string",
-        "content_img": "string",
-        "category": "string",
-        "likes": 0
-    },
-    {
-        "news_id": 2,
-        "date": "YYYY-MM-DD",
-        "content_text": "string",
-        "content_img": "string",
-        "category": "string",
-        "likes": 0
-    },
+        "newsId": int,
+        "title": string,
+        "category": string,
+        "creationDate": string,
+        "text": string,
+        "mainImg": string,
+        "logoImg": string,
+        "likes": int,
+        "comments": []
+    }
 ]
 ```
 
+---
+
+
+---
+
+## News List
+
+### Route
+- `api/news/post-create`
+
+### Description
+- Get a list of news.
+
+### Method
+- GET
+
+### Expected Input
+```json
+[
+    {
+        "title": string,
+        "category": string,
+        "text": string,
+        "mainImg": file,
+        "logoImg": file
+    }
+]
+```
+
+### Expected Output
+```json
+[
+    {
+        "newsId": int
+    }
+]
+```
 ---
 
 ## Sign Up
@@ -98,7 +130,7 @@
 ### Expected Input
 ```json
 {
-    "username": "string",
+    "nickname": "string",
     "password": "string",
     "email": "user@example.com"
 }
@@ -107,8 +139,8 @@
 ### Expected Output
 ```json
 {
-    "access_token": "JWT_TOKEN",
-    "refresh_token": "JWT_TOKEN"
+    "accessToken": "JWT_TOKEN",
+    "refreshToken": "JWT_TOKEN"
 }
 ```
 
@@ -128,7 +160,7 @@
 ### Expected Input
 ```json
 {
-    "username": "string",
+    "nickname": "string",
     "password": "string"
 }
 ```
@@ -136,8 +168,8 @@
 ### Expected Output
 ```json
 {
-    "access_token": "JWT_TOKEN",
-    "refresh_token": "JWT_TOKEN"
+    "accessToken": "JWT_TOKEN",
+    "refreshToken": "JWT_TOKEN"
 }
 ```
 
@@ -159,15 +191,15 @@
 ### Expected Input
 ```json
 {
-    "access_token": "JWT_TOKEN",
-    "refresh_token": "JWT_TOKEN"
+    "accessToken": "JWT_TOKEN",
+    "refreshToken": "JWT_TOKEN"
 }
 ```
 
 ### Expected Output
 ```json
 {
-    "access_token": "JWT_TOKEN"
+    "accessToken": "JWT_TOKEN"
 }
 ```
 

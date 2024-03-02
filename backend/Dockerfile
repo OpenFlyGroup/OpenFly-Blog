@@ -11,6 +11,7 @@ RUN pip install asgiref==3.7.2 \
                 django-cors-headers==4.3.1 \
                 djangorestframework==3.14.0 \
                 djangorestframework-simplejwt==5.3.1 \
+                pillow==10.2.0 \
                 psycopg2-binary==2.9.9 \
                 PyJWT==2.8.0 \
                 python-dotenv==1.0.1 \

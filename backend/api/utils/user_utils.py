@@ -1,32 +1,44 @@
 from ..models import User
+from .cript_utils import decrypt, encrypt, check_password, hash_password
 
 
-def get_user_by_data(username=None, user_id=None, password=None):
+def authenticate_user(nickname=None, user_id=None, password=None, email=None):
     """
     Retrieve user information from database based on provided data.
 
     Parameters:
-    - username (str): User's username (optional)
+    - nickname (str): User's nickname (optional)
     - user_id (str): User's unique identifier (optional)
     - password (str): User's password (optional)
+    - email (str): User's email (optional)
+
+    Possible combinations:
+    - nickname + password (auth)
+    - email + password (auth)
+    - user_id + nickname (token)
 
     Returns:
     - dict or None: User information as dictionary or None if user is not found
     """
     try:
-        if user_id is not None and password is not None:
-            user = User.objects.get(username=username, user_id=user_id, password=password)
-        elif user_id is not None:
-            user = User.objects.get(username=username, user_id=user_id)
-        elif password is not None:
-            user = User.objects.get(username=username, password=password)
-        else:
-            user = User.objects.get(username=username)
+        user = None
+        if nickname is not None and password is not None:
+            user = User.objects.get(nickname=encrypt(nickname))
+            if not check_password(password, user.password):
+                user = None
+        elif email is not None and password is not None:
+            user = User.objects.get(email=encrypt(email))
+            if not check_password(password, user.password):
+                user = None
+        elif nickname is not None and user_id is not None:
+            user = User.objects.get(nickname=encrypt(nickname), user_id=user_id)
+
+        if not user:
+            return None
         user_out = {
             'user_id': user.user_id,
-            'email': user.email,
-            'username': user.username,
-            'password': user.password,
+            'email': decrypt(user.email),
+            'nickname': decrypt(user.nickname),
             'info': user.info,
             'role': user.role,
             'active': user.active,
@@ -38,29 +50,30 @@ def get_user_by_data(username=None, user_id=None, password=None):
 
 
 
-def check_user(username, password):
+def check_user(nickname, password):
     """
     Retrieve user information from database based on provided data.
 
     Parameters:
-    - username (str): User's username
+    - nickname (str): User's nickname
     - password (str): User's password
 
     Returns:
     - True - if data is valid, False - otherwise
     """
     try:
-        User.objects.get(username=username, password=password)
-        return True
+        user = User.objects.get(nickname=encrypt(nickname))
+        return check_password(password, user['password'])
     except User.DoesNotExist:
         return False
 
-def check_is_unique(username=None, email=None):
+
+def check_is_unique(nickname=None, email=None):
     """
-    Check is username unique.
+    Check is nickname unique.
 
     Parameters:
-    - username (str): User's username (optional)
+    - nickname (str): User's nickname (optional)
     - email (str): User's email (optional)
 
     Returns:
@@ -68,13 +81,13 @@ def check_is_unique(username=None, email=None):
     """
     if email is not None:
         try:
-            User.objects.get(email=email)
+            User.objects.get(email=encrypt(email))
             return False
         except User.DoesNotExist:
             return True
     else:
         try:
-            User.objects.get(username=username)
+            User.objects.get(nickname=encrypt(nickname))
             return False
         except User.DoesNotExist:
             return True

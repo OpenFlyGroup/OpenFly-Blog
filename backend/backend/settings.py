@@ -10,7 +10,6 @@ DB_HOST =  getenv("PG_HOST")
 DB_NAME = getenv("PG_DATABASE")
 DB_PORT = getenv("PG_PORT")
 SECRET_KEY = getenv("SECRET_KEY")
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_ROOT = path.join(BASE_DIR, 'media')
