@@ -1,5 +1,5 @@
-const ProfileSlugPage = ({ params }: { params: { slug: string } }) => {
-  return <div>ProfileSlugPage</div>;
-};
+const ProfileSlugPage = ({ params }: { params: { slug: string } }) => (
+  <div>ProfileSlugPage{params.slug}</div>
+)
 
-export default ProfileSlugPage;
+export default ProfileSlugPage

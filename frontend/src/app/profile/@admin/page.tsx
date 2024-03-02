@@ -1,9 +1,3 @@
-import React from "react";
+const AdminProfilePage = () => <div>AdminProfilePage</div>
 
-type Props = {};
-
-const AdminProfilePage = (props: Props) => {
-  return <div>AdminProfilePage</div>;
-};
-
-export default AdminProfilePage;
+export default AdminProfilePage
