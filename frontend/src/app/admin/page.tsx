@@ -2,20 +2,20 @@ import Container from '@/components/layout/Container/Container'
 import Crumbs from '@/components/sections/Crumbs/Crumbs'
 import { MenuItem } from 'primereact/menuitem'
 
-const Forum = () => {
+const AdminPage: React.FC = () => {
   const crumbs: MenuItem[] = [
     {
-      label: 'forum',
-      url: 'forum',
+      label: 'admin',
+      url: 'admin',
     },
   ]
   return (
     <Container>
-      <div className='w-full flex flex-col gap-4'>
+      <div>
         <Crumbs items={crumbs} />
       </div>
     </Container>
   )
 }
 
-export default Forum
+export default AdminPage
