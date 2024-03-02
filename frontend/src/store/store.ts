@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import {
   FLUSH,
   PAUSE,
@@ -8,25 +8,25 @@ import {
   REHYDRATE,
   persistReducer,
   persistStore,
-} from "redux-persist";
-import { postSlice } from "./post/post.slice";
-import { userSlice } from "./user/user.slice";
-import Storage from "./createNoopStorage";
+} from 'redux-persist'
+import { postSlice } from './post/post.slice'
+import { userSlice } from './user/user.slice'
+import Storage from './createNoopStorage'
 
 const persistConfig = {
-  key: "local",
+  key: 'local',
   storage: Storage,
-};
+}
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
   post: postSlice.reducer,
-});
+})
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export const makeStore = () => {
-  return configureStore({
+export const makeStore = () =>
+  configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
@@ -34,11 +34,10 @@ export const makeStore = () => {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
       }),
-  });
-};
+  })
 
-export const persistor = persistStore(makeStore());
-export type TypeRootReducer = ReturnType<typeof rootReducer>;
-export type AppStore = ReturnType<typeof makeStore>;
-export type RootState = ReturnType<AppStore["getState"]>;
-export type AppDispatch = AppStore["dispatch"];
+export const persistor = persistStore(makeStore())
+export type TypeRootReducer = ReturnType<typeof rootReducer>
+export type AppStore = ReturnType<typeof makeStore>
+export type RootState = ReturnType<AppStore['getState']>
+export type AppDispatch = AppStore['dispatch']
