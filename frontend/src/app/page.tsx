@@ -1,10 +1,9 @@
 import { NextPage } from "next";
 
 const HomePage: NextPage = () => {
-  
   return (
     <>
-    <h1>hello</h1>
+      <h1>hello</h1>
     </>
   );
 };

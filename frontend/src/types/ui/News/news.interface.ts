@@ -1,9 +1,9 @@
 import { IComment, IPost } from "@/store/post/post.interface";
 
 export interface IPostProps {
-    props: IPost;
+  props: IPost;
 }
 
 export interface ICommentProps {
-    props: IComment;
-};
+  props: IComment;
+}

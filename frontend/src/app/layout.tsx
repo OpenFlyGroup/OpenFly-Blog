@@ -6,7 +6,7 @@ import "./globals.css";
 
 const roboto = Roboto({
   weight: ["400", "500", "700", "900"],
-  subsets: ["latin", "cyrillic"]
+  subsets: ["latin", "cyrillic"],
 });
 
 export const metadata: Metadata = {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
       { url: "/safari-pinned-tab.svg", type: "image/svg" },
     ],
   },
-}
+};
 
 export default function RootLayout({
   children,
@@ -46,9 +46,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.className} bg-cover bg-main`}>
         <StoreProvider>
-            <App>
-              {children}
-            </App>
+          <App>{children}</App>
         </StoreProvider>
       </body>
     </html>
