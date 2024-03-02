@@ -1,15 +1,18 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import Post from '@/components/ui/News/Post/Post'
-import { IPost } from '@/store/post/post.interface'
 import Container from '@/components/layout/Container/Container'
 import Crumbs from '@/components/sections/Crumbs/Crumbs'
 import { MenuItem } from 'primereact/menuitem'
 // * Import for fetching data from backend without posts store
 // import { NewsService } from '@/services/news/news.service'
-// TODO fix posts store bug
-// import { useActions } from '@/hooks/useActions'
-// import { usePosts } from '@/hooks/usePosts'
+import { useActions } from '@/hooks/useActions'
+import { usePosts } from '@/hooks/usePosts'
+import SkeletedPost from '@/components/ui/News/SkeletedPost/SkeletedPost'
+
+// ? =========================== For midfinup
+// TODO create separated AutoSearchForm component at components/ui/Form
+// ? ===========================
 
 const NewsPage: React.FC = () => {
   const crumbs: MenuItem[] = [
@@ -18,38 +21,38 @@ const NewsPage: React.FC = () => {
       url: 'news',
     },
   ]
-  // TODO fix posts store bug
-  // const { fetchAllPosts } = useActions()
-  // const { posts } = usePosts()
+  // ! Fetching posts with posts store
+  const { fetchAllPosts } = useActions()
+  const { posts, status } = usePosts()
+  useEffect(() => {
+    fetchAllPosts({})
+  }, [])
   // ! Only for local testing without backend
-  const allPosts: IPost[] = [
-    {
-      id: 0,
-      title: 'string',
-      logoImg: '/string',
-      mainImg: '/string',
-      category: 'string',
-      date: 'string',
-      text: 'string',
-      likes: 0,
-    },
-    {
-      id: 1,
-      title: 'string',
-      logoImg: '/string',
-      mainImg: '/string',
-      category: 'string',
-      date: 'string',
-      text: 'string',
-      likes: 0,
-    },
-  ]
-  const [searchQuery, setSearchQuery] = useState<string>('')
-  // ! Del allPosts here if you are gonna test page with a backend
-  const [filteredPosts, setFilteredPosts] = useState<IPost[]>(
-    // ! HERE MAN !
-    allPosts
-  )
+  // const allPosts: IPost[] = [
+  //   {
+  //     id: 0,
+  //     title: 'string',
+  //     logoImg: '/string',
+  //     mainImg: '/string',
+  //     category: 'string',
+  //     date: 'string',
+  //     text: 'string',
+  //     likes: 0,
+  //   },
+  //   {
+  //     id: 1,
+  //     title: 'string',
+  //     logoImg: '/string',
+  //     mainImg: '/string',
+  //     category: 'string',
+  //     date: 'string',
+  //     text: 'string',
+  //     likes: 0,
+  //   },
+  // ]
+  // ? const [searchQuery, setSearchQuery] = useState<string>('')
+  // ! Add allPosts here if you are gonna test page without
+  // ? const [filteredPosts, setFilteredPosts] = useState<IPost[]>(/* HERE */)
   // *Funcs for fetching data from backend without posts store
   // const fetch = async () => {
   //   const response = await NewsService.getAll()
@@ -78,7 +81,7 @@ const NewsPage: React.FC = () => {
     <Container>
       <div className='w-full flex flex-col gap-6'>
         <Crumbs items={crumbs} />
-        <div className='mx-auto'>
+        {/* <div className='mx-auto'>
           <input
             type='text'
             value={searchQuery}
@@ -92,8 +95,14 @@ const NewsPage: React.FC = () => {
           >
             Поиск
           </button>
-        </div>
-        {filteredPosts.map((post) => (
+        </div> */}
+        {status !== 'succeeded' && (
+          <>
+            <SkeletedPost />
+            <SkeletedPost />
+          </>
+        )}
+        {posts.map((post) => (
           <Post key={post.id} props={post} />
         ))}
       </div>
