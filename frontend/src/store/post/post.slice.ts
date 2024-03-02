@@ -10,13 +10,13 @@ import {
 } from './post.actions'
 
 interface PostState {
-  entities: { [key: string]: IPost }
+  posts: IPost[]
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: string | null
 }
 
 const initialState: PostState = {
-  entities: {},
+  posts: [],
   status: 'idle',
   error: null,
 }
@@ -33,7 +33,7 @@ export const postSlice = createSlice({
       .addCase(fetchAllPosts.fulfilled, (state, action) => {
         state.status = 'succeeded'
         action.payload.forEach((post: IPost) => {
-          state.entities[post.id] = post
+          state.posts[post.id] = post
         })
       })
       .addCase(fetchAllPosts.rejected, (state, action) => {
@@ -45,7 +45,7 @@ export const postSlice = createSlice({
       })
       .addCase(fetchPostById.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.entities[action.payload.id] = action.payload
+        state.posts[action.payload.id] = action.payload
       })
       .addCase(fetchPostById.rejected, (state, action) => {
         state.status = 'failed'
@@ -56,7 +56,7 @@ export const postSlice = createSlice({
       })
       .addCase(createNewPost.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.entities[action.payload.id] = action.payload
+        state.posts[action.payload.id] = action.payload
       })
       .addCase(createNewPost.rejected, (state, action) => {
         state.status = 'failed'
@@ -67,7 +67,7 @@ export const postSlice = createSlice({
       })
       .addCase(updateExistingPost.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.entities[action.payload.id] = action.payload
+        state.posts[action.payload.id] = action.payload
       })
       .addCase(updateExistingPost.rejected, (state, action) => {
         state.status = 'failed'
@@ -88,7 +88,7 @@ export const postSlice = createSlice({
       })
       .addCase(leaveComment.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.entities[action.payload.id] = action.payload
+        state.posts[action.payload.id] = action.payload
       })
       .addCase(leaveComment.rejected, (state, action) => {
         state.status = 'failed'

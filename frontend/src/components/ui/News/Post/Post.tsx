@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { IPostProps } from '@/types/ui/News/news.interface'
-// import Image from 'next/image'
+import Image from 'next/image'
 import Comment from '../Comment/Comment'
 import Container from '@/components/layout/Container/Container'
 
@@ -12,10 +12,12 @@ const Post: React.FC<IPostProps> = ({ props }) => (
           {/* {props.logoImg  && <Image width={48} height={20} src={props.logoImg} alt="avatar" />} */}
           <h3>{props.title}</h3>
         </a>
-        <img
+        <Image
           className='rounded-xl shadow-lg w-full'
-          src={props.mainImg}
+          src={`http://localhost:8000/api${props.mainImg}`}
           alt={`post image about ${props.title}`}
+          width={150}
+          height={150}
         />
         <p>{props.date}</p>
       </div>
