@@ -35,7 +35,7 @@ export const metadata: Metadata = {
       { url: '/safari-pinned-tab.svg', type: 'image/svg' },
     ],
   },
-}
+};
 
 export default function RootLayout({
   children,
@@ -46,6 +46,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${roboto.className} bg-cover bg-main`}>
         <StoreProvider>
+          <App>{children}</App>
           <App>{children}</App>
         </StoreProvider>
       </body>

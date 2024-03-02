@@ -10,8 +10,11 @@ const NewsPage: React.FC = () => {
       {posts.map((post) => (
         <Post key={post.id} props={post} />
       ))}
+      {posts.map((post) => (
+        <Post key={post.id} props={post} />
+      ))}
     </>
-  )
-}
+  );
+};
 
 export default NewsPage
