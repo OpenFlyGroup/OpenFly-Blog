@@ -35,7 +35,7 @@ export const metadata: Metadata = {
       { url: '/safari-pinned-tab.svg', type: 'image/svg' },
     ],
   },
-};
+}
 
 export default function RootLayout({
   children,

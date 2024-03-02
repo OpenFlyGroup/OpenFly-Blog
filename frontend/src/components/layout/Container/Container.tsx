@@ -1,5 +1,6 @@
 const Container = ({
   children,
+  children,
 }: Readonly<{
   children: React.ReactNode
 }>) => (
