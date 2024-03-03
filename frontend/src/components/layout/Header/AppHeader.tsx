@@ -65,7 +65,15 @@ const AppHeader: React.FC<ICheckUserProps> = ({ user }) => {
             </Link>
           ))}
         </Popover.Group>
-        <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
+        <div className='hidden lg:flex lg:flex-1 gap-8 lg:justify-end'>
+          {user?.isAdmin && (
+            <Link
+              href='/admin'
+              className={`${isActive('/forum', pathname) ? 'active' : ' '} flex items-center text-white hover:text-primary duration-200`}
+            >
+              <i className='pi pi-file-edit text-2xl' />
+            </Link>
+          )}
           <Link
             href={user ? '/profile' : '/signin'}
             className={`${isActive(user ? '/profile' : '/signin', pathname) ? 'active' : ' '} text-sm font-[500] leading-6 text-white hover:text-primary duration-200`}

@@ -1,25 +1,33 @@
 import Container from '@/components/layout/Container/Container'
 import Crumbs from '@/components/sections/Crumbs/Crumbs'
-import BtnLink from '@/components/ui/Buttons/BtnLink/BtnLink'
 import { MenuItem } from 'primereact/menuitem'
+import UploadPostForm from '@/components/ui/Form/UploadPostForm/UploadPostForm'
 
-const AdminPage: React.FC = () => {
+const UploadPostPage = () => {
   const crumbs: MenuItem[] = [
     {
       label: 'admin',
-      url: 'admin',
+      url: '/admin',
+    },
+    {
+      label: 'upload',
+      url: '/admin/upload',
+    },
+    {
+      label: 'post',
+      url: 'post',
     },
   ]
   return (
     <Container>
       <div className='w-full flex flex-col gap-6'>
         <Crumbs items={crumbs} />
-        <div className='drop-shadow-2xl p-5 flex flex-col gap-5 bg-secondary text-white rounded-2xl'>
-          <BtnLink text='Upload Post' url='/admin/upload/post' />
+        <div className='flex justify-center'>
+          <UploadPostForm />
         </div>
       </div>
     </Container>
   )
 }
 
-export default AdminPage
+export default UploadPostPage
