@@ -24,10 +24,12 @@ const App: React.FC<Readonly<IDefaultLayout>> = ({ children }) => {
   const { user } = useAuth()
   return (
     <PrimeReactProvider value={primeConfig}>
-      <AppHeader user={user} />
-      <main className='flex-1 py-6'>{children}</main>
-      <BottomBar user={user} />
-      <AppFooter />
+      <div className='flex flex-col justify-between min-h-screen'>
+        <AppHeader user={user} />
+        <main className='flex-1 py-6'>{children}</main>
+        <BottomBar user={user} />
+        <AppFooter />
+      </div>
     </PrimeReactProvider>
   )
 }

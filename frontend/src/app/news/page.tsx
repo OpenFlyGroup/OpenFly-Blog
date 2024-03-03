@@ -96,15 +96,14 @@ const NewsPage: React.FC = () => {
             Поиск
           </button>
         </div> */}
-        {status !== 'succeeded' && (
+        {status === 'loading' ? (
           <>
             <SkeletedPost />
             <SkeletedPost />
           </>
+        ) : (
+          posts.map((post) => <Post key={post.id} props={post} />)
         )}
-        {posts.map((post) => (
-          <Post key={post.id} props={post} />
-        ))}
       </div>
     </Container>
   )
