@@ -8,6 +8,7 @@ import AppFooter from './layout/Footer/AppFooter'
 import { twMerge } from 'tailwind-merge'
 
 import 'primeicons/primeicons.css'
+import { useAuth } from '@/hooks/useAuth'
 
 const App: React.FC<Readonly<IDefaultLayout>> = ({ children }) => {
   const primeConfig: Partial<APIOptions> = {
@@ -20,11 +21,12 @@ const App: React.FC<Readonly<IDefaultLayout>> = ({ children }) => {
       classNameMergeFunction: twMerge,
     },
   }
+  const { user } = useAuth()
   return (
     <PrimeReactProvider value={primeConfig}>
-      <AppHeader />
+      <AppHeader user={user} />
       <main className='flex-1 py-6'>{children}</main>
-      <BottomBar />
+      <BottomBar user={user} />
       <AppFooter />
     </PrimeReactProvider>
   )

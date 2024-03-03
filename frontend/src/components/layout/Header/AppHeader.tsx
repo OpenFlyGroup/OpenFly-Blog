@@ -9,10 +9,10 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import isActive from '@/utils/isActive'
 import { TypeNavLink } from '@/types/layout/layout.interface'
+import { ICheckUserProps } from '@/types/ui/ui.interface'
 
-const AppHeader: React.FC = () => {
+const AppHeader: React.FC<ICheckUserProps> = ({ user }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false)
-  const [isUser, setIsUser] = useState<boolean>(true)
   const pathname = usePathname()
 
   const NavLinks: TypeNavLink[] = [
@@ -67,8 +67,8 @@ const AppHeader: React.FC = () => {
         </Popover.Group>
         <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
           <Link
-            href={isUser ? '/profile' : '/signin'}
-            className={`${isActive(isUser ? '/profile' : '/signin', pathname) ? 'active' : ' '} text-sm font-[500] leading-6 text-white hover:text-primary duration-200`}
+            href={user ? '/profile' : '/signin'}
+            className={`${isActive(user ? '/profile' : '/signin', pathname) ? 'active' : ' '} text-sm font-[500] leading-6 text-white hover:text-primary duration-200`}
           >
             <svg
               xmlns='http://www.w3.org/2000/svg'
