@@ -13,8 +13,8 @@ const config: Config = {
         main: "url('/bg.svg')",
       },
       colors: {
-        primary: "#e0ff4f",
-        secondary: "#00272b",
+        primary: '#e0ff4f',
+        secondary: '#00272b',
       },
     },
   },
