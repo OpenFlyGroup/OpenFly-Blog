@@ -3,7 +3,7 @@
 import { Skeleton } from 'primereact/skeleton'
 
 const SkeletedPost = () => (
-  <article className='drop-shadow-2xl p-5 flex flex-col lg:flex-row gap-5 bg-secondary text-white rounded-xl cursor-pointer'>
+  <article className='drop-shadow-2xl p-5 flex flex-col lg:flex-row gap-5 bg-secondary text-white rounded-2xl cursor-pointer'>
     <div className='flex-1 flex flex-col gap-5'>
       <a className='flex justify-start items-center gap-5' href=''>
         {/* {props.logoImg  && <Image width={48} height={20} src={props.logoImg} alt="avatar" />} */}

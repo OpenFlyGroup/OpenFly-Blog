@@ -8,7 +8,8 @@ import AppFooter from './layout/Footer/AppFooter'
 import { twMerge } from 'tailwind-merge'
 
 import 'primeicons/primeicons.css'
-import { useAuth } from '@/hooks/useAuth'
+// import { useAuth } from '@/hooks/useAuth'
+import { IUserState } from '@/store/user/user.interface'
 
 const App: React.FC<Readonly<IDefaultLayout>> = ({ children }) => {
   const primeConfig: Partial<APIOptions> = {
@@ -21,13 +22,19 @@ const App: React.FC<Readonly<IDefaultLayout>> = ({ children }) => {
       classNameMergeFunction: twMerge,
     },
   }
-  const { user } = useAuth()
+  const user: IUserState = {
+    nickname: 'John',
+    email: 'email@emailPattern.email',
+    isAdmin: true,
+  }
   return (
     <PrimeReactProvider value={primeConfig}>
-      <AppHeader user={user} />
-      <main className='flex-1 py-6'>{children}</main>
-      <BottomBar user={user} />
-      <AppFooter />
+      <div className='flex flex-col justify-between min-h-screen'>
+        <AppHeader user={user} />
+        <main className='flex-1 py-6'>{children}</main>
+        <BottomBar user={user} />
+        <AppFooter />
+      </div>
     </PrimeReactProvider>
   )
 }

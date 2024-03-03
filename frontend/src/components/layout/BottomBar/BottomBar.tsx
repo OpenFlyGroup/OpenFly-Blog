@@ -23,17 +23,19 @@ const BottomBar: React.FC<ICheckUserProps> = ({ user }) => {
       >
         <i className='pi pi-user text-2xl' />
       </Link>
+      {user?.isAdmin && (
+        <Link
+          href='/admin'
+          className={`${isActive('/forum', pathname) ? 'active' : ' '} flex items-center text-white hover:bg-primary hover:text-secondary`}
+        >
+          <i className='pi pi-file-edit text-2xl' />
+        </Link>
+      )}
       <Link
         href='/news'
         className={`${isActive('/news', pathname) ? 'active' : ' '} flex items-center text-white hover:bg-primary hover:text-secondary`}
       >
         <i className='pi pi-megaphone text-2xl' />
-      </Link>
-      <Link
-        href='/forum'
-        className={`${isActive('/forum', pathname) ? 'active' : ' '} flex items-center text-white hover:bg-primary hover:text-secondary`}
-      >
-        <i className='pi pi-align-justify text-2xl' />
       </Link>
     </div>
   )
