@@ -16,10 +16,10 @@ class NewsListAPIView(APIView):
             news_list = []
             for news in all_news:
                 news_dict = {
-                    'newsId': news.news_id,
+                    'id': news.news_id,
                     'title': news.title,
                     'category': news.category,
-                    'creationDate': news.creation_date,
+                    'date': news.creation_date,
                     'text': news.content_text,
                     'mainImg': news.main_img.url if news.main_img else None,
                     'logoImg': news.logo_img.url if news.logo_img else None,
