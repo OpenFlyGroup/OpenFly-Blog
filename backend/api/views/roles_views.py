@@ -2,9 +2,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from ..models import User
-from ..serializers import UserSerializer
-from ..utils.cript_utils import decrypt, encrypt, check_password, hash_password
+from ..utils.cript_utils import decrypt, encrypt
 from ..utils.roles_utils import admin_check
+from ..utils.request_utils import check_not_none
 
 class RoleListAPIView(APIView):
     def get(self, request):
@@ -27,6 +27,8 @@ class RoleListAPIView(APIView):
             nickname = request.data.get('nickname', '')
             token = request.data.get('token', '')
             new_role = request.data.get('role', '')
+            check_not_none(nickname, token, new_role)
+
             is_admin = admin_check(token)
             if is_admin:
                 try:
@@ -46,6 +48,8 @@ class IsAdminAPIView(APIView):
     def post(self, request):
         try:
             token = request.data.get('token', '')
+            check_not_none(token)
+
             response = {
                 'isAdmin': admin_check(token)
             }

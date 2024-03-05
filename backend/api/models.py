@@ -13,7 +13,6 @@ class NewsComments(models.Model):
     comment_id = models.AutoField(primary_key=True)
     author_name = models.TextField()
     creation_date = models.DateField()
-    content = models.TextField()
 
 
 class News(models.Model):
