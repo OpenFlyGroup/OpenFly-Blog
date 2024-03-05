@@ -1,8 +1,3 @@
-
-const AboutPage: React.FC = () => {
-  return (
-    <div>AboutPage</div>
-  )
-}
+const AboutPage: React.FC = () => <div>AboutPage</div>
 
 export default AboutPage

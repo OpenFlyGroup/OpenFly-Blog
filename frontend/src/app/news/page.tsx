@@ -1,75 +1,98 @@
+'use client'
+import React, { useState, useEffect } from 'react'
 import Post from '@/components/ui/News/Post/Post'
-import { IPost } from '@/store/post/post.interface';
+import { IPost } from '@/store/post/post.interface'
+import { NewsService } from '@/services/news/news.service'
+// import { useActions } from '@/hooks/useActions'
+// import { usePosts } from '@/hooks/usePosts'
 
 const NewsPage: React.FC = () => {
-  const posts: IPost[] = [
-    {
-      id: 0,
-      title: 'Project_Zero',
-      logoImg: '/logo.svg',
-      mainImg: 'https://plus.unsplash.com/premium_photo-1664439520373-c832fe4c3186?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80',
-      category: 'game',
-      date: '17.02.2024',
-      text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti, mollitia perspiciatis laboriosam iusto eveniet nam? Cupiditate et minima sint similique laborum, ex voluptate, facilis aliquam ea facere expedita perspiciatis sequi!',
-      likes: 23,
-      comments: [
-        {
-            id: 0,
-            nick: "Wonder",
-            img: "https://images.generated.photos/qI5uM1dlPhWuZfuUOvcIt7cWP0BrcyA_3RAXpw2EJ5k/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/Nzc4Mjk0LmpwZw.jpg",
-            date: "2015-12-23",
-            text: "lorem ipsum dolor sit amet, consectetur adip",
-        },
-        {
-            id: 1,
-            nick: "Wonder",
-            img: "https://images.generated.photos/qI5uM1dlPhWuZfuUOvcIt7cWP0BrcyA_3RAXpw2EJ5k/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/Nzc4Mjk0LmpwZw.jpg",
-            date: "2015-12-23",
-            text: "lorem ipsum dolor sit amet, consectetur adip",
-        },
-      ],
-    },
-    {
-      id: 1,
-      title: 'Project_Zero',
-      logoImg: '/logo.svg',
-      mainImg: 'https://plus.unsplash.com/premium_photo-1664439520373-c832fe4c3186?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80',
-      category: 'game',
-      date: '17.02.2024',
-      text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti, mollitia perspiciatis laboriosam iusto eveniet nam? Cupiditate et minima sint similique laborum, ex voluptate, facilis aliquam ea facere expedita perspiciatis sequi!',
-      likes: 33,
-      comments: [
-        {
-            id: 0,
-            nick: "Wonder",
-            img: "https://images.generated.photos/qI5uM1dlPhWuZfuUOvcIt7cWP0BrcyA_3RAXpw2EJ5k/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/Nzc4Mjk0LmpwZw.jpg",
-            date: "2015-12-23",
-            text: "lorem ipsum dolor sit amet, consectetur adip",
-        },
-        {
-            id: 1,
-            nick: "Wonder",
-            img: "https://images.generated.photos/qI5uM1dlPhWuZfuUOvcIt7cWP0BrcyA_3RAXpw2EJ5k/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/Nzc4Mjk0LmpwZw.jpg",
-            date: "2015-12-23",
-            text: "lorem ipsum dolor sit amet, consectetur adip",
-        },
-        {
-            id: 2,
-            nick: "WOW",
-            img: "https://images.generated.photos/qI5uM1dlPhWuZfuUOvcIt7cWP0BrcyA_3RAXpw2EJ5k/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/Nzc4Mjk0LmpwZw.jpg",
-            date: "2015-12-23",
-            text: "lorem ipsum dolor sit amet, consectetur adip",
-        },
-      ],
-    },
-  ]
+  // const { fetchAllPosts } = useActions()
+  // const { posts } = usePosts()
+  const [searchQuery, setSearchQuery] = useState<string>('')
+  const [filteredPosts, setFilteredPosts] = useState<IPost[]>([])
+  const fetch = async () => {
+    const response = await NewsService.getAll()
+    return response.data
+  }
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const allPosts = await fetch()
+      if (searchQuery) {
+        const filtered = allPosts.filter(
+          (post) =>
+            post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            post.text.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        setFilteredPosts(filtered)
+      } else {
+        setFilteredPosts(allPosts)
+      }
+    }
+
+    fetchPosts()
+  }, [searchQuery])
+
+  // const allPosts: IPost[] = [
+  //   {
+  //     id: 0,
+  //     title: 'string',
+  //     logoImg: 'string',
+  //     mainImg: 'string',
+  //     category: 'string',
+  //     date: 'string',
+  //     text: 'string',
+  //     likes: 0,
+  //   },
+  //   {
+  //     id: 1,
+  //     title: 'string',
+  //     logoImg: 'string',
+  //     mainImg: 'string',
+  //     category: 'string',
+  //     date: 'string',
+  //     text: 'string',
+  //     likes: 0,
+  //   },
+  // ]
+
+  // useEffect(() => {
+  //   // fetchAllPosts({})
+  //   if (searchQuery) {
+  //     const filtered = data.posts.filter(
+  //       (post: IPost) =>
+  //         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //         post.text.toLowerCase().includes(searchQuery.toLowerCase())
+  //     )
+  //     setFilteredPosts(filtered)
+  //   } else {
+  //     setFilteredPosts(data.posts)
+  //   }
+  // }, [searchQuery])
+
   return (
     <>
-    {posts.map(post => (
-      <Post key={post.id} props={post}/>
-    ))}
+      <div style={{ margin: '20px 0' }}>
+        <input
+          type='text'
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder='Search'
+          style={{ padding: '10px', marginRight: '10px', width: '300px' }}
+        />
+        <button
+          onClick={() => setSearchQuery(searchQuery)}
+          style={{ padding: '10px' }}
+        >
+          Поиск
+        </button>
+      </div>
+      {filteredPosts.map((post) => (
+        <Post key={post.id} props={post} />
+      ))}
     </>
   )
 }
 
-export default NewsPage;
+export default NewsPage

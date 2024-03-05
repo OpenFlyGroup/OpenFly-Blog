@@ -1,12 +1,9 @@
-import { NextPage } from "next";
+import { NextPage } from 'next'
 
-const HomePage: NextPage = () => {
-  
-  return (
-    <>
+const HomePage: NextPage = () => (
+  <>
     <h1>hello</h1>
-    </>
-  );
-};
+  </>
+)
 
-export default HomePage;
+export default HomePage

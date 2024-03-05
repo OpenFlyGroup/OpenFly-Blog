@@ -1,2 +1,2 @@
-const isActive = (path: string, pathname: string) => path === pathname;
-export default isActive;
+const isActive = (path: string, pathname: string) => path === pathname
+export default isActive
