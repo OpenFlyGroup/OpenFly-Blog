@@ -1,13 +1,13 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser
-from django.shortcuts import render
 from datetime import datetime
 
 from ..models import News, NewsComments
 from ..serializers import NewsSerializer, NewsCommentsSerializer
-from ..utils.token_utils import token_check
-from ..utils.roles_utils import admin_check
+from ..utils.token_utils import token_check, authenticate_by_token
+from ..utils.request_utils import check_not_none
+from ..utils.cript_utils import encrypt, decrypt
 
 class NewsListAPIView(APIView):
     def get(self, request):
@@ -15,22 +15,32 @@ class NewsListAPIView(APIView):
             all_news = News.objects.all()
             news_list = []
             for news in all_news:
+                comments = NewsComments.objects.filter(news=news)
+                comments_list = []
+                for comment in comments:
+                    comment_dict = {
+                        'comment_id': comment.comment_id,
+                        'author_name': decrypt(comment.author_name),
+                        'creation_date': comment.creation_date,
+                        'text': comment.text,
+                    }
+                    comments_list.append(comment_dict)
                 news_dict = {
-                    'newsId': news.news_id,
+                    'id': news.news_id,
                     'title': news.title,
                     'category': news.category,
-                    'creationDate': news.creation_date,
+                    'date': news.creation_date,
                     'text': news.content_text,
                     'mainImg': news.main_img.url if news.main_img else None,
                     'logoImg': news.logo_img.url if news.logo_img else None,
                     'likes': news.likes,
-                    'comments': [comment.text for comment in news.comments.all()]
+                    'comments': comments_list,
                 }
                 news_list.append(news_dict)
             return Response(news_list)
         except Exception as e:
             print(e)
-            return Response("An error occurred", status=400) # Return generic error
+            return Response("An error occurred", status=400)
 
 class NewsAddAPIViews(APIView):
     parser_classes = [MultiPartParser]
@@ -44,12 +54,15 @@ class NewsAddAPIViews(APIView):
             token = request.data.get('token', '')
             category = request.data.get('category', '')
             creation_date = datetime.utcnow()
+            check_not_none(title, text, logo_img, main_img, token, category, creation_date)
+
             try:
                 check_result = token_check(token=token, token_type="access")
                 if check_result != 1:
                     raise
             except:
                 return Response("Token is invalid", status=400)
+
             input_data = {
                 'title': title,
                 'content_text': text,
@@ -71,16 +84,38 @@ class NewsAddAPIViews(APIView):
             return Response("An error occurred", status=400) # Return generic error
 
 class NewsCommentsListAPIView(APIView):
-   def post(self, request):
+    def post(self, request):
         try:
-            content = str(request.data.get('text', ''))
-            news_id = str(request.data.get('news', ''))
+            news_id = str(request.data.get('id', ''))
+            text = str(request.data.get('text', ''))
             token = str(request.data.get('token', ''))
+            check_not_none(news_id, text, token)
 
-            serializer = NewsCommentsSerializer(data=request.data)
+            try:
+                check_result = token_check(token=token, token_type="access")
+                if check_result != 1:
+                    raise
+            except:
+                return Response("Token is invalid", status=400)
+
+            try:
+                news = News.objects.get(news_id=news_id)
+            except News.DoesNotExist:
+                return Response("An error occurred", status=400) # Return generic error
+
+            user = authenticate_by_token(token)
+            creation_date = datetime.utcnow().date()
+            input_data = {
+                'author_name': encrypt(user["nickname"]),
+                'creation_date': creation_date,
+                'text':text
+            }
+
+            serializer = NewsCommentsSerializer(data=input_data)
             if serializer.is_valid():
                 serializer.save()
-                return Response(serializer.data)
+                news.comments.add(serializer.instance)
+                return Response(serializer.data, status=201)
             else:
                 print(serializer.errors)
                 return Response("An error occurred", status=400) # Return generic error

@@ -1,17 +1,12 @@
-from django.contrib.auth import authenticate, login
-from django.core.validators import validate_email
-from django.core.exceptions import ValidationError
-from django.contrib.sessions.models import Session
-from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from ..models import User
 from ..serializers import UserSerializer
-from ..utils.token_utils import generate_token, token_check, refresh_access_token
-from ..utils.user_utils import authenticate_user, check_user, check_is_unique
-from ..utils.cript_utils import decrypt, encrypt, check_password, hash_password
-
+from ..utils.token_utils import generate_token, refresh_access_token
+from ..utils.user_utils import authenticate_user, check_is_unique
+from ..utils.cript_utils import decrypt, encrypt, hash_password
+from ..utils.request_utils import check_not_none
 
 class SignInAPIView(APIView):
     def post(self, request):
@@ -19,21 +14,24 @@ class SignInAPIView(APIView):
             password = request.data.get('password', '')
             nickname = request.data.get('nickname', '')
             email = request.data.get('email', '')
+
             if not nickname:
                 nickname = None
+                check_not_none(password, email)
             if not email:
                 email = None
+                check_not_none(password, nickname)
 
             user = authenticate_user(nickname=nickname, password=password, email=email) # Authenticate user
             if user:
                 user_id = user['user_id']
                 profile_img = user['profile_img']
-                access_token = generate_token(nickname=nickname, user_id=user_id, token_type="access", exp_period=15)
-                refresh_token = generate_token(nickname=nickname, user_id=user_id, token_type="refresh", exp_period=30)
+                access_token = generate_token(nickname=user["nickname"], user_id=user_id, token_type="access", exp_period=15)
+                refresh_token = generate_token(nickname=user["nickname"], user_id=user_id, token_type="refresh", exp_period=30)
                 response_data = {
                     'accessToken': access_token,
                     'refreshToken': refresh_token,
-                    'nickname': nickname,
+                    'nickname': user["nickname"],
                     'profileImg':profile_img
                 }
                 return Response(response_data, status=201) # Return access and refresh token
@@ -70,11 +68,12 @@ class SignUpAPIView(APIView):
             nickname = request.data.get('nickname', '')
             password = request.data.get('password', '')
             email = request.data.get('email', '')
+            check_not_none(nickname, password, email)
 
             if not nickname or not email or not email:
                 return Response("Not enough data", status=400) # Return error
             if not check_is_unique(nickname=nickname):
-                return Response("Username already exists", status=400) # Return uniqueness of nickname
+                return Response("Nickname already exists", status=400) # Return uniqueness of nickname
             if not check_is_unique(email=email):
                 return Response("Email already exists", status=400) # Return uniqueness of email
 
@@ -108,6 +107,8 @@ class UpdateTokenAPIView(APIView):
         try:
             access_token = request.data.get('accessToken', '')
             refresh_token = request.data.get('refreshToken', '')
+            check_not_none(access_token, refresh_token)
+
             new_token, error = refresh_access_token(refresh_token, access_token)
             if error:
                 print(error)
