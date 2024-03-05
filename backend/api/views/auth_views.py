@@ -31,7 +31,7 @@ class SignInAPIView(APIView):
                 response_data = {
                     'accessToken': access_token,
                     'refreshToken': refresh_token,
-                    'nickname': nickname,
+                    'nickname': user["nickname"],
                     'profileImg':profile_img
                 }
                 return Response(response_data, status=201) # Return access and refresh token
@@ -73,7 +73,7 @@ class SignUpAPIView(APIView):
             if not nickname or not email or not email:
                 return Response("Not enough data", status=400) # Return error
             if not check_is_unique(nickname=nickname):
-                return Response("Username already exists", status=400) # Return uniqueness of nickname
+                return Response("Nickname already exists", status=400) # Return uniqueness of nickname
             if not check_is_unique(email=email):
                 return Response("Email already exists", status=400) # Return uniqueness of email
 

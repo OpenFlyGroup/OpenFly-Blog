@@ -7,7 +7,7 @@ from ..models import News, NewsComments
 from ..serializers import NewsSerializer, NewsCommentsSerializer
 from ..utils.token_utils import token_check, authenticate_by_token
 from ..utils.request_utils import check_not_none
-from ..utils.cript_utils import encrypt
+from ..utils.cript_utils import encrypt, decrypt
 
 class NewsListAPIView(APIView):
     def get(self, request):
@@ -20,8 +20,9 @@ class NewsListAPIView(APIView):
                 for comment in comments:
                     comment_dict = {
                         'comment_id': comment.comment_id,
-                        'author_name': comment.author_name,
+                        'author_name': decrypt(comment.author_name),
                         'creation_date': comment.creation_date,
+                        'text': comment.text,
                     }
                     comments_list.append(comment_dict)
                 news_dict = {
@@ -84,9 +85,9 @@ class NewsAddAPIViews(APIView):
 
 class NewsCommentsListAPIView(APIView):
     def post(self, request):
-        # try:
+        try:
             news_id = str(request.data.get('id', ''))
-            text = str(request.data.get('content', ''))
+            text = str(request.data.get('text', ''))
             token = str(request.data.get('token', ''))
             check_not_none(news_id, text, token)
 
@@ -94,7 +95,6 @@ class NewsCommentsListAPIView(APIView):
                 check_result = token_check(token=token, token_type="access")
                 if check_result != 1:
                     raise
-                    pass
             except:
                 return Response("Token is invalid", status=400)
 
@@ -107,7 +107,8 @@ class NewsCommentsListAPIView(APIView):
             creation_date = datetime.utcnow().date()
             input_data = {
                 'author_name': encrypt(user["nickname"]),
-                'creation_date': creation_date
+                'creation_date': creation_date,
+                'text':text
             }
 
             serializer = NewsCommentsSerializer(data=input_data)
@@ -118,6 +119,6 @@ class NewsCommentsListAPIView(APIView):
             else:
                 print(serializer.errors)
                 return Response("An error occurred", status=400) # Return generic error
-        # except Exception as e:
-        #     print(e)
-        #     return Response("An error occurred", status=400) # Return generic error
+        except Exception as e:
+            print(e)
+            return Response("An error occurred", status=400) # Return generic error
