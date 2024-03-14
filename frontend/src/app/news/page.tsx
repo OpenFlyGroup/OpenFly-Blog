@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react'
 import Post from '@/components/ui/News/Post/Post'
 import { IPost } from '@/store/post/post.interface'
 import { NewsService } from '@/services/news/news.service'
+import { AutoComplete } from 'primereact/autocomplete';
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
 // import { useActions } from '@/hooks/useActions'
 // import { usePosts } from '@/hooks/usePosts'
 
@@ -73,24 +76,13 @@ const NewsPage: React.FC = () => {
 
   return (
     <>
-      <div style={{ margin: '20px 0' }}>
-        <input
-          type='text'
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder='Search'
-          style={{ padding: '10px', marginRight: '10px', width: '300px' }}
-        />
-        <button
-          onClick={() => setSearchQuery(searchQuery)}
-          style={{ padding: '10px' }}
-        >
-          Поиск
-        </button>
-      </div>
-      {filteredPosts.map((post) => (
+    <div className="p-inputgroup flex-1">
+      <AutoComplete value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search for post" />
+      <Button icon="pi pi-search" className="p-button-warning" onClick={() => setSearchQuery(searchQuery)} />
+    </div>
+      {/* {filteredPosts.map((post) => (
         <Post key={post.id} props={post} />
-      ))}
+      ))} */}
     </>
   )
 }
