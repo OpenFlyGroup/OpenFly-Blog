@@ -31,8 +31,13 @@ class SignInAPIView(APIView):
                 response_data = {
                     'accessToken': access_token,
                     'refreshToken': refresh_token,
-                    'nickname': user["nickname"],
-                    'profileImg':profile_img
+                    'user': {
+                        'email': user['email'],
+                        'nickname': user['nickname'],
+                        'avatarPath': profile_img,
+                        'isAdmin': False,
+                        'isActive': True
+                    }
                 }
                 return Response(response_data, status=201) # Return access and refresh token
             else:
@@ -92,8 +97,13 @@ class SignUpAPIView(APIView):
                 response_data = {
                     'accessToken': access_token,
                     'refreshToken': refresh_token,
-                    'nickname': nickname,
-                    'profileImg':profile_img
+                    'user': {
+                        'email': email,
+                        'nickname': nickname,
+                        'avatarPath': profile_img,
+                        'isAdmin': False,
+                        'isActive': True
+                    }
                 }
                 return Response(response_data, status=201) # Return access and refresh token
             else:

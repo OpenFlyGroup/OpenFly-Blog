@@ -17,7 +17,7 @@ urlpatterns = [
     path('auth/signup', SignUpAPIView.as_view(), name='sign-up'),
     path('auth/signin', SignInAPIView.as_view(), name='sign-in'),
     path('auth/signin/access-token', UpdateTokenAPIView.as_view(), name='sign-in'),
-    path('profile', ProfileAPIView.as_view(), name='profile'),
+    path('users/profile', ProfileAPIView.as_view(), name='profile'),
 ]
 
 if settings.DEBUG:
