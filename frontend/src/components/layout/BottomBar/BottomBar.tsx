@@ -1,13 +1,13 @@
 'use client'
+import { ICheckUserProps } from '@/types/ui/ui.interface'
 import isActive from '@/utils/isActive'
 /* eslint-disable max-len */
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Toolbar } from 'primereact/toolbar'
-import React, { useState } from 'react'
+import React from 'react'
 
-const BottomBar = () => {
-  const [isUser, setIsUser] = useState<boolean>(true)
+const BottomBar: React.FC<ICheckUserProps> = ({ user }) => {
   const pathname = usePathname()
   const centerContent = (
     <div className='flex items-center gap-16'>
@@ -18,21 +18,24 @@ const BottomBar = () => {
         <i className='pi pi-home text-2xl' />
       </Link>
       <Link
-        href={isUser ? '/profile' : '/signin'}
+        href={user ? '/profile' : '/signin'}
         className={`${isActive('/profile', pathname) ? 'active' : ' '} flex items-center text-white hover:bg-primary hover:text-secondary`}
       >
         <i className='pi pi-user text-2xl' />
       </Link>
+      {user?.isAdmin && (
+        <Link
+          href='/admin'
+          className={`${isActive('/forum', pathname) ? 'active' : ' '} flex items-center text-white hover:bg-primary hover:text-secondary`}
+        >
+          <i className='pi pi-file-edit text-2xl' />
+        </Link>
+      )}
       <Link
         href='/news'
         className={`${isActive('/news', pathname) ? 'active' : ' '} flex items-center text-white hover:bg-primary hover:text-secondary`}
       >
         <i className='pi pi-megaphone text-2xl' />
-      </Link>
-      <Link
-        href='/forum'
-        className={`${isActive('/forum', pathname) ? 'active' : ' '} flex items-center text-white hover:bg-primary hover:text-secondary`} >
-        <i className='pi pi-align-justify text-2xl' />
       </Link>
     </div>
   )

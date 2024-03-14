@@ -20,10 +20,11 @@ export const NewsService = {
     })
   },
 
-  async create() {
+  async create(data: IPost) {
     return instance<IPost>({
       url: `/${PATH}/post-create`,
       method: 'POST',
+      data,
     })
   },
 
