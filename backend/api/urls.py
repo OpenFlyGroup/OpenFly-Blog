@@ -5,7 +5,7 @@ from .views.forum_views import ForumListAPIView
 from .views.news_views import NewsListAPIView, NewsCommentsListAPIView, NewsAddAPIViews
 from .views.roles_views import RoleListAPIView, IsAdminAPIView
 from .views.auth_views import SignInAPIView, SignUpAPIView, UpdateTokenAPIView
-
+from .views.user_views import ProfileAPIView
 
 urlpatterns = [
     path('forum', ForumListAPIView.as_view(), name='forum-list'),
@@ -17,7 +17,7 @@ urlpatterns = [
     path('auth/signup', SignUpAPIView.as_view(), name='sign-up'),
     path('auth/signin', SignInAPIView.as_view(), name='sign-in'),
     path('auth/signin/access-token', UpdateTokenAPIView.as_view(), name='sign-in'),
-
+    path('profile', ProfileAPIView.as_view(), name='profile'),
 ]
 
 if settings.DEBUG:
