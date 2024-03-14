@@ -13,12 +13,12 @@ class NewsComments(models.Model):
     comment_id = models.AutoField(primary_key=True)
     author_name = models.TextField()
     creation_date = models.DateField()
-    content = models.TextField()
+    text = models.TextField()
 
 
 class News(models.Model):
     news_id = models.AutoField(primary_key=True)
-    title = models.TextField()
+    title = models.TextField(default="")
     category = models.CharField(max_length=255, null=True, blank=True)
     creation_date = models.DateField()
     content_text = models.TextField()

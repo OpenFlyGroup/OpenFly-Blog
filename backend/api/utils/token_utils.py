@@ -63,6 +63,7 @@ def token_check(token, token_type):
           -2 if token is annuled
     """
     decoded_payload = decode(token, JWT_KEY, algorithms=['HS256'])
+    # print(decoded_payload)
     expiration_time_str = decoded_payload.get('expired', None)
     expiration_time = datetime.strptime(expiration_time_str, "%Y-%m-%dT%H:%M:%S.%f")
     real_type = decoded_payload.get('token_type', None)

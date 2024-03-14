@@ -77,6 +77,43 @@ const NewsPage: React.FC = () => {
   //   fetchPosts()
   // }, [searchQuery])
 
+  // const allPosts: IPost[] = [
+  //   {
+  //     id: 0,
+  //     title: 'string',
+  //     logoImg: 'string',
+  //     mainImg: 'string',
+  //     category: 'string',
+  //     date: 'string',
+  //     text: 'string',
+  //     likes: 0,
+  //   },
+  //   {
+  //     id: 1,
+  //     title: 'string',
+  //     logoImg: 'string',
+  //     mainImg: 'string',
+  //     category: 'string',
+  //     date: 'string',
+  //     text: 'string',
+  //     likes: 0,
+  //   },
+  // ]
+
+  // useEffect(() => {
+  //   // fetchAllPosts({})
+  //   if (searchQuery) {
+  //     const filtered = data.posts.filter(
+  //       (post: IPost) =>
+  //         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //         post.text.toLowerCase().includes(searchQuery.toLowerCase())
+  //     )
+  //     setFilteredPosts(filtered)
+  //   } else {
+  //     setFilteredPosts(data.posts)
+  //   }
+  // }, [searchQuery])
+
   return (
     <Container>
       <div className='w-full flex flex-col gap-6'>
