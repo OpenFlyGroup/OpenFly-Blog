@@ -54,8 +54,9 @@ const AppFooter: React.FC = () => {
         <div className='container px-4 mx-auto'>
           <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-y-12 gap-x-8 xl:gap-x-12'>
             <div className='col-span-2 md:col-span-4 xl:pr-8'>
-              <Image width={340} height={40} src='/logo_2.svg' alt='logo' />
-
+              <Link href='/'>
+                <Image width={340} height={40} src='/logo_2.svg' alt='logo' />
+              </Link>
               <p className='text-base text-white mt-7'>
                 OpenFly - Where Innovation Meets Ingenuity.
               </p>
@@ -94,7 +95,7 @@ const AppFooter: React.FC = () => {
             <ul className='flex items-center mt-5 space-x-3 md:order-3 sm:mt-0'>
               <li>
                 <a
-                  href='https://github.com/freeeakn/Project_Zero.git'
+                  href='https://github.com/OpenFlyGroup/OpenFly-Blog.git'
                   title=''
                   className='flex items-center justify-center text-white transition-all duration-200 bg-transparent border border-gray-300 rounded-full w-7 h-7 focus:bg-primary hover:text-white focus:text-white hover:bg-primary hover:border-primary focus:border-primary'
                 >

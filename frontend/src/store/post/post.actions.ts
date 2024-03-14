@@ -19,10 +19,10 @@ export const fetchPostById = createAsyncThunk<IPost, string | number>(
   }
 )
 
-export const createNewPost = createAsyncThunk<IPost, void>(
+export const createNewPost = createAsyncThunk<IPost, IPost>(
   'posts/createNewPost',
-  async () => {
-    const response = await NewsService.create()
+  async (data: IPost) => {
+    const response = await NewsService.create(data)
     return response.data
   }
 )

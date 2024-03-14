@@ -1,8 +1,8 @@
 export interface IPost {
-  id: number
+  id?: number
   title: string
-  logoImg: string
-  mainImg: string
+  logoImg?: string
+  mainImg?: string
   category: string
   date?: string
   text: string
