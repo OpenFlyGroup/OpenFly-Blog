@@ -1,6 +1,9 @@
 /* eslint-disable max-len */
 'use client'
 import { motion } from 'framer-motion'
+import { UserService } from '@/services/user.service'
+import React, { useEffect } from 'react'
+import { getUserFromStorage } from '@/services/auth/auth.helper'
 
 const AppProfile = ({
   base,
@@ -8,8 +11,17 @@ const AppProfile = ({
 }: Readonly<{
   base: React.ReactNode
   admin: React.ReactNode
-}>) => (
-  <>
+}>) => {
+  const user = getUserFromStorage()
+  if (Object.keys(user).length == 0) {
+    const user = UserService.getProfile
+  }
+  if (Object.keys(user).length == 0) {
+    window.location.href = '/signin'
+    return null
+  }
+  console.log(user)
+  return (
     <div className='container mx-auto'>
       <div className='grid grid-cols-4 lg:grid-cols-12 gap-6'>
         <div className='col-span-4 lg:col-span-3'>
@@ -204,7 +216,7 @@ const AppProfile = ({
         </div>
       </div>
     </div>
-  </>
-)
+  )
+}
 
 export default AppProfile

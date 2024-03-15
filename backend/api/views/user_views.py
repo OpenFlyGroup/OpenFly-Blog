@@ -9,7 +9,7 @@ from ..utils.cript_utils import decrypt, encrypt, hash_password
 from ..utils.request_utils import check_not_none
 
 class ProfileAPIView(APIView):
-    def get(self, request):
+    def post(self, request):
         try:
             access_token = request.data.get('accessToken', '')
             check_not_none(access_token)
@@ -25,5 +25,4 @@ class ProfileAPIView(APIView):
             else:
                 return Response("Invalid token.", status=400) # Return token error
         except Exception as e:
-            print(e)
             return Response("An error occurred", status=400) # Return generic error
