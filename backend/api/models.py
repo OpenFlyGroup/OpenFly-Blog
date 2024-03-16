@@ -33,7 +33,7 @@ class User(models.Model):
     email = models.CharField(max_length=255, unique=True)
     nickname = models.CharField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
-    info = models.TextField(null=True, default="")
+    info = models.TextField(null=True, default="Your profile info here")
     role = models.CharField(max_length=20, choices=[('user', 'User'), ('admin', 'Admin')], default='user')
     active = models.BooleanField(default=True)
     profile_img = models.TextField(null=True, default="/media/user-images/default.svg")

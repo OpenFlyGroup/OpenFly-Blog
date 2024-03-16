@@ -14,7 +14,8 @@ class SignInAPIView(APIView):
             password = request.data.get('password', '')
             nickname = request.data.get('nickname', '')
             email = request.data.get('email', '')
-
+            print(password)
+            print(email)
             if not nickname:
                 nickname = None
                 check_not_none(password, email)
@@ -117,8 +118,7 @@ class UpdateTokenAPIView(APIView):
         try:
             access_token = request.data.get('accessToken', '')
             refresh_token = request.data.get('refreshToken', '')
-            check_not_none(access_token, refresh_token)
-
+            check_not_none(refresh_token, access_token)
             new_token, error = refresh_access_token(refresh_token, access_token)
             if error:
                 print(error)

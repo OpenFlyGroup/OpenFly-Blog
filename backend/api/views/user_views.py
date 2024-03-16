@@ -9,9 +9,10 @@ from ..utils.cript_utils import decrypt, encrypt, hash_password
 from ..utils.request_utils import check_not_none
 
 class ProfileAPIView(APIView):
-    def post(self, request):
+    def get(self, request):
         try:
             access_token = request.data.get('accessToken', '')
+            print(request.data)
             check_not_none(access_token)
 
             user = authenticate_by_token(access_token)
@@ -23,6 +24,6 @@ class ProfileAPIView(APIView):
                 }
                 return Response(response_data, status=201) # Return access and refresh token
             else:
-                return Response("Invalid token.", status=400) # Return token error
+                return Response("jwt expired", status=401) # Return token error
         except Exception as e:
-            return Response("An error occurred", status=400) # Return generic error
+            return Response("jwt must be provided", status=401) # Return generic error
