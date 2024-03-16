@@ -24,6 +24,7 @@ const NewsPage: React.FC = () => {
   // ! Fetching posts with posts store
   const { fetchAllPosts } = useActions()
   const { posts, status } = usePosts()
+  console.log(posts)
   useEffect(() => {
     fetchAllPosts({})
   }, [])

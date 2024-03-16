@@ -12,8 +12,8 @@ export interface IPost {
 
 export interface IComment {
   id: number
-  img?: string
-  nick: string
+  authorImg?: string
+  author: string
   date: string
   text: string
 }

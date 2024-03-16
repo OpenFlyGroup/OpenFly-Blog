@@ -9,6 +9,7 @@ from ..utils.token_utils import token_check, authenticate_by_token
 from ..utils.request_utils import check_not_none
 from ..utils.cript_utils import encrypt, decrypt
 
+
 class NewsListAPIView(APIView):
     def get(self, request):
         try:
@@ -19,8 +20,9 @@ class NewsListAPIView(APIView):
                 comments_list = []
                 for comment in comments:
                     comment_dict = {
-                        'comment_id': comment.comment_id,
-                        'author_name': decrypt(comment.author_name),
+                        'commentId': comment.comment_id,
+                        'author': decrypt(comment.author.nickname),
+                        'authorImg': comment.author.profile_img,
                         'creation_date': comment.creation_date,
                         'text': comment.text,
                     }
@@ -42,6 +44,7 @@ class NewsListAPIView(APIView):
             print(e)
             return Response("An error occurred", status=400)
 
+
 class NewsAddAPIViews(APIView):
     parser_classes = [MultiPartParser]
 
@@ -54,7 +57,8 @@ class NewsAddAPIViews(APIView):
             token = request.data.get('token', '')
             category = request.data.get('category', '')
             creation_date = datetime.utcnow()
-            check_not_none(title, text, logo_img, main_img, token, category, creation_date)
+            check_not_none(title, text, logo_img, main_img,
+                           token, category, creation_date)
 
             try:
                 check_result = token_check(token=token, token_type="access")
@@ -75,13 +79,17 @@ class NewsAddAPIViews(APIView):
 
             if serializer.is_valid():
                 saved_news = serializer.save()
-                return Response(saved_news.news_id, status=201) # Return created news id
+                # Return created news id
+                return Response(saved_news.news_id, status=201)
             else:
                 print(serializer.errors)
-                return Response("An error occurred", status=400) # Return generic error
+                # Return generic error
+                return Response("An error occurred", status=400)
         except Exception as e:
             print(e)
-            return Response("An error occurred", status=400) # Return generic error
+            # Return generic error
+            return Response("An error occurred", status=400)
+
 
 class NewsCommentsListAPIView(APIView):
     def post(self, request):
@@ -101,14 +109,15 @@ class NewsCommentsListAPIView(APIView):
             try:
                 news = News.objects.get(news_id=news_id)
             except News.DoesNotExist:
-                return Response("An error occurred", status=400) # Return generic error
+                # Return generic error
+                return Response("An error occurred", status=400)
 
             user = authenticate_by_token(token)
             creation_date = datetime.utcnow().date()
             input_data = {
-                'author_name': encrypt(user["nickname"]),
+                'author': user["user_id"],
                 'creation_date': creation_date,
-                'text':text
+                'text': text
             }
 
             serializer = NewsCommentsSerializer(data=input_data)
@@ -118,7 +127,9 @@ class NewsCommentsListAPIView(APIView):
                 return Response(serializer.data, status=201)
             else:
                 print(serializer.errors)
-                return Response("An error occurred", status=400) # Return generic error
+                # Return generic error
+                return Response("An error occurred", status=400)
         except Exception as e:
             print(e)
-            return Response("An error occurred", status=400) # Return generic error
+            # Return generic error
+            return Response("An error occurred", status=400)
