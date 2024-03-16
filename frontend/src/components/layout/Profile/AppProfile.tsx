@@ -62,7 +62,6 @@ const AppProfile = ({
             >
               <h2 className='text-primary text-xl font-bold mb-4'>About Me</h2>
               <p className='text-white'>{user?.info ?? "No information provided"}</p>
-
               <h3 className='text-primary font-semibold text-center mt-3 -mb-2'>
                 Find me on
               </h3>
