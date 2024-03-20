@@ -11,6 +11,8 @@ const AppProfile = ({
   admin: React.ReactNode
 }>) => {
   const { user } = useAuth()
+  const url = process.env.SERVER_URL ?? ''
+  const avatar = url + (user?.avatarPath ?? '')
   return (
     <>
       <div className='container mx-auto'>
@@ -24,13 +26,13 @@ const AppProfile = ({
             >
               <div className='flex flex-col items-center'>
                 <img
-                  src='https://randomuser.me/api/portraits/men/94.jpg'
-                  className='w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0'
+                  src={avatar}
+                  className='w-32 h-32 rounded-full mb-4 shrink-0'
                 />
                 <h1 className='text-xl text-primary font-bold'>
                   {user?.nickname}
                 </h1>
-                <p className='text-white'>Software Developer</p>
+                <p className='text-white'>{user?.isAdmin ? "Admin" : "User"}</p>
                 {/* <div className="mt-6 flex flex-wrap gap-4 justify-center">
                                 <a href="#" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Contact</a>
                                 <a href="#" className="bg-gray-300 hover:bg-gray-400 text-white py-2 px-4 rounded">Resume</a>
@@ -59,16 +61,7 @@ const AppProfile = ({
               className=' bg-secondary drop-shadow-2xl rounded-2xl p-6'
             >
               <h2 className='text-primary text-xl font-bold mb-4'>About Me</h2>
-              <p className='text-white'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                finibus est vitae tortor ullamcorper, ut vestibulum velit
-                convallis. Aenean posuere risus non velit egestas suscipit. Nunc
-                finibus vel ante id euismod. Vestibulum ante ipsum primis in
-                faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam
-                erat volutpat. Nulla vulputate pharetra tellus, in luctus risus
-                rhoncus id.
-              </p>
-
+              <p className='text-white'>{user?.info ?? "No information provided"}</p>
               <h3 className='text-primary font-semibold text-center mt-3 -mb-2'>
                 Find me on
               </h3>

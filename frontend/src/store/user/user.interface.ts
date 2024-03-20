@@ -4,6 +4,8 @@ export interface IUserState {
   nickname: string
   email: string
   isAdmin: boolean
+  info: string
+  avatarPath: string
 }
 
 export interface ITokens {
