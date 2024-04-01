@@ -5,19 +5,28 @@ const config: Config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/primereact/**/*.{js,ts,jsx,tsx}',
   ],
-  theme: {
-    extend: {
-      backgroundImage: {
-        main: "url('/bg.svg')",
+  daisyui: {
+    themes: [
+      {
+        light: {
+          'primary': '#e0ff4f',
+          'secondary': '#55e63a',
+          'accent': '#00ebff',
+          'neutral': 'white',
+          'base-100': '#00272b',
+          'info': '#00bfd6',
+          'success': '#47cc55',
+          'warning': '#ffcc70',
+          'error': '#ff7d85',
+        },
       },
-      colors: {
-        primary: '#e0ff4f',
-        secondary: '#00272b',
-      },
-    },
+      'dark'
+    ],
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require('daisyui')
+  ],
 }
 export default config

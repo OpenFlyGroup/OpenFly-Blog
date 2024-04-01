@@ -1,9 +1,11 @@
-import { NextPage } from 'next'
+import BottomNav from "@/components/layouts/BottomNav/BottomNav";
+import Header from "@/components/layouts/Header/Header";
 
-const HomePage: NextPage = () => (
-  <>
-    <h1>hello</h1>
-  </>
-)
-
-export default HomePage
+export default function Home() {
+  return (
+    <>
+      <Header/>
+      <BottomNav />
+    </>
+  );
+}
