@@ -1,5 +1,5 @@
-import BottomNav from "@/components/layouts/BottomNav/BottomNav";
-import Header from "@/components/layouts/Header/Header";
+import BottomNav from "@/components/layout/BottomNav/BottomNav";
+import Header from "@/components/layout/Header/Header";
 
 export default function Home() {
   return (

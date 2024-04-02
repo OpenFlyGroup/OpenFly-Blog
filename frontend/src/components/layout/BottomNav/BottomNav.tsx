@@ -1,6 +1,6 @@
 const BottomNav = () => {
   return (
-    <div className='btm-nav'>
+    <div className='btm-nav md:hidden'>
       <button className='text-primary'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
