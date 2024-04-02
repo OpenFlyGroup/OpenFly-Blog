@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.1",
+    "@headlessui/react": "^1.7.18",
     "axios": "^1.6.8",
     "effector": "^23.2.0",
     "effector-react": "^23.2.0",
