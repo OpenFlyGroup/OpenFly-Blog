@@ -1,11 +1,14 @@
 'use client'
+import { Context } from '@/providers/StoreProvider'
 import { TypeNavLink } from '@/types/layout.interface'
 import isActive from '@/utils/isActive'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useContext } from 'react'
 
 const Header: React.FC = () => {
+  const { store } = useContext(Context)
   const pathname = usePathname()
   const NavLinks: TypeNavLink[] = [
     { id: 1, name: 'Forum', path: '/forum' },
@@ -115,8 +118,7 @@ const Header: React.FC = () => {
           <li>
             <Link
               className={`${isActive('/signin', pathname) ? 'active' : ' '} rounded-full text-sm font-[500] leading-6 text-white hover:text-primary duration-200`}
-              // href={user ? '/profile' : '/signin'}
-              href={'/signin'}
+              href={store.isAuth ? '/profile' : '/signin'}
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'

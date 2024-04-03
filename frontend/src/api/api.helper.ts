@@ -1,5 +1,3 @@
-import { AxiosRequestHeaders } from 'axios'
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const errorCatch = (error: any): string => {
   const msg = error?.response?.data?.message

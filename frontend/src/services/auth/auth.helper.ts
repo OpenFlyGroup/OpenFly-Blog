@@ -1,17 +1,14 @@
 import { ITokens } from '@/types/services/services.interface'
-import Cookies from 'js-cookie'
 
 export const getAccessToken = () => {
-  const accessToken = Cookies.get('accessToken')
+  const accessToken = localStorage.getItem('Token')
   return accessToken || null
 }
 
 export const saveToStorage = (data: ITokens) => {
-  Cookies.set('accessToken', data.accessToken)
-  localStorage.setItem('refreshToken', data.refreshToken)
+  localStorage.setItem('Token', data.accessToken)
 }
 
 export const removeFromStorage = () => {
-  Cookies.remove('accessToken')
-  localStorage.removeItem('refreshToken')
+  localStorage.removeItem('Token')
 }

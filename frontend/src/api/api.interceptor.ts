@@ -1,11 +1,11 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import { errorCatch, getAuthHeader, getContentType } from './api.helper'
 import { getAccessToken, removeFromStorage } from '@/services/auth/auth.helper'
 import { AuthService } from '@/services/auth/auth.service'
 
 export const instance = axios.create({
   baseURL: process.env.BASE_URL,
-  headers: getContentType()
+  withCredentials: true,
 })
 
 instance.interceptors.request.use(async (config) => {

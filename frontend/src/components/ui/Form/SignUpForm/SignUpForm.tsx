@@ -4,24 +4,28 @@ import { IEmailPassword } from '@/types/ui/ui.interface'
 import BtnSubmit from '../../Buttons/BtnSubmit/BtnSubmit'
 import FormLabel from '../FormLabel/FormLabel'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useContext } from 'react'
+import { observer } from 'mobx-react-lite'
+import { Context } from '@/providers/StoreProvider'
 
-interface ISignup extends IEmailPassword {
-  nickname: string
-}
+// interface ISignup extends IEmailPassword {
+//   nickname: string
+// }
 
 const SignUpForm: React.FC = () => {
+  const { store } = useContext(Context)
   const {
     register: formRegister,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<ISignup>({
+  } = useForm<IEmailPassword>({
     mode: 'onChange',
   })
 
-  const onSubmit: SubmitHandler<ISignup> = (data) => {
-    // signup(data)
-    // reset()
+  const onSubmit: SubmitHandler<IEmailPassword> = (data) => {
+    store.signUp(data)
+    reset()
   }
 
   return (
@@ -84,4 +88,4 @@ const SignUpForm: React.FC = () => {
   )
 }
 
-export default SignUpForm
+export default observer(SignUpForm)
