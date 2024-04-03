@@ -1,14 +1,20 @@
+export interface IUser {
+  nickname: string
+  email: string
+  role: string
+}
+
+export interface ITokens {
+  accessToken: string
+  refreshToken: string
+}
+
 export interface IEmailPassword {
   email: string
   password: string
 }
 
-export interface IAuthResponse {
+export interface IInitialState {
   user: IUser
-  token: string
-}
-
-export interface IUser {
-  nickname: string
-  email: string
+  isLoading: boolean
 }

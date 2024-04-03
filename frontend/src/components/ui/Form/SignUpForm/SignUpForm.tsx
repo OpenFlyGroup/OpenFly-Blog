@@ -4,14 +4,12 @@ import { IEmailPassword } from '@/types/ui/ui.interface'
 import BtnSubmit from '../../Buttons/BtnSubmit/BtnSubmit'
 import FormLabel from '../FormLabel/FormLabel'
 import { SubmitHandler, useForm } from 'react-hook-form'
-// import Link from "next/link";
 
 interface ISignup extends IEmailPassword {
   nickname: string
 }
 
 const SignUpForm: React.FC = () => {
-
   const {
     register: formRegister,
     handleSubmit,
@@ -30,12 +28,7 @@ const SignUpForm: React.FC = () => {
     <>
       <section>
         <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0'>
-          {/* <Link href="/" className="flex items-center mb-6 text-2xl font-semibold text-white">
-                    <img className="w-64 mr-2" src="logo2.svg" alt="logo" />
-                </Link> */}
-          <div
-            className='w-full bg-base-200 rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0'
-          >
+          <div className='w-full bg-base-200 rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0'>
             <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
               <h1 className='text-xl font-bold leading-tight tracking-tight text-white md:text-2xl'>
                 Sign Up
@@ -44,7 +37,7 @@ const SignUpForm: React.FC = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 className='space-y-4 md:space-y-6'
               >
-                <div>
+                {/* <div>
                   <FormLabel>Your nickname</FormLabel>
                   <input
                     type='text'
@@ -54,7 +47,7 @@ const SignUpForm: React.FC = () => {
                     placeholder='nickname'
                     required
                   />
-                </div>
+                </div> */}
                 <div>
                   <FormLabel>Your email</FormLabel>
                   <input
