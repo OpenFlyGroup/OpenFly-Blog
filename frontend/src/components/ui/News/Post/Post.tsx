@@ -2,33 +2,27 @@
 import { IPostProps } from '@/types/ui/News/news.interface'
 import Image from 'next/image'
 import Comment from '../Comment/Comment'
-const url = process.env.SERVER_URL ?? ''
+
 const Post: React.FC<IPostProps> = ({ props }) => (
   <article className='drop-shadow-2xl p-5 flex flex-col lg:flex-row gap-5 bg-secondary text-white rounded-xl cursor-pointer'>
     <div className='flex-1 flex flex-col gap-5'>
       <a className='flex justify-start items-center gap-5' href=''>
-        {props.logoImg && (
-          <Image
-            width={48}
-            height={20}
-            src={url + props.logoImg}
-            alt='avatar'
-          />
-        )}
+        {/* {props.logoImg  && <Image width={48} height={20} src={props.logoImg} alt="avatar" />} */}
         <h3>{props.title}</h3>
       </a>
       <Image
-        className='rounded-xl shadow-lg'
-        src={`${url + props.mainImg}`}
+        className='rounded-xl shadow-lg w-full'
+        // ! add http://localhost:8000/api if u wanna testing with backend
+        src={`/* HERE */${props.mainImg}`}
         alt={`post image about ${props.title}`}
-        width={200}
-        height={200}
+        width={100}
+        height={30}
       />
       <p>{props.date}</p>
     </div>
     <div className='flex flex-col gap-5'>
-      <div className='flex justify-end'>
-        <p className='text-sm text-secondary p-2 bg-primary rounded-xl'>
+      <div className='flex'>
+        <p className=' text-sm text-secondary p-2 bg-primary rounded-xl'>
           {props.category}
         </p>
       </div>

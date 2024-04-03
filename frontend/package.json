@@ -1,6 +1,5 @@
 {
   "name": "frontend",
-  "author": "OpenFly: [Arthur Pechenkin (freeeakn), Daniel (Routybor), Edward Kiselev (midfinup1)] ",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -29,14 +28,10 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@types/redux-persist": "^4.3.1",
-    "@typescript-eslint/eslint-plugin": "^7.1.0",
-    "@typescript-eslint/parser": "^7.1.0",
     "autoprefixer": "^10.0.1",
+    "daisyui": "^4.9.0",
     "eslint": "^8",
-    "eslint-config-next": "14.1.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-config-next": "14.1.4",
     "postcss": "^8",
     "prettier": "3.2.5",
     "tailwindcss": "^3.3.0",
