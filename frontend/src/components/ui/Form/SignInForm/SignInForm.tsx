@@ -1,19 +1,12 @@
 'use client'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import BtnSubmit from '../../Buttons/BtnSubmit/BtnSubmit'
 import FormLabel from '../FormLabel/FormLabel'
-import { useAuth } from '@/hooks/useAuth'
-import { useActions } from '@/hooks/useActions'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { IEmailPassword } from '@/store/user/user.interface'
 import { emailPattern } from './EmailPattern'
+import { IEmailPassword } from '@/types/ui/ui.interface'
 
 const SignInForm: React.FC = () => {
-  const { isLoading } = useAuth()
-
-  const { signin } = useActions()
-
   const {
     register: formRegister,
     handleSubmit,
@@ -24,22 +17,17 @@ const SignInForm: React.FC = () => {
   })
 
   const onSubmit: SubmitHandler<IEmailPassword> = (data) => {
-    signin(data)
-    reset()
+    // signin(data)
+    // reset()
   }
 
   return (
     <>
-      <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>
+      <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0'>
         {/* <NavLink to="/" className="flex items-center mb-6 text-2xl font-semibold text-white">
                     <img className="w-64 mr-2" src="logo2.svg" alt="logo" />
                 </NavLink> */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ type: 'spring' }}
-          className='w-full bg-secondary rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0'
-        >
+        <div className='w-full bg-base-200 rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0'>
           <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
             <h1 className='text-xl font-bold leading-tight tracking-tight text-white md:text-2xl'>
               Sign in to your account
@@ -60,7 +48,7 @@ const SignInForm: React.FC = () => {
                     },
                   })}
                   // eslint-disable-next-line max-len
-                  className='bg-gray-50 border border-gray-300 text-secondary sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5'
+                  className="input w-full"
                   placeholder='name@company.com'
                   required
                 />
@@ -78,7 +66,7 @@ const SignInForm: React.FC = () => {
                   })}
                   placeholder='••••••••'
                   // eslint-disable-next-line max-len
-                  className='bg-gray-50 border border-gray-300 text-secondary sm:text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5'
+                  className='input w-full'
                   required
                 />
               </div>
@@ -89,7 +77,7 @@ const SignInForm: React.FC = () => {
                       id='remember'
                       aria-describedby='remember'
                       type='checkbox'
-                      className='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary'
+                      className='checkbox checkbox-primary'
                       required
                     />
                   </div>
@@ -116,7 +104,7 @@ const SignInForm: React.FC = () => {
               </p>
             </form>
           </div>
-        </motion.div>
+        </div>
       </div>
     </>
   )

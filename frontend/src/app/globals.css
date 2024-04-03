@@ -1,4 +1,4 @@
-@layer tailwind-base, primereact, tailwind-utilities;
+@layer tailwind-base, tailwind-utilities;
 
 @layer tailwind-base {
   @tailwind base;
@@ -9,6 +9,6 @@
   @tailwind utilities;
 }
 
-a.active {
-  color: #e0ff4f;
-}
+/* a.active {
+  color: #00272b;
+} */
