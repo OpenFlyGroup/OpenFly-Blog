@@ -31,7 +31,7 @@ const SignInForm: React.FC = () => {
         {/* <NavLink to="/" className="flex items-center mb-6 text-2xl font-semibold text-white">
                     <img className="w-64 mr-2" src="logo2.svg" alt="logo" />
                 </NavLink> */}
-        <div className='w-full bg-base-200 rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0'>
+        <div className='w-full  rounded-2xl  md:mt-0 sm:max-w-md xl:p-0'>
           <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
             <h1 className='text-xl font-bold leading-tight tracking-tight text-white md:text-2xl'>
               Sign in to your account
@@ -52,7 +52,7 @@ const SignInForm: React.FC = () => {
                     },
                   })}
                   // eslint-disable-next-line max-len
-                  className="input w-full"
+                  className='input w-full'
                   placeholder='name@company.com'
                   required
                 />
