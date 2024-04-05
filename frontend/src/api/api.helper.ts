@@ -1,7 +1,3 @@
-export const getContentType = () => ({
-  'Content-Type': 'application/json',
-})
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const errorCatch = (error: any): string => {
   const msg = error?.response?.data?.message
@@ -11,3 +7,8 @@ export const errorCatch = (error: any): string => {
       : msg
     : error.message
 }
+export const getContentType = () => ({
+  'Content-Type': 'application/json',
+})
+
+export const getAuthHeader = () => `Bearer ${localStorage.getItem('token')}`
