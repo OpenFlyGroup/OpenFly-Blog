@@ -52,7 +52,7 @@ const SignInForm: React.FC = () => {
                     },
                   })}
                   // eslint-disable-next-line max-len
-                  className="input w-full"
+                  className='input w-full'
                   placeholder='name@company.com'
                   required
                 />

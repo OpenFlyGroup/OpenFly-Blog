@@ -6,6 +6,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useContext } from 'react'
+import SignInForm from '@/components/ui/Form/SignInForm/SignInForm'
+import SignInModal from '@/components/ui/Form/SignInForm/SignInModal'
 
 const Header: React.FC = () => {
   const { store } = useContext(Context)
@@ -114,27 +116,7 @@ const Header: React.FC = () => {
             <path d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'></path>
           </svg>
         </label>
-        <ul className='menu menu-horizontal bg-base-100 p-1 rounded-full gap-2'>
-          <li>
-            <Link
-              className={`${isActive('/signin', pathname) ? 'active' : ' '} rounded-full text-sm font-[500] leading-6 text-white hover:text-primary duration-200`}
-              href={store.isAuth ? '/profile' : '/signin'}
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 24 24'
-                fill='currentColor'
-                className='w-6 h-6'
-              >
-                <path
-                  fillRule='evenodd'
-                  d='M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z'
-                  clipRule='evenodd'
-                />
-              </svg>
-            </Link>
-          </li>
-        </ul>
+        <SignInModal></SignInModal>
       </div>
     </header>
   )
