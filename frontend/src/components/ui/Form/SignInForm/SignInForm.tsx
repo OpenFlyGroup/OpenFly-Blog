@@ -5,8 +5,12 @@ import FormLabel from '../FormLabel/FormLabel'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { emailPattern } from './EmailPattern'
 import { IEmailPassword } from '@/types/ui/ui.interface'
+import { useContext } from 'react'
+import { observer } from 'mobx-react-lite'
+import { Context } from '@/providers/StoreProvider'
 
 const SignInForm: React.FC = () => {
+  const { store } = useContext(Context)
   const {
     register: formRegister,
     handleSubmit,
@@ -17,8 +21,8 @@ const SignInForm: React.FC = () => {
   })
 
   const onSubmit: SubmitHandler<IEmailPassword> = (data) => {
-    // signin(data)
-    // reset()
+    store.signIn(data)
+    reset()
   }
 
   return (
@@ -110,4 +114,4 @@ const SignInForm: React.FC = () => {
   )
 }
 
-export default SignInForm
+export default observer(SignInForm)
