@@ -17,7 +17,7 @@ export const AuthService = {
 
   async getNewTokens(): Promise<AxiosResponse<IAuthResponse>> {
     return await axios.get<IAuthResponse>(
-      `${process.env.BASE_URL}/${PATH}/refresh`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/${PATH}/refresh`,
       {
         withCredentials: true,
       }
