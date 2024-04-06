@@ -32,7 +32,7 @@ class News(models.Model):
 
 class NewsComments(models.Model):
     comment_id = models.AutoField(primary_key=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)  # ForeignKey linking to User model
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     creation_date = models.DateField()
     text = models.TextField()
 
