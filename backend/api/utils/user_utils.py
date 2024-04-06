@@ -1,6 +1,6 @@
 from ..models import User
 from .cript_utils import decrypt, encrypt, check_password, hash_password
-
+from hashlib import md5
 
 def authenticate_user(nickname=None, user_id=None, password=None, email=None):
     """
@@ -31,7 +31,8 @@ def authenticate_user(nickname=None, user_id=None, password=None, email=None):
             if not check_password(password, user.password):
                 user = None
         elif nickname is not None and user_id is not None:
-            user = User.objects.get(nickname=encrypt(nickname), user_id=user_id)
+            user = User.objects.get(
+                nickname=encrypt(nickname), user_id=user_id)
 
         if not user:
             return None
@@ -47,7 +48,6 @@ def authenticate_user(nickname=None, user_id=None, password=None, email=None):
         return user_out
     except User.DoesNotExist:
         return None
-
 
 
 def check_user(nickname, password):
@@ -91,3 +91,25 @@ def check_is_unique(nickname=None, email=None):
             return False
         except User.DoesNotExist:
             return True
+
+
+def generate_nickname(email):
+    vowels = 'aeiou'
+    consonants = 'bcdfghjklmnpqrstvwxyz'
+    hashed_email = md5(email.encode()).hexdigest()
+    hashed_email = [(chr(int(i) + 97) if i.isdigit() else i)
+                    for i in hashed_email]
+    nickname = ''
+    for char in hashed_email:
+        if len(nickname) >= 15:
+            break
+        if char in consonants:
+            nickname += char
+            if len(nickname) < 15:
+                nickname += vowels[int(ord(char)) % len(vowels)]
+        elif char in vowels:
+            nickname += consonants[int(ord(char)) % len(consonants)]
+    while len(nickname) < 15:
+        nickname += consonants[int(hashed_email[0], 16) % len(consonants)]
+
+    return nickname
