@@ -25,8 +25,8 @@ const Crumbs: React.FC<ICrumbsProps> = ({ items }) => {
             </svg>
           </Link>
         </li>
-        {items.map((item) => (
-          <li>
+        {items.map((item, index) => (
+          <li key={index}>
             <Link href={item.url}>{item.label}</Link>
           </li>
         ))}
