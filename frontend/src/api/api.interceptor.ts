@@ -4,7 +4,7 @@ import { getAccessToken, removeFromStorage } from '@/services/auth/auth.helper'
 import { AuthService } from '@/services/auth/auth.service'
 
 export const instance = axios.create({
-  baseURL: process.env.BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
   withCredentials: true,
 })
 

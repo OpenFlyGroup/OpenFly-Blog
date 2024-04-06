@@ -1,10 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.http import JsonResponse
 
 from ..models import User
 from ..serializers import UserSerializer
 from ..utils.token_utils import generate_token, refresh_access_token
-from ..utils.user_utils import authenticate_user, check_is_unique
+from ..utils.user_utils import authenticate_user, check_is_unique, generate_nickname
 from ..utils.cript_utils import decrypt, encrypt, hash_password
 from ..utils.request_utils import check_not_none
 
@@ -30,7 +31,6 @@ class SignInAPIView(APIView):
                 refresh_token = generate_token(nickname=user["nickname"], user_id=user_id, token_type="refresh", exp_period=30)
                 response_data = {
                     'accessToken': access_token,
-                    'refreshToken': refresh_token,
                     'user': {
                         'email': user['email'],
                         'nickname': user['nickname'],
@@ -39,7 +39,9 @@ class SignInAPIView(APIView):
                         'isActive': True
                     }
                 }
-                return Response(response_data, status=201) # Return access and refresh token
+                response = JsonResponse(response_data, status=201)
+                response.set_cookie('refreshToken', refresh_token)
+                return response # Return access and refresh token
             else:
                 return Response(f"Invalid {'nickname' if not email else 'email'} or password.", status=400) # Return authentication error
         except Exception as e:
@@ -70,17 +72,16 @@ class SignUpAPIView(APIView):
 
     def post(self, request):
         try:
-            nickname = request.data.get('nickname', '')
             password = request.data.get('password', '')
             email = request.data.get('email', '')
-            check_not_none(nickname, password, email)
+            check_not_none(password, email)
 
-            if not nickname or not email or not email:
+            if not email:
                 return Response("Not enough data", status=400) # Return error
-            if not check_is_unique(nickname=nickname):
-                return Response("Nickname already exists", status=400) # Return uniqueness of nickname
             if not check_is_unique(email=email):
-                return Response("Email already exists", status=400) # Return uniqueness of email
+                return Response("Email already exists", status=400) # Return uniqueness email
+
+            nickname = generate_nickname(email)
 
             input_data = {
                 'nickname': encrypt(nickname),
@@ -96,7 +97,6 @@ class SignUpAPIView(APIView):
                 refresh_token = generate_token(nickname=nickname, user_id=user_id, token_type="refresh", exp_period=30)
                 response_data = {
                     'accessToken': access_token,
-                    'refreshToken': refresh_token,
                     'user': {
                         'email': email,
                         'nickname': nickname,
@@ -105,7 +105,9 @@ class SignUpAPIView(APIView):
                         'isActive': True
                     }
                 }
-                return Response(response_data, status=201) # Return access and refresh token
+                response = JsonResponse(response_data, status=201)
+                response.set_cookie('refreshToken', refresh_token)
+                return response # Return access and refresh token
             else:
                 return Response("An error occurred", status=400) # Return generic error
         except Exception as e:
@@ -116,7 +118,7 @@ class UpdateTokenAPIView(APIView):
     def post(self, request):
         try:
             access_token = request.data.get('accessToken', '')
-            refresh_token = request.data.get('refreshToken', '')
+            refresh_token = request.COOKIES.get('token')
             check_not_none(access_token, refresh_token)
 
             new_token, error = refresh_access_token(refresh_token, access_token)
