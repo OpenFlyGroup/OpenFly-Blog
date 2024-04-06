@@ -1,5 +1,4 @@
 import SignUpForm from './SignUpForm'
-import { observer } from 'mobx-react-lite'
 
 const SignInModal: React.FC = () => {
   return (
@@ -19,13 +18,13 @@ const SignInModal: React.FC = () => {
       </button>
       <dialog id='singUpModal' className='modal'>
         <div className='modal-box w-full rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0 bg-base-200'>
-          <SignUpForm></SignUpForm>
+          <SignUpForm />
         </div>
         <form method='dialog' className='modal-backdrop'>
-          <button></button>
+          <button />
         </form>
       </dialog>
     </>
   )
 }
-export default observer(SignInModal)
+export default SignInModal
