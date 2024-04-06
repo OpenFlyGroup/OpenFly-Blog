@@ -1,37 +1,30 @@
-import { getContentType } from '@/api/api.helper'
-import { IAuthResponse } from '@/store/user/user.interface'
-import axios from 'axios'
-import Cookies from 'js-cookie'
-import { saveToStorage } from './auth.helper'
-import { IEmailPassword } from '@/store/user/user.interface'
 import { instance } from '@/api/api.interceptor'
+import {
+  IEmailPassword,
+  IAuthResponse,
+} from '@/types/services/services.interface'
+import axios, { AxiosResponse } from 'axios'
 
 const PATH = 'auth'
 
 export const AuthService = {
-  async main(type: 'signup' | 'signin', data: IEmailPassword) {
-    const response = await instance<IAuthResponse>({
-      url: `/${PATH}/${type}`,
-      method: 'POST',
-      data,
-    })
-
-    response.data.accessToken ? saveToStorage(response.data) : null
-
-    return response.data
+  async main(
+    type: 'signup' | 'signin',
+    data: IEmailPassword
+  ): Promise<AxiosResponse<IAuthResponse>> {
+    return await instance.post<IAuthResponse>(`/${PATH}/${type}`, data)
   },
 
-  async getNewTokens() {
-    const refreshToken = Cookies.get('refreshToken')
-
-    const response = await axios.post<string, { data: IAuthResponse }>(
-      process.env.SERVER_URL + `/${PATH}/signin/access-token`,
-      { refreshToken },
-      { headers: getContentType() }
+  async getNewTokens(): Promise<AxiosResponse<IAuthResponse>> {
+    return await axios.get<IAuthResponse>(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/${PATH}/refresh`,
+      {
+        withCredentials: true,
+      }
     )
+  },
 
-    response.data.accessToken ? saveToStorage(response.data) : null
-
-    return response
+  async logout(): Promise<void> {
+    return await instance.post('/api/logout')
   },
 }

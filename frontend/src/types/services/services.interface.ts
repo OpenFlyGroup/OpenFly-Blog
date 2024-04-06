@@ -1,9 +1,7 @@
-import { IUser } from '@/types/user/user.interface'
-
-export interface IUserState {
+export interface IUser {
   nickname: string
   email: string
-  isAdmin: boolean
+  role: string
 }
 
 export interface ITokens {
@@ -11,16 +9,16 @@ export interface ITokens {
   refreshToken: string
 }
 
+export interface IAuthResponse extends ITokens {
+  user: IUser
+}
+
 export interface IEmailPassword {
   email: string
   password: string
 }
 
-export interface IAuthResponse extends ITokens {
-  user: IUser
-}
-
 export interface IInitialState {
-  user: IUserState | null
+  user: IUser
   isLoading: boolean
 }

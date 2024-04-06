@@ -1,43 +1,83 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { errorCatch } from '@/api/api.helper'
+import { removeFromStorage, saveToStorage } from '@/services/auth/auth.helper'
+import { AuthService } from '@/services/auth/auth.service'
 import {
-  FLUSH,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-  REHYDRATE,
-  persistReducer,
-  persistStore,
-} from 'redux-persist'
-import { postSlice } from './post/post.slice'
-import { userSlice } from './user/user.slice'
-import Storage from './createNoopStorage'
+  IAuthResponse,
+  IEmailPassword,
+  IUser,
+} from '@/types/services/services.interface'
+import axios from 'axios'
+import { makeAutoObservable } from 'mobx'
 
-const persistConfig = {
-  key: 'local',
-  storage: Storage,
+export default class Store {
+  user: IUser = {
+    nickname: '',
+    email: '',
+    role: '',
+  }
+  isAuth = false
+  isLoading = false
+
+  constructor() {
+    makeAutoObservable(this)
+  }
+
+  setAuth(bool: boolean): void {
+    this.isAuth = bool
+  }
+
+  setUser(user: IUser): void {
+    this.user = user
+  }
+
+  setLoading(bool: boolean): void {
+    this.isLoading = bool
+  }
+
+  async signUp(data: IEmailPassword) {
+    try {
+      const response = await AuthService.main('signup', data)
+      saveToStorage(response.data)
+      this.setAuth(true)
+      this.setUser(response.data.user)
+    } catch (error) {
+      console.log(errorCatch(error))
+    }
+  }
+
+  async signIn(data: IEmailPassword) {
+    try {
+      const response = await AuthService.main('signin', data)
+      saveToStorage(response.data)
+      this.setAuth(true)
+      this.setUser(response.data.user)
+    } catch (error) {
+      console.log(errorCatch(error))
+    }
+  }
+
+  async logout() {
+    try {
+      const response = await AuthService.logout()
+      removeFromStorage()
+      this.setAuth(false)
+      this.setUser({} as IUser)
+    } catch (error) {
+      console.log(errorCatch(error))
+    }
+  }
+
+  async checkAuth() {
+    this.isLoading = true
+    try {
+      const response = await AuthService.getNewTokens()
+      saveToStorage(response.data)
+      this.setAuth(true)
+      this.setUser(response.data.user)
+    } catch (error) {
+      console.log(errorCatch(error))
+    } finally {
+      this.isLoading = false
+    }
+  }
 }
-
-const rootReducer = combineReducers({
-  user: userSlice.reducer,
-  post: postSlice.reducer,
-})
-
-const persistedReducer = persistReducer(persistConfig, rootReducer)
-
-export const makeStore = () =>
-  configureStore({
-    reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        },
-      }),
-  })
-
-export const persistor = persistStore(makeStore())
-export type TypeRootReducer = ReturnType<typeof rootReducer>
-export type AppStore = ReturnType<typeof makeStore>
-export type RootState = ReturnType<AppStore['getState']>
-export type AppDispatch = AppStore['dispatch']

@@ -1,11 +1,11 @@
-import axios from 'axios';
-import { errorCatch, getContentType } from './api.helper';
-import { getAccessToken, removeFromStorage } from '@/services/auth/auth.helper';
-import { AuthService } from '@/services/auth/auth.service';
+import axios, { AxiosRequestConfig } from 'axios'
+import { errorCatch, getAuthHeader, getContentType } from './api.helper'
+import { getAccessToken, removeFromStorage } from '@/services/auth/auth.helper'
+import { AuthService } from '@/services/auth/auth.service'
 
 export const instance = axios.create({
-  baseURL: process.env.SERVER_URL,
-  headers: getContentType(),
+  baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
+  withCredentials: true,
 })
 
 instance.interceptors.request.use(async (config) => {
@@ -20,7 +20,6 @@ instance.interceptors.response.use(
   (config) => config,
   async (error) => {
     const originalRequest = error.config
-
     if (
       (error.response.status === 401 ||
         errorCatch(error) === 'jwt expired' ||
@@ -37,7 +36,6 @@ instance.interceptors.response.use(
         removeFromStorage()
       }
     }
-
     throw error
   }
 )
