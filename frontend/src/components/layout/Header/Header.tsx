@@ -6,8 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useContext } from 'react'
-import SignInForm from '@/components/ui/Form/SignInForm/SignInForm'
-import SignInModal from '@/components/ui/Form/SignInForm/SignInModal'
+import AuthModal from '@/components/ui/ModalWindows/AuthModal'
 import { useState } from 'react'
 
 const Header: React.FC = () => {
@@ -141,7 +140,7 @@ const Header: React.FC = () => {
           </svg>
         </button>
         <div>
-          <SignInModal
+          <AuthModal
             isOpen={isOpen}
             closeModal={closeModal}
             openModal={openModal}
