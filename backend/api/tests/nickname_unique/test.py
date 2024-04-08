@@ -21,6 +21,7 @@ def generate_nickname(email):
     while len(nickname) < 15:
         nickname += consonants[int(hashed_email[0], 16) % len(consonants)]
 
+    nickname = nickname[0].upper() + nickname[1:5] + ' ' + nickname[5].upper() + nickname[6:15]
     return nickname
 
 def generate_random_email():
@@ -29,12 +30,13 @@ def generate_random_email():
 
 def run_tests():
     results = {}
-    for _ in range(10000):
+    for _ in range(10):
         email = generate_random_email()
         nickname = generate_nickname(email)
         if nickname in results.values():
             print(f"Error: Duplicate nickname '{nickname}' found for email '{email}'")
         else:
+            print(f"{nickname}\n")
             results[email] = nickname
     return results
 
