@@ -35,7 +35,7 @@ const AuthModal: React.FC<AuthInModalProps> = ({
           </Transition.Child>
 
           <div className='fixed inset-0 overflow-y-auto'>
-            <div className='flex min-h-full items-center justify-center p-4 text-center'>
+            <div className='flex min-h-full items-center justify-center p-4'>
               <Transition.Child
                 as={Fragment}
                 enter='ease-out duration-300'
@@ -48,11 +48,11 @@ const AuthModal: React.FC<AuthInModalProps> = ({
                   {isReg ? (
                     <>
                     <SignUpForm></SignUpForm>
-                    <p className='text-sm font-light text-gray-500'>
+                    <p className='text-sm font-light text-gray-500 text-center mb-4'>
                       Already have an accout?{' '}
                       <Link
                         href='/'
-                        className='font-medium text-primary hover:underline'
+                        className='font-medium text-primary hover:underline text-center'
                         onClick={() => setIsReg(false)}
                       >
                         Sign in
@@ -62,7 +62,7 @@ const AuthModal: React.FC<AuthInModalProps> = ({
                   ) : (
                     <>
                       <SignInForm></SignInForm>
-                      <p className='text-sm font-light text-gray-500'>
+                      <p className='text-sm font-light text-gray-500 text-center mb-4'>
                         Don’t have an account yet?{' '}
                         <Link
                           href='/'
