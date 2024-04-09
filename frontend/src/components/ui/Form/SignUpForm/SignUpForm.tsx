@@ -43,9 +43,9 @@ const SignUpForm: React.FC = () => {
     <>
       <section>
         <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0'>
-          <div className='w-full bg-base-200 rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0'>
+          <div className='w-full  rounded-2xl  md:mt-0 sm:max-w-md xl:p-0'>
             <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
-              <h1 className='text-xl font-bold leading-tight tracking-tight text-white md:text-2xl'>
+              <h1 className='text-xl font-bold leading-tight tracking-tight text-white md:text-2xl text-center'>
                 Sign Up
               </h1>
               <form

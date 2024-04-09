@@ -27,13 +27,10 @@ const SignInForm: React.FC = () => {
 
   return (
     <>
-      <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0'>
-        {/* <NavLink to="/" className="flex items-center mb-6 text-2xl font-semibold text-white">
-                    <img className="w-64 mr-2" src="logo2.svg" alt="logo" />
-                </NavLink> */}
+      <div className='flex flex-col items-center justify-center px-4 py-8 mx-auto lg:py-0'>
         <div className='w-full  rounded-2xl  md:mt-0 sm:max-w-md xl:p-0'>
-          <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
-            <h1 className='text-xl font-bold leading-tight tracking-tight text-white md:text-2xl'>
+          <div className='p-6 space-y-4 md:space-y-9 sm:p-8'>
+            <h1 className='text-xl font-bold leading-tight tracking-tight text-white md:text-2xl text-center'>
               Sign in to your account
             </h1>
             <form
@@ -97,15 +94,6 @@ const SignInForm: React.FC = () => {
                 </Link>
               </div>
               <BtnSubmit text='Sign in' />
-              <p className='text-sm font-light text-gray-500'>
-                Don’t have an account yet?{' '}
-                <Link
-                  href='/signup'
-                  className='font-medium text-primary hover:underline'
-                >
-                  Sign up
-                </Link>
-              </p>
             </form>
           </div>
         </div>
