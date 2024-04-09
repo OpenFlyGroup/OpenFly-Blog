@@ -1,38 +1,44 @@
 from PIL import Image, ImageDraw
-import random
+import math
 
-width, height = 500, 500
-background_color = (255, 255, 255)
+palette = [
+    "#00272b",
+    "#e0ff4f",
+    "#007f5f",
+    "#2b9348",
+    "#55a630",
+    "#80b918",
+    "#aacc00",
+    "#bfd200",
+    "#d4d700"
+]
 
-image = Image.new("RGB", (width, height), background_color)
 
-draw = ImageDraw.Draw(image)
+def hex_to_rgb(hex_color):
+    hex_color = hex_color.lstrip('#')
+    return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
 
-def generate_random_figure(draw):
-    figure_type = random.choice(["circle", "rectangle", "line"])
-    color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
-    if figure_type == "circle":
-        x = random.randint(1, width)
-        y = random.randint(1, height)
-        radius = random.randint(10, 100)
-        draw.ellipse([x - radius, y - radius, x + radius, y + radius], fill=color)
+def encode_string_to_image(text, image_size):
+    square_count = math.ceil(math.sqrt(len(text)))
+    image = Image.new("RGB", (image_size, image_size), "white")
+    draw = ImageDraw.Draw(image)
+    square_size = image_size // square_count
+    for i, char in enumerate(text):
+        row = i // square_count
+        col = i % square_count
+        x0 = col * square_size
+        y0 = row * square_size
+        x1 = x0 + square_size
+        y1 = y0 + square_size
+        color_index = ord(char) % len(palette)
+        color = hex_to_rgb(palette[color_index])
+        draw.rectangle([x0, y0, x1, y1], fill=color)
 
-    elif figure_type == "rectangle":
-        x = random.randint(1, width)
-        y = random.randint(1, width)
-        draw.rectangle([x, y, x, y], fill=color)
+    return image
 
-    elif figure_type == "line":
-        x1 = random.randint(1, width)
-        y1 = random.randint(1, height)
-        x2 = random.randint(1, width)
-        y2 = random.randint(1, height)
-        draw.line((x1, y1, x2, y2), fill=color, width=random.randint(1, 10))
 
-num_figures = 50
-for _ in range(num_figures):
-    generate_random_figure(draw)
-
-image.save("random_figures.png")
-image.show()
+text_to_encode = "Bdacu Rwwdahuhud"
+image_size = 400
+encoded_image = encode_string_to_image(text_to_encode, image_size)
+encoded_image.save("encoded_image_with_custom_palette.png")
