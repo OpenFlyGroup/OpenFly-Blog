@@ -70,7 +70,7 @@ const SignUpForm: React.FC = () => {
                   />
                   {errors.email && (
                     <p className='text-red-500 text-xs'>
-                      errors.email?.message
+                      {errors.email?.message}
                     </p>
                   )}
                 </div>
