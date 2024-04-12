@@ -4,10 +4,10 @@ import BtnSubmit from '../../Buttons/BtnSubmit/BtnSubmit'
 import FormLabel from '../FormLabel/FormLabel'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { emailPattern } from './EmailPattern'
-import { IEmailPassword } from '@/types/ui/ui.interface'
 import { useContext } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Context } from '@/providers/StoreProvider'
+import { IEmailPassword } from '@/types/services/services.interface'
 
 const SignInForm: React.FC = () => {
   const { store } = useContext(Context)
