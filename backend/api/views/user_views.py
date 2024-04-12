@@ -23,7 +23,7 @@ class ProfileAPIView(APIView):
                 }
                 return Response(response_data, status=201) # Return access and refresh token
             else:
-                return Response("Invalid token.", status=400) # Return token error
+                return Response("Invalid token.", status=401) # Return token error
         except Exception as e:
             print(e)
             return Response("An error occurred", status=400) # Return generic error

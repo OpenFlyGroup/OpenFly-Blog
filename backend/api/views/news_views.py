@@ -65,7 +65,7 @@ class NewsAddAPIViews(APIView):
                 if check_result != 1:
                     raise
             except:
-                return Response("Token is invalid", status=400)
+                return Response("Token is invalid", status=401)
 
             input_data = {
                 'title': title,
