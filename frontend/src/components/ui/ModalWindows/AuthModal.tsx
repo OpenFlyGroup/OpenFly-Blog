@@ -1,5 +1,4 @@
 'use client'
-import { observer } from 'mobx-react-lite'
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import Link from 'next/link'
@@ -47,30 +46,28 @@ const AuthModal: React.FC<AuthInModalProps> = ({
                 <Dialog.Panel className='modal-box w-full rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0 bg-base-200'>
                   {isReg ? (
                     <>
-                    <SignUpForm></SignUpForm>
+                    <SignUpForm />
                     <p className='text-sm font-light text-gray-500 text-center mb-4'>
                       Already have an accout?{' '}
-                      <Link
-                        href='/'
+                      <button
                         className='font-medium text-primary hover:underline text-center'
                         onClick={() => setIsReg(false)}
                       >
                         Sign in
-                      </Link>
+                      </button>
                     </p>
                   </>
                   ) : (
                     <>
-                      <SignInForm></SignInForm>
+                      <SignInForm />
                       <p className='text-sm font-light text-gray-500 text-center mb-4'>
                         Don’t have an account yet?{' '}
-                        <Link
-                          href='/'
+                        <button
                           className='font-medium text-primary hover:underline'
                           onClick={() => setIsReg(true)}
                         >
                           Sign up
-                        </Link>
+                        </button>
                       </p>
                     </>
                   )}
@@ -83,4 +80,4 @@ const AuthModal: React.FC<AuthInModalProps> = ({
     </>
   )
 }
-export default observer(AuthModal)
+export default AuthModal
