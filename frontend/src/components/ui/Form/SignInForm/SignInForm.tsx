@@ -72,7 +72,7 @@ const SignInForm: React.FC = () => {
                 />
               </div>
               <div className='flex items-center justify-between'>
-                <div className='flex items-start'>
+                {/* <div className='flex items-start'>
                   <div className='flex items-center h-5'>
                     <input
                       id='remember'
@@ -85,7 +85,7 @@ const SignInForm: React.FC = () => {
                   <div className='ml-3 text-sm'>
                     <label className='text-gray-500 '>Remember me</label>
                   </div>
-                </div>
+                </div> */}
                 <Link
                   href='/'
                   className='text-sm font-medium text-primary hover:underline'
