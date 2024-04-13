@@ -47,7 +47,7 @@ const AuthModal: React.FC<AuthInModalProps> = ({
                   {isReg ? (
                     <>
                     <SignUpForm />
-                    <p className='text-sm font-light text-gray-500 text-center mb-4'>
+                    <div className='text-sm font-light text-gray-500 text-center mb-4'>
                       Already have an accout?{' '}
                       <button
                         className='font-medium text-primary hover:underline text-center'
@@ -55,12 +55,12 @@ const AuthModal: React.FC<AuthInModalProps> = ({
                       >
                         Sign in
                       </button>
-                    </p>
+                    </div>
                   </>
                   ) : (
                     <>
                       <SignInForm />
-                      <p className='text-sm font-light text-gray-500 text-center mb-4'>
+                      <div className='text-sm font-light text-gray-500 text-center mb-4'>
                         Don’t have an account yet?{' '}
                         <button
                           className='font-medium text-primary hover:underline'
@@ -68,7 +68,7 @@ const AuthModal: React.FC<AuthInModalProps> = ({
                         >
                           Sign up
                         </button>
-                      </p>
+                      </div>
                     </>
                   )}
                 </Dialog.Panel>
