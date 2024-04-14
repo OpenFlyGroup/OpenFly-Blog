@@ -1,6 +1,4 @@
 from django.db import models
-from django.contrib.auth.backends import ModelBackend
-
 
 class Forum(models.Model):
     thread_id = models.AutoField(primary_key=True)

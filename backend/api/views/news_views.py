@@ -5,9 +5,9 @@ from datetime import datetime
 
 from ..models import News, NewsComments
 from ..serializers import NewsSerializer, NewsCommentsSerializer
-from ..utils.token_utils import token_check, authenticate_by_token
+from ..utils.token_utils import AccessToken
 from ..utils.request_utils import check_not_none
-from ..utils.cript_utils import encrypt, decrypt
+from ..utils.cript_utils import decrypt
 
 
 class NewsListAPIView(APIView):
@@ -54,15 +54,15 @@ class NewsAddAPIViews(APIView):
             text = request.data.get('text', '')
             logo_img = request.data.get('logoImg', '')
             main_img = request.data.get('mainImg', '')
-            token = request.data.get('token', '')
+            token_req = request.data.get('token', '')
             category = request.data.get('category', '')
             creation_date = datetime.utcnow()
-            check_not_none(title, text, logo_img, main_img,
-                           token, category, creation_date)
+            check_not_none(title, text, logo_img, main_img, token_req, category, creation_date)
 
+            token = AccessToken(token_value=token_req)
+            check_res = token.check()
             try:
-                check_result = token_check(token=token, token_type="access")
-                if check_result != 1:
+                if check_res != 1:
                     raise
             except:
                 return Response("Token is invalid", status=401)
@@ -94,14 +94,15 @@ class NewsAddAPIViews(APIView):
 class NewsCommentsListAPIView(APIView):
     def post(self, request):
         try:
-            news_id = str(request.data.get('id', ''))
-            text = str(request.data.get('text', ''))
-            token = str(request.data.get('token', ''))
-            check_not_none(news_id, text, token)
+            news_id = request.data.get('id', '')
+            text = request.data.get('text', '')
+            token_req = request.data.get('token', '')
+            check_not_none(news_id, text, token_req)
 
+            token = AccessToken(token_value=token_req)
             try:
-                check_result = token_check(token=token, token_type="access")
-                if check_result != 1:
+                check_res = token.check(get_user=True)
+                if check_res.__class__ == int:
                     raise
             except:
                 return Response("Token is invalid", status=400)
@@ -112,10 +113,10 @@ class NewsCommentsListAPIView(APIView):
                 # Return generic error
                 return Response("An error occurred", status=400)
 
-            user = authenticate_by_token(token)
+            user = check_res
             creation_date = datetime.utcnow().date()
             input_data = {
-                'author': user["user_id"],
+                'author': user.user_id,
                 'creation_date': creation_date,
                 'text': text
             }

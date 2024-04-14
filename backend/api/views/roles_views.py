@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from ..models import User
+from ..utils.token_utils import AccessToken
 from ..utils.cript_utils import decrypt, encrypt
 from ..utils.roles_utils import admin_check
 from ..utils.request_utils import check_not_none
@@ -25,10 +26,11 @@ class RoleListAPIView(APIView):
     def put(self, request):
         try:
             nickname = request.data.get('nickname', '')
-            token = request.data.get('token', '')
+            token_req = request.data.get('token', '')
             new_role = request.data.get('role', '')
-            check_not_none(nickname, token, new_role)
+            check_not_none(nickname, token_req, new_role)
 
+            token = AccessToken(token_value=token_req)
             is_admin = admin_check(token)
             if is_admin:
                 try:

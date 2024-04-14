@@ -3,7 +3,6 @@ from rest_framework.response import Response
 
 from ..models import Forum
 from ..serializers import ForumSerializer
-from ..utils.token_utils import token_check
 
 
 class ForumListAPIView(APIView):
