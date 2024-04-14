@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from ..models import User
 from ..serializers import UserSerializer
-from ..utils.token_utils import Token, AccessToken, RefreshToken, check_res_to_error
+from ..utils.token_utils import AccessToken, RefreshToken, check_res_to_error
 from ..utils.user_utils import authenticate_user, check_is_unique, generate_nickname
 from ..utils.cript_utils import decrypt, encrypt, hash_password
 from ..utils.request_utils import check_not_none
