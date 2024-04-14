@@ -6,7 +6,7 @@ from ..utils.request_utils import check_not_none
 from ..response_handler import response_handler
 
 class ProfileAPIView(APIView):
-    @response_handler()
+    @response_handler
     def get(self, request):
         token_req = request.data.get('accessToken', '')
         check_not_none(token_req)

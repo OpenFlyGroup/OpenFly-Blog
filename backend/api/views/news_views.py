@@ -11,7 +11,7 @@ from ..utils.cript_utils import decrypt
 from ..response_handler import response_handler
 
 class NewsListAPIView(APIView):
-    @response_handler()
+    @response_handler
     def get(self, request):
         all_news = News.objects.all()
         news_list = []
@@ -45,7 +45,7 @@ class NewsListAPIView(APIView):
 class NewsAddAPIViews(APIView):
     parser_classes = [MultiPartParser]
 
-    @response_handler()
+    @response_handler
     def post(self, request):
         title = request.data.get('title', '')
         text = request.data.get('text', '')
@@ -85,7 +85,7 @@ class NewsAddAPIViews(APIView):
 
 
 class NewsCommentsListAPIView(APIView):
-    @response_handler()
+    @response_handler
     def post(self, request):
         news_id = request.data.get('id', '')
         text = request.data.get('text', '')

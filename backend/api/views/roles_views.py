@@ -9,7 +9,7 @@ from ..utils.request_utils import check_not_none
 from ..response_handler import response_handler
 
 class RoleListAPIView(APIView):
-    @response_handler()
+    @response_handler
     def get(self, request):
         users = User.objects.all()
         response_data = []
@@ -21,7 +21,7 @@ class RoleListAPIView(APIView):
             })
         return Response(response_data) #Return all users information
 
-    @response_handler()
+    @response_handler
     def put(self, request):
         nickname = request.data.get('nickname', '')
         token_req = request.data.get('token', '')
@@ -43,11 +43,11 @@ class RoleListAPIView(APIView):
             return Response("You don't have permission.", status=400)
 
 class IsAdminAPIView(APIView):
-    @response_handler()
+    @response_handler
     def post(self, request):
-        token = request.data.get('token', '')
-        check_not_none(token)
-
+        token_req = request.data.get('token', '')
+        check_not_none(token_req)
+        token = AccessToken(token_value=token_req)
         response = {
             'isAdmin': admin_check(token)
         }

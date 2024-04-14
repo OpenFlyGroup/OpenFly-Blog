@@ -6,7 +6,7 @@ from ..serializers import ForumSerializer
 from ..response_handler import response_handler
 
 class ForumListAPIView(APIView):
-    @response_handler()
+    @response_handler
     def get(self, request):
         output = [
             {
@@ -18,7 +18,7 @@ class ForumListAPIView(APIView):
         ]
         return Response(output)
 
-    @response_handler()
+    @response_handler
     def post(self, request):
         serializer = ForumSerializer(data = request.data)
         if serializer.is_valid():
