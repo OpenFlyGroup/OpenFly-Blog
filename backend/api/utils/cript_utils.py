@@ -11,7 +11,7 @@ from ast import literal_eval
 load_dotenv(find_dotenv())
 CYPHER_KEY = getenv("CYPHER_KEY")
 
-def generate_key():
+def generate_key() -> bytes:
     """
     Generate key for AES encryption using SHA-256.
 
@@ -23,7 +23,7 @@ def generate_key():
 
 KEY = generate_key()
 
-def encrypt(data):
+def encrypt(data) -> str:
     """
     Encrypt data using AES encryption in ECB mode.
 
@@ -37,22 +37,22 @@ def encrypt(data):
     encrypted_data = cipher.encrypt(pad(data.encode(), AES.block_size))
     return b64encode(encrypted_data).decode()
 
-def decrypt(encrypted_data):
+def decrypt(data) -> str:
     """
     Decrypt encrypted data using AES decryption in ECB mode.
 
     Parameters:
-    - encrypted_data (str): Base64-encoded string of encrypted data
+    - data (str): Base64-encoded string of encrypted data
 
     Returns:
     - str: Decrypted data
     """
     cipher = AES.new(KEY, AES.MODE_ECB)
-    decrypted_data = unpad(cipher.decrypt(b64decode(encrypted_data)), AES.block_size).decode()
-    return decrypted_data
+    decrypted_data = unpad(cipher.decrypt(b64decode(data)), AES.block_size).decode()
+    return str(decrypted_data)
 
 
-def hash_password(password):
+def hash_password(password) -> str:
     """
     Hash a password using bcrypt with randomly generated salt.
 
@@ -66,7 +66,7 @@ def hash_password(password):
     hashed_password = hashpw(password.encode('utf-8'), salt)
     return str(hashed_password)
 
-def check_password(input_password, stored_password):
+def check_password(input_password, stored_password) -> bool:
     """
     Check if input password matches stored hashed password using bcrypt.
 
@@ -78,4 +78,4 @@ def check_password(input_password, stored_password):
     - bool: True if passwords match, False otherwise
     """
     stored_bytes = literal_eval(stored_password)
-    return checkpw(input_password.encode('utf-8'), stored_bytes)
+    return bool(checkpw(input_password.encode('utf-8'), stored_bytes))
