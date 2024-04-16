@@ -16,7 +16,7 @@ urlpatterns = [
     path('role/list', RoleListAPIView.as_view(), name='role-list'),
     path('auth/signup', SignUpAPIView.as_view(), name='sign-up'),
     path('auth/signin', SignInAPIView.as_view(), name='sign-in'),
-    path('auth/signin/access-token', UpdateTokenAPIView.as_view(), name='sign-in'),
+    path('auth/refresh', UpdateTokenAPIView.as_view(), name='sign-in'),
     path('users/profile', ProfileAPIView.as_view(), name='profile'),
 ]
 

@@ -2,7 +2,7 @@ from ..serializers import SessionsSerializer
 from ..models import Sessions
 
 
-def session_update(creation_time, user_id):
+def session_update(creation_time, user_id : int):
     """
     Update user session information.
 
