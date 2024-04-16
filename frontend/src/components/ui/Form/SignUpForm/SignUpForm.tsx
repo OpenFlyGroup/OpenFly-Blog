@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 'use client'
-import { IEmailPassword } from '@/types/ui/ui.interface'
 import BtnSubmit from '../../Buttons/BtnSubmit/BtnSubmit'
 import FormLabel from '../FormLabel/FormLabel'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -8,6 +7,7 @@ import { useContext, useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Context } from '@/providers/StoreProvider'
 import { emailPattern } from '../SignInForm/EmailPattern'
+import { IEmailPassword } from '@/types/services/services.interface'
 
 const SignUpForm: React.FC = () => {
   const { store } = useContext(Context)
@@ -70,7 +70,7 @@ const SignUpForm: React.FC = () => {
                   />
                   {errors.email && (
                     <p className='text-red-500 text-xs'>
-                      errors.email?.message
+                      {errors.email?.message}
                     </p>
                   )}
                 </div>

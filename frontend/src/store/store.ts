@@ -2,11 +2,9 @@ import { errorCatch } from '@/api/api.helper'
 import { removeFromStorage, saveToStorage } from '@/services/auth/auth.helper'
 import { AuthService } from '@/services/auth/auth.service'
 import {
-  IAuthResponse,
   IEmailPassword,
   IUser,
 } from '@/types/services/services.interface'
-import axios from 'axios'
 import { makeAutoObservable } from 'mobx'
 
 export default class Store {
