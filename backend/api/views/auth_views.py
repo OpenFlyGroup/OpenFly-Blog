@@ -116,12 +116,12 @@ class SignUpAPIView(APIView):
 
 class UpdateTokenAPIView(APIView):
     @response_handler
-    def post(self, request):
-        access_token_req = request.data.get('accessToken', '')
-        refresh_token_req = request.COOKIES.get('token')
-        check_not_none(access_token_req, refresh_token_req)
+    def get(self, request):
+        refresh_token_req = request.COOKIES.get('refreshToken')
+        print("!!!", request.COOKIES)
+        check_not_none(refresh_token_req)
 
-        access_token = AccessToken(token_value=access_token_req)
+        access_token = AccessToken
         refresh_token = RefreshToken(token_value=refresh_token_req)
         error = access_token.refresh(refresh_token)
         if error:
