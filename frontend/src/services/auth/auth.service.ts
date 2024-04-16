@@ -19,7 +19,7 @@ export const AuthService = {
     return await axios.get<IAuthResponse>(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/${PATH}/refresh`,
       {
-        withCredentials: true,
+        withCredentials: true, // No cookies?
       }
     )
   },
