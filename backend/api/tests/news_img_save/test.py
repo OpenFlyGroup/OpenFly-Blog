@@ -1,7 +1,7 @@
 import requests
 
 url = 'http://localhost:8000/api/news/post-create'
-token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwibmlja25hbWUiOiJhZG1pbiIsInVzZXJfaWQiOjQ3LCJjcmVhdGVkIjoiMjAyNC0wMy0xNlQxMjo0NDoyMy43ODk0OTAiLCJleHBpcmVkIjoiMjAyNC0wMy0xNlQxMjo1OToyMy43ODk0OTAifQ.MOOWE-TEPELBJ0AoDjyZHmzfQzH_WbGOCLFN569dk2E'
+token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiQWNjZXNzVG9rZW4iLCJuaWNrbmFtZSI6ImFkbWluIiwidXNlcl9pZCI6NDcsImNyZWF0ZWQiOiIyMDI0LTA0LTE0VDExOjQxOjQ0LjI2MDA4OSIsImV4cGlyZWQiOiIyMDI0LTA0LTE0VDExOjU2OjQ0LjI2MDA4OSJ9.KMb_8HFI9ZRfZwdvjV5etPeoNEgrTujs2ZxJOPpbqm4'
 title = 'Liminal creature'
 text = 'In the example above, we declare both quote and fact in the same line with one operator (:=). These variables are then assigned their respective values based on the ordering of variables and value. Since quote is the first variable, and the string "Bears, Beets, Battlestar Galactica" is the first value, quote has a value of "Bears, Beets, Battlestar Galactica". Similarly, fact then is assigned the value true.'
 category = 'development'

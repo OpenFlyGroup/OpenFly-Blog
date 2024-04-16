@@ -1,5 +1,5 @@
 from ..models import User
-from .cript_utils import decrypt, encrypt, check_password, hash_password
+from .cript_utils import decrypt, encrypt, check_password
 from hashlib import md5
 
 def authenticate_user(nickname=None, user_id=None, password=None, email=None):
@@ -31,21 +31,13 @@ def authenticate_user(nickname=None, user_id=None, password=None, email=None):
             if not check_password(password, user.password):
                 user = None
         elif nickname is not None and user_id is not None:
-            user = User.objects.get(
-                nickname=encrypt(nickname), user_id=user_id)
+            user = User.objects.get(nickname=encrypt(nickname), user_id=user_id)
 
         if not user:
             return None
-        user_out = {
-            'user_id': user.user_id,
-            'email': decrypt(user.email),
-            'nickname': decrypt(user.nickname),
-            'info': user.info,
-            'role': user.role,
-            'active': user.active,
-            'profile_img': user.profile_img,
-        }
-        return user_out
+        user.nickname = decrypt(user.nickname)
+        user.email = decrypt(user.email)
+        return user
     except User.DoesNotExist:
         return None
 
@@ -94,11 +86,19 @@ def check_is_unique(nickname=None, email=None):
 
 
 def generate_nickname(email):
+    """
+    Generate unique nickname
+
+    Parametest:
+        email (str): user's email
+
+    Returns:
+        str: nickname, generated from email's hash
+    """
     vowels = 'aeiou'
     consonants = 'bcdfghjklmnpqrstvwxyz'
     hashed_email = md5(email.encode()).hexdigest()
-    hashed_email = [(chr(int(i) + 97) if i.isdigit() else i)
-                    for i in hashed_email]
+    hashed_email = [(chr(int(i) + 97) if i.isdigit() else i) for i in hashed_email]
     nickname = ''
     for char in hashed_email:
         if len(nickname) >= 15:

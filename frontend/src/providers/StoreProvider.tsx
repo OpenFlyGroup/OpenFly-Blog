@@ -15,7 +15,7 @@ export const Context = createContext<TypeStore>({
 
 export const StoreProvider = ({ children }: { children: ReactNode }) => {
   useEffect(()=> {
-    if(getAccessToken()) {
+    if(!getAccessToken()) {
       store.checkAuth()
     }
   },[])
