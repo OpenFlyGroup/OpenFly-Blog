@@ -1,0 +1,6 @@
+[submodule "OpenFlyBlog_Back"]
+	path = OpenFlyBlog_Back
+	url = git@github.com:OpenFlyGroup/OpenFlyBlog_Back.git
+[submodule "OpenFlyBlog_Front"]
+	path = OpenFlyBlog_Front
+	url = git@github.com:OpenFlyGroup/OpenFlyBlog_Front.git
