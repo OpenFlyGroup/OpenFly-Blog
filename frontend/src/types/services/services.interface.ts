@@ -4,12 +4,11 @@ export interface IUser {
   role: string
 }
 
-export interface ITokens {
-  accessToken: string
-  refreshToken: string
+export interface IToken {
+  token: string
 }
 
-export interface IAuthResponse extends ITokens {
+export interface IAuthResponse extends IToken {
   user: IUser
 }
 

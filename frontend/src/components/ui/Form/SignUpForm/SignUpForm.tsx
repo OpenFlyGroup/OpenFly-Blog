@@ -104,6 +104,9 @@ const SignUpForm: React.FC = () => {
                     </p>
                   )}
                 </div>
+                {store.errorStore.error && (
+                  <div style={{ color: 'red' }}>{store.errorStore.error}</div>
+                )}
                 <BtnSubmit text='Sign up' />
               </form>
             </div>

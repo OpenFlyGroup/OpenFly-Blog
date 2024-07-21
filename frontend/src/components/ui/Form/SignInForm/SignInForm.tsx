@@ -22,7 +22,7 @@ const SignInForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<IEmailPassword> = (data) => {
     store.signIn(data)
-    reset()
+    // reset()
   }
 
   return (
@@ -86,6 +86,9 @@ const SignInForm: React.FC = () => {
                     <label className='text-gray-500 '>Remember me</label>
                   </div>
                 </div> */}
+                {store.errorStore.error && (
+                  <div style={{ color: 'red' }}>{store.errorStore.error}</div>
+                )}
                 <Link
                   href='/'
                   className='text-sm font-medium text-primary hover:underline'
